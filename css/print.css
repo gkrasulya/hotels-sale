@@ -1,0 +1,21 @@
+
+
+#header, #navigation, #footer, #contact_mail, #gallery, object, #print {
+	display: none;
+}
+
+embed, object {
+	height: 0px;
+	width: 0px;
+}
+
+#content {
+	margin-top: -100px;
+	margin-left: -15%;
+	position: absolute;
+	width: 130%;
+}
+
+*, #content, #cont_rb, #cont_lt, #cont_rt, #cont_lb, .corner_lt, .corner_lb, .corner_rt, .corner_rb {
+	background: white;
+}

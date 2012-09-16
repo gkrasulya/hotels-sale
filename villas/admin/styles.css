@@ -1,0 +1,227 @@
+
+/* BASIC
+-----------------------------------------------------------------------------*/
+
+* {
+margin:0px;
+padding:0px;
+}
+
+body {
+font-family:Arial, Helvetica, sans-serif;
+font-size:12px;
+padding-top:20px;
+background:#eaeaff;
+}
+
+#wrapper {
+width:780px;
+position:relative;
+left:50%;
+margin-left: -390px;
+}
+
+
+/* CONTENT
+-----------------------------------------------------------------------------*/
+
+#content {
+float: right;
+width: 570px;
+background:url('../img/bg.gif') #f08c2f;
+margin-top:40px;
+}
+
+#contentMain {
+width:470px;
+margin:30px 30px;
+background:white;
+float:left;
+padding: 20px;
+}
+
+
+/* NAVIGATION
+-----------------------------------------------------------------------------*/
+
+#navigation {
+float:left;
+width: 180px;
+background:url('../img/bg4.gif') #f08c2f;
+margin-top:40px;
+padding:20px 0;
+}
+
+#navigation li {
+list-style:none;
+margin:0 20px;
+margin-top:15px;
+padding-left:10px;
+font-size:14px;
+color:#391a00;
+background:url('../img/nav_link_bg2.jpg') top left no-repeat;
+line-height:22px;
+font-style:italic;
+font-weight:bold;
+width:130px;
+cursor: pointer;
+}
+
+#navigation li:hover {
+color:#f47703;
+}
+
+#navigation li:hover .subNav {
+display:inline-block;
+}
+
+.subNav {
+position:absolute;
+background:white;
+margin-left:100px;
+margin-top:-30px;
+display:none;
+border: 1px solid white;
+}
+
+.subNav div {
+border:1px solid #f47703;
+}
+
+.subNav a{
+font-style:normal;
+font-size:11px;
+margin:0px;
+padding:0 10px;
+display:block;
+color: #391a00;
+text-decoration:none;
+font-style:italic;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+.subNav a:hover{
+background:url('../img/bg.gif');
+color:white;
+}
+
+#contacts {
+margin:20px 0 0 20px;
+font-weight:bold;
+}
+
+#contacts a{
+color:white;
+}
+
+
+
+
+/* ADMIN PANEL
+---------------------------------------------------------------------------------- */
+
+.link a{
+color:#391a00;
+text-decoration:none;
+display:block;
+}
+
+.link a:hover{
+color:#f47703;
+}
+
+#auth fieldset {
+color:#fca049;
+font-size:20px;
+font-weight:bold;
+position:relative;
+left:50%;
+top:100px;
+width:165px;
+margin-left:-150px;
+padding:20px;
+border:2px solid #fca049;
+}
+
+#auth fieldset label {
+font-size:12px;
+color:#fca049;
+}
+
+#auth input {
+border:1px solid #fca049;
+width:150px;
+font-size:12px;
+color:#787878;
+margin-bottom:10px;
+}
+
+#auth input[type='submit'] {
+color:#333333;
+background:white;
+margin-top:10px;
+width:50px;
+margin-left:50px;
+}
+
+h3 {
+color: #fca049;
+width:250px;
+position:absolute;
+left:50%;
+margin-left:-180px;
+margin-top:30px;
+border:2px solid #fca049;
+text-align:left;
+padding:10px;
+}
+
+h2 {
+margin:20px;
+}
+
+h4 {
+padding:10px;
+border:5px solid #f47703;
+}
+
+#form {
+float:left;
+}
+
+#form textarea {
+width:470px;
+height:200px;
+}
+
+#form input[type='submit'] {
+margin-top:20px;
+background:url('bg.gif');
+border:1px solid #fca049;
+width:100px;
+color:white;
+font-weight:bold;
+}
+
+#form label {
+display:block;
+margin:15px 0 3px 0;
+}
+
+p {
+margin-top:3px;
+}
+
+input, textarea {
+font-family:Arial, Helvetica, sans-serif;
+font-size:13px;
+}
+
+.del {
+color:#391a00;
+}
+
+.del:hover {
+color:white;
+background-color:#391a00;
+}

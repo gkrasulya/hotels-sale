@@ -1,0 +1,7 @@
+GET:
+
+action: paypal_notify
+
+
+POST:
+

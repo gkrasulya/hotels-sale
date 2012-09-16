@@ -1,0 +1,2618 @@
+
+
+		
+
+	
+	
+
+
+
+	
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" class="mr-wrap_html ">
+<head>
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+	<script type="text/javascript">/*<![CDATA[*/
+// $P — профайлер
+(function(W){var timers={},_timers={};W.$P=function(keyA,keyB){if(!keyB){_timers[keyA]=0;timers[keyA]=+new Date}else if(keyB==1){if(!_timers[keyA])_timers[keyA]=+new Date;return _timers[keyA]-timers[keyA]}else if(keyB==3)return timers[keyA];else if(keyB==2||keyB==-1){if(keyB==2)debug.group(keyA);if(typeof keyA=='string')keyA=new RegExp('^'+keyA);var k,t=0,s=0;for(k in timers)if(keyA.test(k)){if(keyB==-1){delete timers[k];delete _timers[k]}else if(k.indexOf('TOTAL')!=-1)t=$P(k,1);else debug.log(k+': '+$P(k,1)+' ms');s+=$P(k,1)}if(keyB==2){debug.log(keyA+': '+(t?t:s)+' ms');debug.groupEnd()}}else return $P(keyA,1)+$P(keyB,1)};$P.clear=function(){timer={};_timers={}}})(window);
+
+function createRadar(name, ignorZero)
+{
+	var data	= {};
+	var radar	= function (s)
+	{
+		if( s === 'clear' ){ radar.clear(); }
+		else if( typeof s === 'string' ){
+			if( data[s] ) data[s][1] = +new Date; else data[s] = [+new Date, 0];
+		} else {
+			var i = [], a, v, k;
+			for( k in data ){
+				v = data[k];
+				if( ignorZero && !(v[0] - v[1]) ) continue;
+				if( data.hasOwnProperty(k) ) i.push(k +':'+ (v[1] - v[0]));
+				if( k == 'all' ) a = v[1] - v[0];
+			}
+			setTimeout(function(){ (new Image).src = 'http://mail.radar.imgsmail.ru/update?p=mail&t='+ name +'&v='+ a +'&i='+ i.join(',') +'&rnd='+ Math.random() + (document.referrer ? '&r='+ escape(document.referrer) : ''); }, 1);
+			radar.clear();
+		}
+		return	radar;
+	};
+	radar.clear	= function (){ data = {}; return radar; };
+	return	radar;
+};
+
+function timeInterval_sum(bP) {
+    if (!rT[bP]) {
+        rT[bP] = new Date();
+    } else {
+        var rT_cnt = rT.i.length;
+        var found  = false;
+        for (var j = 0; j < rT_cnt; j++) {
+            var rT_array = rT.i[j].split("=");
+            if (rT_array[0] == bP) {
+                rT.i[j] = bP + '=' + (parseInt(rT_array[1]) + (new Date()).getTime() - rT[bP].getTime() );
+                found = true;
+            }
+        }
+        if (!found) {
+            rT.i[rT.i.length] = bP + '=' + ( (new Date()).getTime() - rT[bP].getTime() );
+        }
+        delete rT[bP];
+    }
+}
+/*]]>*/</script>
+<!-- needYes radar --><script type="text/javascript">/*<![CDATA[*/
+try {
+// sn: f79
+// Добавление событий
+function timeInterval(bP) {
+        if (!rT[bP]) rT[bP] = new Date();
+        else {
+                rT.i[rT.i.length] = bP + '=' + ( (new Date()).getTime() - rT[bP].getTime() );
+                delete rT[bP];
+        }
+}
+
+var rT = {};//renderTime
+rT.i = [];
+timeInterval('renderbrowser');
+rT.addHandler = function(object, event, handler, useCapture) {
+        if (object.addEventListener) object.addEventListener(event, handler, useCapture ? useCapture : false);
+        else if (object.attachEvent) object.attachEvent('on' + event, handler);
+}
+rT.radar_type = 'msglist';
+if (window.name.indexOf('srvt') != -1) {
+        rT.srvt = ( new Date() ).getTime() - parseInt( window.name.substr(5) );
+        window.name = '';
+}
+
+rT.addHandler(document, 'click', function() {
+        if (!window.name.length || window.name.indexOf('srvt') > -1)
+                window.name = 'srvt=' + (new Date()).getTime();
+});
+rT.addHandler(document, 'keypress', function() {
+        if (window.name.indexOf('srvt') > -1) window.name = '';
+});
+
+rT.img0 = new Image();
+rT.img0.src = 'http://mail.radar.imgsmail.ru/update?' +
+'p=mail0' +
+(rT.radar_type != '' ? ('&t=' + rT.radar_type) : '') +
+(rT.srvt ? ('&i=srvt:' + rT.srvt) : '') +
+'&v=0&rnd=153786421' +
+'';
+
+} catch(e) {}
+/*]]>*/</script>
+
+
+        <!-- / needYes radar -->
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval('load'); }catch(e) {}
+//]]></script>
+<title>no-thx@mail.ru: Загрузка... </title>
+<meta  name="description"
+CONTENT="Национальная почтовая служба @Mail.ru - лучшая бесплатная почта. Доступ к почте через POP/SMTP, веб- и wap-интерфейс. Также на портале: авто, новости, спорт, музыка, работа, знакомства, анекдоты, открытки, погода" /><META name="Keywords" content="почта, бесплатная электронная почта, авто, новости, спорт, музыка, работа, знакомства, анекдоты, открытки, погода" /><META http-equiv="content-type" content="text/html; charset=windows-1251" />
+<link rel="shortcut icon" href="http://img.imgsmail.ru/r/favicon.ico" type="image/x-icon" />
+
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('webagent_test'); }catch(e) {}
+//]]></script>
+
+
+
+
+	
+		
+	
+
+
+
+
+
+<!-- webagent [][][] -->
+
+
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('webagent_test'); }catch(e) {}
+try{ timeInterval_sum('html'); }catch(e) {}
+//]]></script>
+
+
+
+
+
+
+	
+	
+
+
+
+	
+
+
+
+
+	
+
+
+
+
+	
+		
+		
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="http://img.imgsmail.ru/mail/ru/css/ru-2.css?49" rel="stylesheet" type="text/css" />
+<style type="text/css">
+/* superNEW shapka */ 
+.spTop {background-image: url(http://img1.imgsmail.ru/mail/ru/images/ru/_sp_top2.png?1);}
+.shTT {background-color: #00468C; border-left: 1px solid #FFF; border-right: 1px solid #FFF; height: 1px; position: relative; font-size: 0; line-height: 0; height: 1px; //display: inline-block; }
+.shMain {position: relative; height: 54px; width: 90%; min-width: 950px; background-color: #00468C; background-repeat: repeat-x; background-position: 0 -220px; margin-bottom: 7px; overflow: hidden; //display: inline-block;}
+.shLogo {position: absolute; height: 47px; width: 240px; background-repeat: no-repeat; background-position: 125% 0; text-align: center; top: 0;}
+.shLogoA {display: inline-block; height: 34px; width: 160px; margin-top: 11px;}
+.shLogoW {display: inline-block; height: 14px; width: 38px; vertical-align: top; margin-top: 11px;}
+.shForm {color: #FFF; white-space: nowrap; margin: 0; font-size: 11px; font-family: Tahoma !important; position: absolute; right: 5px; top: 5px;}
+.shSns2 {color: #FFF; vertical-align: middle; position: absolute; display:inline-block; font-size: 95%; font-family: Tahoma !important; padding: 0 0 0 240px;}
+.shSns2 a {color: #FFF;}
+.shSns2 a:HOVER {color: #FFF;}
+/* end superNEW shapka */
+
+/* superNEW shapka menu */
+.shB {position: relative; white-space: nowrap; display: block; height: 20px; overflow: hidden; top: 33px; //top: 32px;}
+.shA {background-color: #5977b3; display: inline-block; height: 20px; vertical-align: top;}
+.shAaa {margin: 2px 2px 0 2px; float: left; color: #FFF; text-decoration: none; position: relative; z-index: 100;}
+a:HOVER.shAaa {text-decoration: underline; float: left; color: #FFF !important; position: relative; z-index: 100;}
+.shS {border-top: 0; border-left: 0; border-bottom: 20px solid #5977b3; border-right: 20px solid transparent; font-size: 0; line-height: 0; display: inline-block;vertical-align:top; position: relative; z-index: 1;}
+.shSp {border-bottom: 12px solid transparent; border-right: 12px solid #5977b3; font-size: 0; line-height: 0; display: inline-block; vertical-align:top; padding: 7px 0 0 0; margin-top: 1px;position: relative; z-index: 1;}
+.shSp2 {border-top: 2px solid #5977b3; font-size: 0; line-height: 0; display: inline-block; width: 11px; position: absolute; top: 0; left: 1px; vertical-align:top; z-index: 1;}
+
+.shA_act {background-color: #FFF;}
+.shAaa_act {color: #013572 !important; font-weight: bold; margin-left: 1px;}
+a:HOVER.shAaa_act {color: #013572 !important;}
+.shS_act {border-bottom: 20px solid #FFF;}
+.shSp_act {border-right: 12px solid #FFF; border-bottom: 12px solid #FFF;}
+.shSp2_act {border-top: 2px solid #FFF;}
+
+.shSp_f {border-bottom: 12px solid #5977b3;}
+.shAaa_f {margin-left: 1px;}
+
+.shMenu2 {float: left; position: relative; margin-right: -11px; border-bottom: 3px solid #5977B3;}
+.shMenu2_act {border-bottom: 3px solid #FFF;}
+@media all and (-webkit-min-device-pixel-ratio:10000),
+not all and (-webkit-min-device-pixel-ratio:0)
+{ .shMenu2 {margin-right: -10px;} }
+
+.shMenuPROBA {float: left; margin-top: 17px; width: 240px;}
+/* end superNEW shapka menu */
+
+.shAaa {margin-left: -3px;}
+.shAaa_act {margin-left: -3px !important;}
+.shAaa_f {margin-left: -3px !important;}
+
+/* capcha NEW */
+.mf_spIco, .mf_spIco2 {background-image: url(http://img1.imgsmail.ru/mail/ru/images/my/_sprite_ico.png?7); background-repeat: no-repeat; padding: 0 0 4px 20px;}
+.mf_spIco { display: inline-block;}
+.mCR .mf_aBlockWhite .mf_spIco {background: transparent none; padding: 0;}
+
+.capchaNewLeft {position: relative; background-color: #fff; background-position: left 10px; background-repeat: no-repeat; border: 1px solid #ccc; padding: 65px 5px 5px 5px; width: 180px; margin-top: -120px; float: left; z-index:10; font-size: 11px; color: #999999 !important; font-family: tahoma;}
+.capchaNewLeft i {width:13px; height:16px; font-size:0; line-height:0; vertical-align:middle; cursor:pointer; background-repeat: no-repeat; background-position: 0 -380px; padding: 0 0 2px 0; position: absolute; top: 0; right: 3px; cursor: pointer;}
+.capchaNewInp{width: 135px; border: 1px solid #9BA3A9;}
+/* /capcha NEW */
+
+</style>
+
+<!--[if lt IE 7]>
+<link href="http://img.imgsmail.ru/mail/ru/css/ru-2-ie6.css?12" rel="stylesheet" type="text/css" />
+<![endif]-->
+<style type="text/css">
+.sortBottom {position: relative;}
+.sortBottom .sortDiv {bottom: 25px;}
+.rb_banner {text-align: center;}
+</style>
+
+
+
+
+
+
+
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('html'); }catch(e) {}
+try{ timeInterval_sum('js'); }catch(e) {}
+var
+	  undef
+	, undefined
+	, IS_LOCAL		= 0
+	, jsVersion		= 2
+	, jsBuild		= '2.71'
+	, IS_UTF		= !!parseInt('0')
+	, jsCore		= { version: 2, build: '2.71' }
+	, CheckNewNum	= '2'
+	, jsCoreAlias	= {
+		  'jsCore': 		'http://js.imgsmail.ru/r/js/ru/jsCore/'
+		, 'jQuery':			'http://js.imgsmail.ru/r/js/ru/jsCore/jquery/'
+		, 'labs':			'http://js.imgsmail.ru/r/js/ru/jsCore/labs/'
+		, 'utils':			'http://js.imgsmail.ru/r/js/ru/jsCore/utils/'
+		, 'plugins':		'http://js.imgsmail.ru/r/js/ru/jsCore/plugins/'
+		, 'projects':		'http://js.imgsmail.ru/r/js/ru/jsCore/Projects/'
+		, 'easyXDM':		'http://js.imgsmail.ru/r/js/ru/easyXDM/'
+		, 'tiny_mce':		'http://js.imgsmail.ru/r/js/ru/tiny_mce/'
+		, 'mailru':			'http://js.imgsmail.ru/r/js/ru/'
+		, 'mailru.ui':		'http://js.imgsmail.ru/r/js/ru/ui/'
+		, 'mailru.app':		'http://js.imgsmail.ru/r/js/ru/'
+		, 'mailru.reg':		'http://js.imgsmail.ru/r/js/ru/jsCore/Projects/mail.ru/Reg/'
+		, 'mailru.verify':	'http://js.imgsmail.ru/r/js/ru/jsCore/Projects/mail.ru/Verify/'
+		, 'mailru.view':	'http://js.imgsmail.ru/r/js/ru/Views/'
+		, 'mailru.build':	'http://js.imgsmail.ru/r/js/ru/build/'
+		, 'mailru.compose':	'http://js.imgsmail.ru/r/js/ru/jsCore/Projects/mail.ru/Compose/'
+		, 'mailru.msglist':	'http://js.imgsmail.ru/r/js/ru/MsgList/'
+	},
+	jsLoaderFiles = {
+		  '{mailru.build}MsgList':	'http://js.imgsmail.ru/r/js/ru/build/MsgList.1297943430.js'
+		, '{mailru.build}Compose':	'http://js.imgsmail.ru/r/js/ru/build/Compose.1298028982.js'
+	},
+	jsLoaderLoaded	= ['{jQuery}jquery', '{jsCore}Array', '{jsCore}String']
+;
+
+var mailru = {
+	  uuvb:					''
+	, baseHref:				'http://win.mail.ru/cgi-bin/'
+	, username:				'no-thx'
+	, userdomain:			'mail.ru'
+	, useremail:			'no-thx@mail.ru'
+	, AbjsHash:				'Pe7EE9O6'
+	, readMsgAfterDelete:	true
+	, msgListAfterDelete:	0
+	, messagesPerPage:		25
+	, folderId:				0
+	, messageId:			'12980406940000000804'
+	, messagesPage:			1
+	, messagesSort:			''
+};
+
+mailru.saveError = function (type, log)
+{
+	if( typeof log !== 'string' ) log = log.join('|');
+	(new Image()).src	= 'http://mail.ru/gstat?ua=1&clienterror.'+ type +'=1&logme='+ log;
+};
+
+if( String(document.domain).indexOf('mail.ru') > -1 )
+{
+	mailru.onError = function (message, url, line)
+	{
+		url = String(url);
+		if( url.indexOf('/js/') > -1 )
+		{
+			mailru.saveError('js', [
+				  jsVersion +'_'+ jsBuild
+				, encodeURIComponent(url.replace('/refac', '/ru/refac'))
+				, line
+				, encodeURIComponent(message)
+				, encodeURIComponent(location.toString())
+				, 'js1'
+			].join('|'));
+		}
+	};
+}
+else
+{
+	mailru.onError = function (){};
+}
+
+
+window.onerror = function (m, u, l)
+{
+	mailru.onError(m, u, l);
+	return	true;
+};
+
+
+var jsChecker	= { add: function (){} };
+var jsLoader	= { loaded: function (file){ jsLoaderLoaded.push(file); } };
+
+
+
+document.setDomain = function (){};
+(function (m,h){m.domain=h;m.isLocal=/win\.dev|f32\./.test(h);m.isWinDev=/win\.dev/.test(h);})(mailru,document.domain);
+//]]></script>
+
+<script type="text/javascript">
+(function()
+{ // Page redirect
+	var hash = (location.toString().match(/#.*/)||[''])[0].replace('_Q_', '?'), url = location.href.replace(/#.+/, '');
+	if( hash.match(/((msglist|readmsg|sentmsg|sendmsgok)(.*?))$/) )
+	{
+		hash	= 'cgi-bin/'+RegExp.$1;
+		location.href = location.protocol + '//' + location.host + '/' + hash.replace('&secure=1', '');
+	}
+})();
+</script>
+
+	<!-- jQuery 1.4.2 -->
+	<script type="text/javascript">try{ timeInterval_sum('jquery_load'); }catch(e) {}</script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/jquery-1.4.2.min.js?v2=2.71.2"></script>
+	<script type="text/javascript">try{ timeInterval_sum('jquery_load'); }catch(e) {}</script>
+	<!-- /jQuery 1.4.2 -->
+
+	<!-- jsCore -->
+	<script type="text/javascript">try{ timeInterval_sum('jsCore_load'); }catch(e) {}</script>
+	
+		<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/../refactoring-array.js?2.71"></script>
+		<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/../refactoring-string.js?2.71"></script>
+		<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/../refactoring-js.js?2.71"></script>
+	
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/jsCore/JSON.js?v=2.71"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/jsCore/jquery/extensions.js?v=2.71"></script>
+	<script type="text/javascript">try{ timeInterval_sum('jsCore_load'); }catch(e) {}</script>
+	<!-- /jsCore -->
+
+
+<script type="text/javascript">//<![CDATA[
+domReady(function ()
+{
+	jQuery.getJSON('ajax_add_vars?ajax_call=1&func_name=msglist_vars', function (R)
+	{
+		if( R && (R[1] == 'OK') )
+			addVars(window, R[2]);
+	});
+
+	function addVars(scope, vars)
+	{
+		var k, v;
+		for( k in vars )
+		{
+			v = vars[k];
+			if( (k in scope) && (typeof v === 'object') )
+				addVars(scope[k], v);
+			else
+				scope[k] = v;
+		}
+	}
+});
+
+(function (w, u)
+{
+	var l = [
+		  'jsClass='+(w.jsClass !== u ? 1 : 0)
+		, 'jsLoader='+(w.jsLoader.file !== u ? 1 : 0)
+		, 'jQuery='+(w.jQuery !== u ? 1 : 0)
+		, '$='+(w['$'] !== u ? 1 : 0)
+	].join('_');
+
+	if( /=0/.test(l) ) mailru.onError(l, 'div-top.html', 285);
+	if( !('file' in w.jsLoader) ) w.jsLoader = { require: function (){} };
+})(window);
+
+
+(function ($, undef)
+{
+	if( $ !== undef )
+	{
+		$(document).mousedown(function (evt)
+		{
+			var elm = evt.target, id, t;
+			do
+			{
+				if( (id = elm.getAttribute(t = 'cnt_d')) || (id = elm.getAttribute(t = 'cnt_sb')) || (id = elm.getAttribute(t = 'cnt_gstat')) )
+				{
+					(new Image).src = 'http://rs.mail.ru/'+ t.substr(4) + id +'.gif?rnd='+ Math.random();
+					break;
+				}
+			}
+			while( (elm = elm.parentNode) && (elm !== this) );
+		});
+
+		$.extend($,
+		{
+			timeLogger: function (){},
+
+			tplVars: { // Templater variables
+				isTrash		: 0,
+				isMrim		: 0,
+				isUnread	: 0,
+				sortToolTip	: 0,
+				submitConfirm	: 1
+			},
+			lowSupported: function() {
+				var ua = navigator.userAgent;
+				var opera = ua.match(/opera\/([\d\.]+)/i);
+				return	ua.match(/Opera (Mini|Mobi)[^;]*/i) || (opera && opera[1] && parseFloat(opera[1]) < 9.2);
+			},
+			ajaxSupported: function() {
+				var ua = navigator.userAgent;
+				if( $.tplVars.isUnread || $.tplVars.isMrim || ua.match(/Opera (Mini|Mobi)[^;]*/i) )
+					return false;
+				return true;
+			},
+			plural: function(n, f1, f2, f5) {
+				if (n % 10 == 1 && n % 100 != 11)
+					return f1;
+				if (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 > 20))
+					return f2;
+				return f5;
+			},
+			confirmText: {
+				clr  : 'Вы действительно хотите удалить все письма из Корзины?',
+				bulk : 'Вы действительно хотите удалить все письма из папки "Спам" без возможности восстановления?',
+				mra  : 'Вы действительно хотите удалить все письма из папки "М-Агент" без возможности восстановления?'
+			},
+			linkConfirm: function(text) {
+				return confirm(text ? text : 'Вы уверены, что хотите перейти по ссылке?');
+			}
+		});
+	}
+})(window.jQuery);
+//]]>
+</script>
+
+
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/jsCore/swfobject.js?2.71"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/jsCore/utils/Lang.js?2.71"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/mailru.Lang.js?v=2.71"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/jsCore/jquery/autocomplete.js?2.71"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/jsCore/jquery/expandField.js?2.71"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/mailru.App.js?v2=2.71.2"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/mailru.core.js?v2=2.71.3"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/mailru.checknew.js?v2=2.71.5"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/mailru.readMsg.trash.js?v2=2.71.0"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/mailru.msglist.js?v2=2.71.0"></script>
+	<script type="text/javascript" src="http://js.imgsmail.ru/r/js/ru/mailru.gosearch.js?v2=2.71.0"></script>
+
+
+
+<script type="text/javascript">
+	window.tinyMCEPreInit = {
+		'base': 'http://js.imgsmail.ru/r/js/ru/tiny_mce/',
+		'query': '2.71'
+	};
+</script>
+
+
+
+
+
+<script type="text/javascript">
+	document.write('<style type="text/css">.jsdn {display: none;} .jsvh {visibility: hidden;}</style>');
+</script>
+<noscript>
+	<style type="text/css">.nojsdn {display: none;}</style>
+</noscript>
+
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('js'); }catch(e) {}
+//]]></script>
+</head>
+
+<!--[if gt IE 7]><!--><body class="notie6-body"><!--<![endif]-->
+<!--[if lt IE 7]><body class="ielt8-body ie6-body"><![endif]-->
+<!--[if IE 7]><body class="ielt8-body ie7-body"><![endif]-->
+
+<div id="ScrollBody" class="mr-wrap"><div id="ScrollBodyInner" class="mr-wrap_in">
+
+<div id="TipOfTheDayLamp" class="mlr-bln" style="width: 300px; top: 100px; left: 50px; display: none">	<div class="mlr-bln_t"><i class="mlr-bln_c mlr-bln_clt"></i><i class="mlr-bln_c mlr-bln_crt"></i><i class="mlr-bln_close" title="Закрыть">&times;<i></i></i></div>	<div class="mlr-bln_in"><i class="mlr-bln_l"></i><i class="mlr-bln_l mlr-bln_l2"></i>		<div class="mlr-bln_bg">			<table><tr>				<td><img src="http://img.imgsmail.ru/mail/ru/images/ru/lamp.png" alt=""/></td>				<td class="th-place"></td>			</tr></table>		</div>	</div>	<div class="mlr-bln_b"><i class="mlr-bln_c mlr-bln_clb"></i><i class="mlr-bln_c mlr-bln_crb"></i></div></div><div id="TipOfTheDay" class="mlr-bln mlr-bln_rt" style="width: 150px; left: 50px; top: 300px; display: none">	<div class="mlr-bln_t"><i class="mlr-bln_c mlr-bln_clt"></i><i class="mlr-bln_c mlr-bln_crt"></i><i class="mlr-bln_close" title="Закрыть">&times;<i></i></i></div>	<div class="mlr-bln_in"><i class="mlr-bln_l"></i><i class="mlr-bln_l mlr-bln_l2"></i>		<div class="mlr-bln_bg th-place"></div>	</div>	<div class="mlr-bln_b"><i class="mlr-bln_c mlr-bln_clb"></i><i class="mlr-bln_c mlr-bln_crb"></i></div></div>
+
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('reklama_rb'); }catch(e) {}
+//]]></script>
+<div class="pAbs">
+<img class="tns-counter" src="http://www.tns-counter.ru/V13a****mail_ru/ru/CP1251/tmsec=mail_win-readmsg/" width="1" height="1" alt="" />
+</div>
+<div id="container_main" class="minWidth"><span></span>
+<!--[if lt IE 7]><table class="w100 tableCell"><tr><td><![endif]-->
+
+<textarea style="display: none;" id="slot-pre-load_0"></textarea>
+<div id="slot-container_1" class="tac">
+	</div>
+<textarea id="slot-pre-load_1" style="display: none;"></textarea>
+<!--[if lt IE 7]></td></tr><tr><td><div class="fixIE"></div></td></tr></table><![endif]-->
+</div>
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('reklama_rb'); }catch(e) {}
+try{ timeInterval_sum('html'); }catch(e) {}
+//]]></script>
+<div class="minWidth shMain t12 tal" style="overflow: hidden; //overflow: visible; //display: inline-block;">
+<!--[if lt IE 7]><table class="w100 tableCell"><tr><td class="mCLtd"><![endif]-->
+<div class="shIE">
+<div class="shTT"></div>
+<div class="shTT" style="top: 52px;"></div>
+
+<span class="shSns2 pt5 t11">
+<span class="nobr"><span id="id-head-new-messages">У Вас нет новых писем</span>
+
+<span class="nobr pl15">
+<b>Мой Мир:</b>&nbsp;
+        <a href="http://r.mail.ru/cln8669/my.mail.ru/mail/no-thx/">нет новых событий</a>
+        </span>
+<span class="nobr pl15"><b>Деньги@Mail.ru:</b>&nbsp;
+        <a href="http://r.mail.ru/cln7360/money.mail.ru">0,00&nbsp;р</a>.</span>
+</span>
+	</span>
+<form action="logout" class="shForm">no-thx@mail.ru
+	&nbsp;&nbsp;&nbsp;<input type="submit" class="butOut" value=" Выход " />
+	</form>
+
+	<div class="shLogo spTop"><a href="http://r.mail.ru/cln8637/mail.ru" class="shLogoA"></a></div>
+<div class="shB arial"><div class="shMenuPROBA"></div>
+<div class="shMenu2 shMenu2_act"><span class="shSp2 shSp2_act"></span><span class="shSp shSp_act"></span><span class="shA shA_act"><a href="http://r.mail.ru/cln8481/win.mail.ru/cgi-bin/start?top=1" class="shAaa shAaa_act">Почта</a></span><span class="shS ie6bR shS_act"></span></div>
+<div class="shMenu2"><span class="shSp2"></span><span class="shSp ie6bB"></span><span class="shA"><a href="http://r.mail.ru/cln8636/win.mail.ru/cgi-bin/addressbook?1179394781&top=1" class="shAaa">Адреса</a></span><span class="shS ie6bR"></span></div>
+<div class="shMenu2"><span class="shSp2"></span><span class="shSp ie6bB"></span><span class="shA"><a href="http://r.mail.ru/cln5416/my.mail.ru/mail/no-thx/" class="shAaa">Мой мир</a></span><span class="shS ie6bR"></span></div>
+<div class="shMenu2"><span class="shSp2"></span><span class="shSp ie6bB"></span><span class="shA"><a href="http://r.mail.ru/cln5417/foto.mail.ru" class="shAaa">Фото</a></span><span class="shS ie6bR"></span></div>
+<div class="shMenu2"><span class="shSp2"></span><span class="shSp ie6bB"></span><span class="shA"><a href="http://r.mail.ru/cln5418/video.mail.ru" class="shAaa">Видео</a></span><span class="shS ie6bR"></span></div>
+
+<div class="shMenu2"><span class="shSp2"></span><span class="shSp ie6bB"></span><span class="shA"><a href="http://r.mail.ru/cln3359/blogs.mail.ru" class="shAaa">Блоги</a></span><span class="shS ie6bR"></span></div>
+
+<div class="shMenu2"><span class="shSp2"></span><span class="shSp ie6bB"></span><span class="shA"><a href="http://r.mail.ru/cln5423/games.mail.ru" class="shAaa">Игры</a></span><span class="shS ie6bR"></span></div>
+<div class="shMenu2"><span class="shSp2"></span><span class="shSp ie6bB"></span><span class="shA"><a href="http://r.mail.ru/cln5421/love.mail.ru/partner/link.phtml?pid=475306&lid=7095" class="shAaa">Знакомства</a></span><span class="shS ie6bR"></span></div>
+<div class="shMenu2"><span class="shSp2"></span><span class="shSp ie6bB"></span><span class="shA"><a href="http://r.mail.ru/cln6015/money.mail.ru/" class="shAaa">Деньги</a></span><span class="shS ie6bR"></span></div>
+<div class="shMenu2"><span class="shSp2"></span><span class="shSp ie6bB"></span><span class="shA"><a href="http://r.mail.ru/cln7314/maps.mail.ru" class="shAaa">Карты</a></span><span class="shS ie6bR"></span></div>
+<img src="http://rs.mail.ru/d375810.gif?rnd=946046582&ts=1298217180" width="1" height="1" border="0" alt="" style="position:absolute;"/>
+
+
+
+
+
+
+
+<div class="shMenu2"><span class="shSp2" style="border-top-color: #FFFF00;"></span><span class="shSp shSp_mark ie6bB" style="border-right-color: #FFFF00;"></span><span class="shA" style="background-color: #FFFF00;"><a href="http://r.mail.ru/n59673610"  target="_blank" class="shAaa shAaa_mark" style="color: #000000 !important;">23 фев.</a></span><span class="shS ie6bR" style="border-bottom-color: #FFFF00;"></span></div>
+	</div>
+</div>
+
+<!--[if lt IE 7]></td></tr><tr><td><div class="fixIE"></div></td></tr></table><![endif]-->
+</div>
+
+<div id="page-main" class="minWidth pageMain pageMain2">
+
+<!--[if lt IE 7]><table class="w100 tableCell"><tr><td class="mCLtd"><![endif]-->
+	<div class="mCL pRel">
+
+	
+<div class="pAbs" style="right: -12px; top: 15px;"><a href="nofolders?show=0&back=msglist?folder=" id="show-hide-folders" class="spI iHideF"></a></div>
+
+
+<div id="mail-folders" class="mCLdN" >
+	<div class="lh-19 pt5 bGnoPad">
+	<div class="lmBg t11 grey2">всего</div>
+	<div class="lmBg t11 grey2 pr0">новых</div>
+	<div class="pb5 pl10"><a href="folders?2577930531" class="h3a" title="Управление папками">Папки</a></div>
+<div id="foldersStartId">
+
+<div class="ohd pRel lmTR" id="folder0">
+	
+	<div class="pAbs z-i1 pl10"><a rel="history" id="folderLink_0" href="msglist?folder=0&180810051" class="nobr spI lmName">Входящие</a></div>
+		<div class="lmBg">3763</div>
+		<div class="lmBg pr2">
+		<span class="fade">&nbsp;</span>&nbsp;<b></b>
+		</div>
+	</div>
+
+
+<div class="ohd pRel lmTR" id="folder950">
+	
+	<div class="pAbs z-i1 pl10"><a rel="history" id="folderLink_950" href="msglist?folder=950&3130765546" class="nobr spI lmName">Спам</a></div>
+		<div class="lmBg">30</div>
+		<div class="lmBg pr2">
+		<span class="fade">&nbsp;</span>&nbsp;<b></b>
+		</div>
+	</div>
+
+<div class="ohd pRel lmTR" id="folder500000">
+	
+	<div class="pAbs z-i1 pl10"><a rel="history" id="folderLink_500000" href="msglist?folder=500000&489259585" class="nobr spI lmName">Отправленные</a></div>
+		<div class="lmBg">2233</div>
+		<div class="lmBg pr2">
+		<span class="fade">&nbsp;</span>&nbsp;<b></b>
+		</div>
+	</div>
+
+<div class="ohd pRel lmTR" id="folder500001">
+	
+	<div class="pAbs z-i1 pl10"><a rel="history" id="folderLink_500001" href="msglist?folder=500001&897788237" class="nobr spI lmName">Черновики</a></div>
+		<div class="lmBg">36</div>
+		<div class="lmBg pr2">
+		<span class="fade">&nbsp;</span>&nbsp;<b></b>
+		</div>
+	</div>
+
+<div class="ohd pRel lmTR" id="folder500002">
+	
+	<div class="pAbs z-i1 pl10"><a rel="history" id="folderLink_500002" href="msglist?folder=500002&3686831506" class="nobr spI lmName">Корзина</a></div>
+		<div class="lmBg">15</div>
+		<div class="lmBg pr2">
+		<span class="fade">&nbsp;</span>&nbsp;<b></b>
+		</div>
+	</div>
+
+<script type="text/plain" id="folderTpl"><div class="ohd pRel lmTR#{FolderMark}" id="folder#{FolderId}">
+	<div class="pAbs z-i1 #{Subfolder}"><a#{RelHistory} id="folderLink_#{FolderId}" href="#{Href}" class="nobr spI lmName #{Unread}">#{FolderName}</a></div>
+	<div class="lmBg">#{AllCount}</div>
+	<div class="lmBg pr2 bold">
+	<span class="fade">&nbsp;</span><i class="#{FolderSecret}#{FolderSecretOpened}"></i>&nbsp;<b>#{UnreadCount}</b>
+	</div>
+</div></script>
+</div>
+
+	<div class="ohd pRel">
+
+<div class="pAbs z-i1 pl10"><a href="/cgi-bin/mrimhistory" class="nobr spI lmName mr0">Архив М-Агента</a></div>
+		<div class="lmBg">&nbsp;</div>
+		<div class="lmBg pr2 bold dN" id="countUnreadedMessagesForWebAgent">&nbsp;1</div>
+	</div>
+
+<div id="row_link_to_unread" class="bGtop pb0 ml10 mr10" style="display: none">
+<div class="ohd"><a href="gosearch?q_read=2&q_folder=all&advanced=1" class="spI lmNameUnread">Все непрочтенные письма</a></div>
+</div>
+<div class="sizeMain ohd">
+	<div class="size1">Занято&nbsp;<span id="spaMailboxProc">10%</span></div>
+	<div class="size2"><div id="div_MailboxProc" class="size2a" style="width: 10%;"></div></div>
+	<a href="http://www.mail.ru/pages/help/20.html" class="size3">Как&nbsp;увеличить?</a>
+</div>
+</div>
+
+<script type="text/javascript">//<![CDATA[
+
+
+try{ timeInterval_sum('html'); }catch(e) {}
+try{ timeInterval_sum('reklama_rb'); }catch(e) {}
+//]]></script>
+
+	
+		
+	<div id="slot-container_2" class="mb10">
+		<img src="http://rs.mail.ru/d365122.gif?rnd=131318897&ts=1298217180" width="1" height="1" border="0" alt="" style="position:absolute;"/>
+<div id="rb_flash_div_365122" class="rb_div"></div>
+<script type="text/javascript">
+<!--
+(function() {
+  var rb_link1 = "http://r.mail.ru/n56762781";
+
+  var rb_swf = "http://rs.mail.ru/b12667654.swf";
+  var rb_fver = "9";
+  var rb_width = "240";
+  var rb_height = "200";
+  var rb_allowscriptaccess = 0;
+  var rb_wmode = "opaque";
+  var rb_flash = 0;
+
+  var rb_innerhtml = (typeof(window['rb_innerhtml']) != 'undefined' && window['rb_innerhtml'])
+  if (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"] ) {
+   var plugin = navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin;
+   if (plugin && parseInt(plugin.description.match(/\d+/)[0]) >= rb_fver)
+    rb_flash = 1;
+   } else if (navigator.appName && navigator.appName.indexOf("Microsoft") != -1 &&
+   navigator.userAgent.indexOf("Windows") != -1 && navigator.userAgent.indexOf("Windows 3.1") == -1) {
+    rb_flash = 1;
+  }
+  if (rb_flash) {
+    var rb_rnd = Math.round(Math.random() * 1000000000);
+    var rb_vars_arr = Array();
+    rb_vars_arr.push('link1='+escape(rb_link1).replace(/\+/g,'%2B'));
+    var rb_vars = rb_vars_arr.join('&');
+    var rb_html = '<div class="rb_banner"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version='+rb_fver+',0,0,0" id="getmov'+rb_rnd+'" width="'+rb_width+'" height="'+rb_height+'">'+(rb_allowscriptaccess?'<param name="allowscriptaccess" value="always" />':'')+'<param name="movie" value="'+rb_swf+'" /><param name="quality" value="high" /><param name="wmode" value="'+rb_wmode+'" /><param name="FlashVars" value="'+rb_vars+'" /><embed name="embed_getmov'+rb_rnd+'" flashvars="'+rb_vars+'" '+(rb_allowscriptaccess?'allowscriptaccess="always" ':'')+'src="'+rb_swf+'" quality="high" wmode="'+rb_wmode+'" width="'+rb_width+'" height="'+rb_height+'" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgiP1_Prod_Version=ShockwaveFlash" /></object></div>';
+    if (rb_innerhtml) {
+      var rb_flash_div = document.getElementById("rb_flash_div_365122");
+      rb_flash_div.innerHTML = rb_html;
+    }
+    else document.write(rb_html);
+  }
+  else {
+    var rb_img_html = '<div class="rb_banner"><a href="http://r.mail.ru/n56762781" target="_blank"><img src="http://rs.mail.ru/b12667655.jpg" width="240" height="200" border="0" alt="" title="" /></a></div>';
+    if (rb_innerhtml) {
+      var rb_flash_div = document.getElementById("rb_flash_div_365122");
+      rb_flash_div.innerHTML = rb_img_html;
+    }
+    else document.write(rb_img_html);
+  };
+})();
+//-->
+</script>
+<noscript><div class="rb_banner"><a href="http://r.mail.ru/n56762781" target="_blank"><img src="http://rs.mail.ru/b12667655.jpg" width="240" height="200" border="0" alt="" title="" /></a></div></noscript>
+
+<script type="text/javascript">
+document.cookie="b=sDoRACDM3gEAeJsfoIEOfEoPstILVpUPHH4eMnwNmNANiM4LVJUP/LUX7GYPAQAILQYK3eUIDxoJMfMIM9I/ImzjZ4Sd+IycvaAiDvMjRLp6jA5PkBhLJxEkKj+BlO1n7AMDhfKdIHKuViJ8o38C; expires=Sat, 19 Feb 2012 21:00:00 GMT; path=/; domain=.mail.ru";
+</script>
+
+
+		</div>
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('reklama_rb'); }catch(e) {}
+try{ timeInterval_sum('html'); }catch(e) {}
+//]]></script>
+<textarea id="slot-pre-load_2" style="display: none;"></textarea>
+<div id="slotShow_direct" class="pt10" style="display: none;"></div>
+	</div>
+
+
+
+
+	</div>
+<!--[if lt IE 7]><div class="IEfixCL"></div></td><td class="IEfix-padLeftTD"><div class="IEfix-padLeft"></div></td><td class="mCCtd"><![endif]-->
+	<div class="mCC"><div class="mCCC">
+	<div class="bGbottom">
+<span class="flr nobr t11"><a href="view_organizer?121129757&top=1" target="_blank">ежедневник</a><b class="bull">&bull;</b><a href="options?4049730334">настройки</a><b class="bull">&bull;</b><a href="http://www.mail.ru/pages/newinmail/index.html" target="_blank">новинки</a><b class="bull">&bull;</b><a href="http://r.mail.ru/clb47636/www.mail.ru/pages/help/index.html" target="_blank">помощь</a>
+	</span>
+<span class="nobr">
+
+<a href="start" class="spI iCheckUp mr10">Проверить&nbsp;почту</a>
+<a href="sentmsg?compose&604367464" class="spI iWrite mr10" >Написать&nbsp;письмо</a>
+<a href="http://r.mail.ru/n56520866" title="Голосуй за лучшее авто 2010!" class="spI mr0 iOnes" style="background-image: url(http://rs.mail.ru/b12656908.gif);"></a><a href="" class="iOnes mr0" style=" padding-left: 20px;"></a>
+</span>
+</div>
+<div id="jsCheckerError" class="mlr-err" style="display: none;">
+	<div class="mlr-err_in">
+		<div id="jsCheckerErrorTxt" class="tac bold"></div>
+	</div>
+	<i class="mlr-err-c mlr-err-lt"></i><i class="mlr-err-c mlr-err-rt"></i><i class="mlr-err-c mlr-err-lb"></i><i class="mlr-err-c mlr-err-rb"></i>
+</div>
+
+<noscript><div class="spI iWarnGrey grey2 t11 mb10">У вас отключен JavaScript и некоторые функции почты могут работать некорректно. <a href="http://www.mail.ru/pages/help/30287.html ">Информация</a></div></noscript>
+
+
+
+
+
+<div class="pRel z-i3"><form id="GSNForm"  action="/cgi-bin/gosearch" name="gsnForm" class="pAbs w50 right0"><!-- onsubmit="return tryGoSearchForm()" -->
+<span class="pRel dB w100">
+	<span class="dB pAbs right0" style="width: 99px;"><span class="spI iOnes iGOend mr5 p0"></span><input type="Submit" alt="Найти" value="" title="Найти" class="spI iOnes GOsubmit m0 p0" /><a href="/cgi-bin/gosearch?advanced=1" class="spI iOnes iSearch ml5 mr0" style="padding-left: 16px;" title="Расширенный поиск"></a></span>
+	<span class="tac dB" style="padding-right: 99px;"><span class="fade pt20" style="top: -10px;">&nbsp;</span>
+		<span class="suggCont">
+			<label id="input_gs_q_query_label" class="grey italic pAbs pt1 pl4" for="input_gs_q_query">найти в почтовом ящике</label><input id="input_gs_q_query" type="text" name="q_query" class="suggInput" value="" autocomplete="off" />
+			<span id="gosearch_suggest" class="suggSugg" style="display:none;"></span>
+		</span>
+	</span>
+</span>
+</form>
+<!-- inetsearch --><form name="global_searchn" style="display: none;" action="http://go.mail.ru/search" method="get"></form><!-- /inetsearch -->
+</div>
+
+
+
+
+<script type="text/javascript">
+	var
+		  APP_ID_HASH			= {}
+		, APP_ID_NAMES			= {}
+		, APP_ID_NAMES_COMPOSE	= {}
+	;
+
+	parent.APP_ID_HASH			= APP_ID_HASH;
+	parent.APP_ID_NAMES			= APP_ID_NAMES;
+	parent.APP_ID_NAMES_COMPOSE	= APP_ID_NAMES_COMPOSE;
+
+	jsLoader.require([
+		'{mailru.app}mailru.App'
+	], function()
+	{
+		mailru.App.setNames( APP_ID_NAMES )
+			.setReceivers( APP_ID_HASH )
+			.bind('#app_click')
+			.getLayer()
+				.setRead(0);
+	});
+
+	function showApp(appId, vars)
+	{
+		mailru.App
+			.getLayer()
+				.setData( appId, vars )
+				.show()
+		;
+	};
+
+	function hideApp()
+	{
+		mailru.App.getLayer().hide();
+	};
+</script>
+
+
+<div id="MailRuSentMsg" style="display: none"></div>
+<div id="MailRuSentMsgOk"></div>
+
+<div id="MsgListContent" style="display: none">
+
+<h1 id="id-folder-name" class="dIB ohd nobr pt1 w75"><span class="t11 grey normal ml10"></span></h1>
+
+<div id="ajax-alt-special-folder"><div id="ajax-alt-special-folder-950" class="grey2 t11 mt10 mb10" style="display: none;">Данная папка предназначена для писем, которые, возможно, являются <a href="http://www.mail.ru/pages/help/280.html" target="_blank"> спамом</a>.</div><div id="ajax-alt-special-folder-500000" class="grey2 t11 mt10 mb10" style="display: none;">В данную папку попадают отправленные Вами письма.<br />Вы можете вручную указывать, сохранить ли письмо при его отправке, или включить автоматическую функцию сохранения.<br />Сейчас у Вас <b>выключена</b> опция "Cохранять копии писем в папке "Отправленные". <a href="editprofile#msent">Изменить</a></div><div id="ajax-alt-special-folder-500002" class="grey2 t11 mt10 mb10" style="display: none;">В Корзину попадают удаленные Вами из других папок письма.<br />Объем писем в Корзине учитывается в общем объеме Вашего почтового ящика.<br />Вы можете очищать Корзину вручную или автоматически.<br />Сейчас у вас <b>выключена</b> опция "Очищать папку Корзина при выходе". <a href="editprofile#trsh">Изменить</a>. <a href="http://www.mail.ru/pages/help/248.html" target="_blank">Подробнее</a>.</div></div>
+<form id="MainForm" method="Post" name="main" action="movemsg" style="display: none;">
+
+
+<input type="hidden" name="confirm" value="" />
+<input type="hidden" name="page" value="" />
+<input type="hidden" name="back" value="msglist?folder=&page=&sortby=" />
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('html'); }catch(e) {}
+try{ timeInterval_sum('js'); }catch(e) {}
+
+$j.folderList = {
+	0 : 'Входящие',950 : 'Спам',500000 : 'Отправленные',500001 : 'Черновики',500002 : 'Корзина',
+	'new' : '- новая -'
+};
+
+try{ timeInterval_sum('js'); }catch(e) {}
+try{ timeInterval_sum('html'); }catch(e) {}
+//]]></script>
+
+<div class="grey2 ohd pt10 tac t11" style="height: 18px;">
+<span class="flr tar nobr t12 arial" id="id-page-navigation-top">
+
+</span>
+<span class="fll grey2 tal" id="id-count-navigation-top">Показаны письма&nbsp;- из </span>
+<span class="fll loadProgress" id="id-load-navigation-top" style="display: none;"></span>
+<span class="fll red tal spI inWarn mr0" id="id-mistake-navigation-top" style="display: none;"></span>
+<span class="fll grey2 tal spI inOk mr0" id="id-alert-navigation-top" style="display: none;"></span>
+<span class="fll grey2 tal spI inAtten mr0" id="id-attention-navigation-top" style="display: none;"></span>
+<span class="grey" id="id-virus-navigation">Вирусная опасность: <a target=_blank href=http://protect.mail.ru>низкая</a></span>
+</div>
+
+
+<div style="padding: 4px 4px 5px 4px;  background-color: #F2F3F7;">
+
+
+<span onclick="switchMsglistOutlook()" class="vmi tac flr mt2 m-mode m-short-mode" style="margin-left: -120px;"><span style="width: 48px;">кратко</span><span style="width: 58px;">подробно</span></span>
+<input id="MainMoveBtn" type="submit" name="move" value=" Переместить " class="t11 dN" />
+		<input id="MainMarkBtn" type="submit" name="mark" value=" Пометить " class="t11 dN" />
+		<input id="MainBookfilterBtn" type="submit" name="bookfilter" value=" Добавить отправителя " class="t11 dN" />
+	<span class="vmi nobr">
+		<input type="submit" name="remove" value="Удалить" class="t11" />
+		<input type="submit" name="forward" value="Переслать" class="t11" />
+		<input type="submit" name="nospam" value="Это&nbsp;не&nbsp;спам" class="t11 ajaxIsNotSpam" style="display: none;" />
+		<input type="submit" name="spamabuse" value="Это&nbsp;спам" class="t11 ajaxIsSpam" />
+	</span>
+<span class="sortBig pl15">
+
+	<span class="sortMain"><span class="dB pb1" style="width: 80px"><b class="grey pl1 normal">Переместить</b><b class="sortU sortUgo"></b></span>
+		<span class="sortDiv sortDiv-ie6 folderListSpan" id="folderListSpanTop" style="display: none; #width: 105px">
+			<span class="dB pRel" style="overflow-y: visible;">
+			<a href="#" onclick="return ['folder', 'move', 0]" class="FDD0 sortA">Входящие</a>
+			
+			<a href="#" onclick="return ['folder', 'move', 950]" class="FDD950 sortA">Спам</a>
+			<a href="#" onclick="return ['folder', 'move', 500000]" class="FDD500000 sortA">Отправленные</a>
+			<a href="#" onclick="return ['folder', 'move', 500001]" class="FDD500001 sortA">Черновики</a>
+			<a href="#" onclick="return ['folder', 'move', 500002]" class="FDD500002 sortA">Корзина</a>
+			
+			<a cnt_sb="347447" href="#new" onclick="return ['folder', 'move', 'new'];" class="sortA">- новую -</a>
+			</span>
+		</span>
+		<input id="InpToFolderId" type="hidden" name="folder" value="" />
+	</span>
+
+	<span class="sortMain"><span class="dB pb1" style="width: 65px"><b class="grey pl1 normal">Пометить</b><b class="sortU sortUgo"></b></span>
+		<span class="sortDiv" style="display: none; width: 110px;">
+			<a cnt_sb="347448" href="#" onclick="return ['markmessage', 'mark', 2];" class="sortA">прочтенным</a>
+			<a cnt_sb="347449" href="#" onclick="return ['markmessage', 'mark', 1];" class="sortA">непрочтенным</a>
+			<a href="#" class="sortAno">---------------------</a>
+			<a cnt_sb="347450" href="#" onclick="return ['markmessage', 'mark', 6];" class="sortA">пометить флажком</a>
+			<a cnt_sb="347451" href="#" onclick="return ['markmessage', 'mark', 7];" class="sortA">снять флажок</a>
+		</span>
+		<input type="hidden" name="markmessage" value="" />
+	</span>
+	<span class="sortMain mr0 ajax-add-sender" style=""><span class="dB pb1" style="width: 135px;"><b class="grey pl1 normal">Добавить отправителя</b><b class="sortU sortUgo"></b></span>
+		<span class="sortDiv" style="display: none;">
+			<a href="#" onclick="return ['moveto', 'bookfilter', 'abook'];" class="sortA">Адреса</a>
+			<a href="#" onclick="return ['moveto', 'bookfilter', 'blist'];" class="sortA">Черный список</a>
+		</span>
+		<input id="InpMoveTo" type="hidden" name="moveto" value="" />
+	</span>
+	</span>
+</div>
+
+
+<script type="text/javascript">
+
+var a = [], b = []; // short
+
+var _msgList_=a,_microformats_=b; // long
+
+</script>
+
+<script type="text/plain" id="tpl-MsgIcon"><i class="spI-1 iOnes m0 i-#{MsgIco}#{MsgFlIco}" title="#{MsgTitle}"></i></script>
+<script type="text/plain" id="tplMsg"><div class="msgLine #{MsgLine}" id="str#{MsgId}"><div class="msgLine_in">
+	<div class="msg-R">
+		<span class="msgList msg-Z"><i class="pRel spI-1 iOnes m0 #{MsgAttach}" #{MsgAttachSize}></i></span>
+		<span class="msgList msg-D" title="#{MsgDateTitle}">#{MsgDate}</span>
+	</div>
+	<div class="msg-L">
+		<span class="msgList msg-A"><i class="spI-1 iOnes m0 i-#{MsgIco}#{MsgFlIco}" title="#{MsgTitle}"></i></span>
+		<label class="msgList msg-X"><input type="checkbox" name="id" value="#{MsgId}" id="chb#{MsgId}" #{MsgChecked} /></label>
+		<span class="msgList msg-H"><i title="#{MsgFlagTitle}" class="nm_Icons #{MsgFlagClass}"></i></span>
+		<span class="msgList msg-P">#{MsgMakeAvatar}</span>
+	</div>
+	<div class="msg-C">
+		<a class="msgList msg-Link" #{history} href="/cgi-bin/#{MsgHref}" title="#{UserEmail}">
+			<span class="fadeMsg" style="height: 100%;">&nbsp;</span>
+			<span class="msgList msg-F"><span class="fadeMsg" style="height: 100%;">&nbsp;</span><u #{IcoFromWho} title="#{UserEmail}">#{MsgFrom}</u></span>
+			<span class="msgList msg-S"><span class="msg-S_in">#{MsgSubjectIco}<u class="m-subject" title="#{MsgSubject}">#{MsgSubject}</u></span></span>
+			<span class="msgList msg-W"><span class="msg-S_in">#{MsgMsgText}</span></span>
+		</a>
+		<span class="msgList msg-K">#{MsgMakeButtons}</span>
+	</div>
+</div></div></script>
+
+<script id="FolderDD" type="text/plain">
+	<a cnt_sb="347447" href="#" onclick="return ['folder', 'move', '#{FolderId}']" class="FDD#{FolderId} sortA#{IF:selected}no#{FI} #{IF:IsSubfolder}pl20#{FI}">#{FolderName}</a>
+	#{IF:__last}<a href="#new" onclick="return ['folder', 'move', 'new'];" class="sortA">- новую -</a>#{FI}
+</script>
+
+
+<script type="text/javascript">
+var
+	  newTest2			= false
+	, mfInitStatus		= 0
+	, MsglistExpanded	= false
+	, microformat		= (function()
+	{
+		var butseq = [
+			['read-link', 'Прочитать'],
+			['reply-link', 'Ответить'],
+			['accept-link', 'Принять'],
+			['reject-link', 'Отказаться'],
+			['action-link', 'Перейти'],
+			['view-link', 'Посмотреть']
+		];
+		var _preload = false;
+		var _imgs	= [];
+		var domlist = {'corp.mail':'corp', 'mail':'mail', 'inbox':'inbox', 'bk':'bk', 'list':'list'};
+		var _sEmail	= /@(ya|yandex|narod|ro|rambler|lenta|myrambler|autorambler|r0|gmail)\.\w{2,3}/i;
+		var _isAva	= /(mail|inbox|corp|bk|list)\/([^\/]+)\/_avatar(small)?/i;
+
+		// @private
+		function _aLinks(msgId, msg)
+		{
+			var html = [], target = true, links = [], i, href;
+
+			for( i = 0; butseq[i]; i++ ) if( href = msg[butseq[i][0]] )
+				links.push([href, msg[butseq[i][0]+'-text'] || butseq[i][1], butseq[i][0]]);
+
+			for( i = 0; i < 10; i++ ) if( href = msg['action-link'+i] )
+				links.push([href, msg['action-link'+i+'-text'], 'a-link-'+i]);
+
+			if( !msg.ntype || msg.ntype == 'letter' || !links.length )
+			{
+				links	= [['/cgi-bin/readmsg?id='+ msgId, butseq[0][1], butseq[0][0]], ['/cgi-bin/sentmsg?reply&id='+ msgId, butseq[1][1], butseq[1][0]]].concat(links);
+				target	= false;
+			}
+
+			for( i = 0; links[i]; i++ )
+				html[i] = '<a '+(/(msglist|readmsg)/.test(links[i][0]) ? 'rel="history"' : '')+' href="'+ links[i][0] +'"'+ (target ? ' target="_blank"' : '') + ' class="'+ links[i][2] + (target ? ' new_Outer' : '') + ' m-btn'+ (i ? '' : '-first')+ '">'+ decodeURIComponent(links[i][1]).replace(/&apos;/gi, '\'') +'</a>';
+
+			return	html;
+		}
+
+		// @public
+		var _this = {
+			msg: {},
+
+			preloadImg: function (img)
+			{
+				if( typeof img != 'boolean' )
+				{
+					if( _preload ) _imgs.push(img);
+					else
+					{
+						var $I = jQ(new Image()).attr('src', img[1]).load(function (e)
+						{
+							var ava = $F('#nmI'+img[0]);
+							if( ava )
+							{
+								$FS(ava).backgroundImage		= 'url('+img[1]+')';
+								$F(ava.parentNode).className	= 'a45Lb';
+							}
+						});
+						if( $I[0].complete ) { $I.triggerHandler('load'); };
+					}
+				}
+				else if( img )
+				{
+					_imgs		= [];
+					_preload	= true;
+				}
+				else
+				{
+					_preload	= false;
+					while( _imgs.length ) this.preloadImg( _imgs.shift() );
+				}
+			},
+
+			makeButtons: function(msgId, msg)
+			{
+				if( mfInitStatus != 2 ) return '';
+				if( msgId && (typeof msg).toUpperCase() == 'OBJECT' )
+					this.msg	= msg;
+				return _aLinks(msgId, this.msg).join('');
+			},
+
+			makeAvatar: function()
+			{
+				if( mfInitStatus != 2 ) return '';
+				var _a = arguments, _img = '<i class="nm_Icons nm_iRead"><i id="nmI%s" class="dB w100" style="height: 100%; background-position: center center; background-repeat: no-repeat;"></i></i>', mail, src;
+				if( _a.length == 2 )
+				{
+					_a = { id: _a[0], mail: _a[1], isUnread: this.msg.isUnread, ntype: this.msg.ntype, photo: this.msg.photo, filinN: this.msg.filinN*1, filinEM: this.msg.filinEM*1 };
+				}
+				else
+				{
+					_a = { id: _a[0], mail: _a[1], isUnread:_a[2], ntype: _a[3], photo: _a[4], filinN: _a[5]*1, filinEM: _a[6]*1 };
+				}
+				if( _a.ntype == "undefined" ) delete _a.ntype;
+				if( _a.photo == "undefined" ) delete _a.photo;
+
+				if( _isAva.exec(_a.photo) )
+				{
+					src	= _a.photo + (RegExp.$3 != 'small' ? 'small' : '');
+				}
+				else
+				{
+					mail = _a.mail.replace(/\.ru$/, '').split('@');
+					if( !(_a.photo && _a.filinN) && domlist[mail[1]] )
+						src = 'http://avt2.imgsmail.ru/' + domlist[mail[1]] + '/' + mail[0] + '/_mrimavatarsmall?specd='+(_a.isUnread ? 'one' : 'two');
+					else if( (_a.photo || _sEmail.test(_a.mail)) && (_a.filinN || _a.filinEM) )
+					
+						src = 'http://filin'+ (_a.filinN || _a.filinEM)+'.imgsmail.ru/pic?'+(!!_a.filinN ? 'url='+_a.photo : 'email='+_a.mail) +'&default=404';
+					
+				}
+
+				if( src )
+				{
+					this.preloadImg( [_a.id, src] );
+				}
+
+				return	_img.replace('%s', _a.id);
+			},
+
+			rbCounters: function (render, short)
+			{
+				if( render )  (new Image).src = 'http://rs.mail.ru/d'+(window.MsglistExpanded ? 295418 : 295417)+'.gif?'+now();
+				if( defined(short) ) (new Image).src = 'http://rs.mail.ru/d'+(short ? 295415 : 295416 )+'.gif?'+now();
+			}
+		};
+
+		return _this;
+	})()
+; // var
+
+function switchMsglistOutlook()
+{
+	var $S = $j('.m-mode'), $M = $j('#id-messages-list, #ourletId'), s = !$S.hasClass('m-short-mode');
+
+
+	if( s || (mfInitStatus == 2) )
+	{
+		upd(s, $M, $S);
+	}
+	else if( !mfInitStatus )
+	{
+		mfInitStatus = 1;
+		jQ.loadWait(1);
+		mailru.MsgList.reload(1, 1, '', function (){ mfInitStatus = 2; upd(false, $M, $S); });
+	}
+
+	window.MsglistExpanded = !s;
+
+	function upd(short, $M, $S)
+	{
+		$M.toggleClass('msgShort', short);
+		$S.toggleClass('m-short-mode', short);
+		$j.post('/cgi-bin/ajax_avatarstat/?ajax_call=1&func_name=set_expanded_msglist&data=["'+ (+!s) +'"]');
+		microformat.rbCounters(false, short);
+	}
+}
+</script>
+
+
+
+<style type="text/css">
+.m-mode {background: url(http://img.mail.ru/mail/ru/images/ru/_switch.png?6) no-repeat 0 -38px; display: block; height: 18px; cursor: pointer; width: 106px; margin-left: -120px; #position: relative; #left: 13px}
+.m-mode span {font-size: 11px !important; font-family: Tahoma !important; display: inline-block; cursor: pointer; line-height: 16px; }
+.m-short-mode {background-position: 0 -56px !important;}
+
+.fadeMsg {cursor:pointer;z-index: 2; background: transparent url(http://img.imgsmail.ru/mail/ru/images/ru/fade.png) repeat-y right 0; display: block; right: 0; top: -1px; position: absolute; width: 20px}
+.msgSel .fadeMsg { background-image: url(http://img.imgsmail.ru/mail/ru/images/ru/fadeMove.png) !important;}
+
+.spI-1 {background-image: url(http://img.mail.ru/mail/ru/images/ru/_sp_ico_1.png?9); background-repeat: no-repeat; display: inline-block; padding: 0 0 3px 10px; margin-right: 20px; vertical-align: middle;}
+.spFrom {display: inline-block; padding-left: 14px; background-position: 0 1px; background-repeat: no-repeat;}
+
+.iAttach {background-position: -80px -63px; padding-left: 19px;}
+.iAttachZ {background-position: -59px -66px; padding-left: 17px !important;}
+
+.nm_Icons {background-image: url(http://img.mail.ru/mail/ru/images/ru/_new_mail_sprite.png?5); background-repeat: no-repeat;}
+.iFlag   {background-position: -188px -11px; //background-position: -189px -11px; display: inline-block; width: 26px; height: 55px;}
+.iNoFlag {background-position: -228px -26px; //background-position: -229px -26px; display: inline-block; width: 26px; height: 55px;}
+i:HOVER.iNoFlag {background-position: -148px 5px; //background-position: -149px 5px;}
+.iFlagZ {background-position: -100px 0; display: inline-block; width: 16px; height: 16px;}
+
+.nm_iRead {background-position: -50px 0; display: inline-block; width: 47px; height: 47px; font-size: 0; line-height: 0;}
+.a45Lb {display: inline-block; width: 45px; height: 45px; font-size: 0; line-height: 0; background-repeat: no-repeat; background-position: center; border: 1px solid #E6E8ED;}
+
+.msgLine {padding: 0; font-size: 0; width: 100%; cursor: default; overflow: hidden;}
+.msgList {display: inline-block; padding: 0; text-align: left; vertical-align: middle; white-space: normal;}
+a.msgList{background: url(about:blank); display: block}
+
+.msg-F b {font-size: 0; font-weight: normal; display: none;}
+.msgSender .msg-F b {font-size: 11px; display: inline-block;}
+.msgSender .msg-F span {font-size: 0; display: none;}
+
+.msg-L {float: left; width: 113px; margin-right: -113px;}
+.msgLine .msg-L{border-bottom: 1px solid #F3F2F7}
+.msg-C {display: block; margin: 0 96px 0 111px; position: relative; z-index: 1; overflow: hidden; #margin-left: 111px; #padding-left: 0}
+.msgLine .msg-C{min-height: 56px; _height: 56px}
+.msg-R {float: right; width: 100px; margin-left: -100px; text-align: right; padding-top:2px}
+.msgLine .msg-R{min-height: 53px; _height: 53px; border-bottom: 1px solid #F3F2F7}
+.msg-X {width: 20px; height: 50px; vertical-align: top !important; padding: 2px 0 2px;}
+.msg-H {width: 27px; vertical-align: top !important;}
+
+.msg-P {width: 47px; padding-top: 4px;}
+.msg-F {cursor:pointer;font-size: 12px; float: left; position: relative; margin-right: -185px; overflow: hidden; white-space: nowrap; width: 175px; padding: 2px 0 0}
+.msg-S {cursor:pointer;font-size: 12px; margin-left: 185px; overflow: hidden; white-space: nowrap; position: relative; top: 2px; _overflow: visible}
+* html .msg-S_in{overflow: hidden; width: 95%; zoom: 1; word-wrap: break-word; height: 15px; line-height: 17px; display: block; margin: -2px 0 0}
+.msg-W {cursor:pointer;font-size: 12px; float: left; width: 100%; padding: 1px 0 0 0; color: #656972 !important; position: relative; overflow: hidden; white-space: nowrap;}
+* html .msg-W .msg-S_in{float: left; height: 17px}
+.msg-K {display: block;float: left;white-space: nowrap; margin: -20px 0 0 -15px}
+.msg-K a{padding-left: 20px; font-size: 11px !important; font-family: Tahoma !important;}
+.msg-A {width: 10px; vertical-align: top !important;}
+.msg-Z {width: 30px;}
+.msg-D {font-size: 12px; width: 65px; text-align: left;}
+.msg-Link{padding: 2px 0 0 5px; height: 53px; display: block; text-decoration: none; border-bottom: 1px solid #F3F2F7}
+* html a.msg-Link{overflow: hidden; float: left; width: 95%; border: 0; height: 52px}
+* html .msgLine .msg-C{border-bottom: 1px solid #F3F2F7; height: 55px !important}
+.msg-Link u{cursor:pointer}
+.msgShort .msg-Link{height: 22px}
+* html .msgShort .msgLine .msg-C{height: 24px !important}
+* html .msgShort .msg-Link{height: 21px}
+
+.msgLineTop .msg-F {border-bottom: 3px solid #E6E8ED; padding-bottom: 3px; padding-left: 5px}
+.msgLineTop .msg-S {border-bottom: 3px solid #E6E8ED; padding-bottom: 3px; padding-left: 5px}
+.msgLineTop .msg-D {border-bottom: 3px solid #E6E8ED; padding-bottom: 3px;}
+.msgLineTop .msg-X {height: 20px;}
+
+.msgUnread .msg-F, .msgUnread .msg-S, .msgUnread .msg-D {font-weight: bold;}
+.msgUnread .msg-W {color: black !important;}
+.msgUnread .nm_iRead {background-position: 0 -14px;}
+
+.msgShort .msg-P, .msgShort .msg-W, .msgShort .msg-K {display: none !important;}
+.msgShort .msg-C{margin-left: 54px !important; #margin-left: 59px !important}
+.msgShort .msgLine .msg-C{min-height: 25px;_height: 25px}
+.msgShort .msgLine .msg-R{min-height: 22px;_height: 22px}
+.msgShort .msgLine {padding: 0;}
+.msgShort .iAttach {background-position: -59px -63px;}
+.msgShort .iFlag   {height: 24px;}
+.msgShort .iNoFlag {height: 24px;}
+.msgShort .msg-X {height: 19px;}
+
+div:HOVER.msgLine_in {cursor: pointer}
+div:HOVER.msgLine_in .msg-Link u{color: #FE6001; text-decoration: underline;}
+.msg-K a:hover { text-decoration: underline; }
+
+.audioContainer {margin: -7px 0 0 -7px; height: 29px; position: relative;}
+
+.iMsgH {background-position: -120px 2px; padding-left: 8px;}
+.iMsgHU {background-position: -130px 2px; padding-left: 8px;}
+.iMsgL {background-position: -120px -17px; padding-left: 8px;}
+.iMsgLU {background-position: -130px -17px; padding-left: 8px;}
+
+.iAttachExpand .iAttach,
+.msgLine_in:hover .iAttach { background-position: -125px -63px; padding-left: 25px; }
+
+.msgShort .iAttachExpand .iAttach,
+.msgShort .msgLine_in:hover .iAttach { background-position: -99px -63px; padding-left: 25px; }
+
+
+#id-messages-list .iAttachLoading .iAttach { background: url(http://img.mail.ru/mail/ru/images/ru/ajax-loader-indicator-fff-000.gif) 0 3px no-repeat; }
+
+.ml-A { right: 67px; margin-top: -1px; #zoom: 1 }
+.ml-A I { background: url(http://img.mail.ru/mail/ru/images/ru/icons-msglist-attach.png?0) top left no-repeat; display: inline-block; vertical-align: middle; margin-right: 5px; width: 14px; }
+.ml-A UL, .ml-At { background: #fff; border: 1px solid #c7c7c7; border-right-color: #818181; }
+.ml-A UL { border-bottom-color: #818181; list-style: none; margin: 0 }
+.ml-At { width: 30px; height: 25px;  border-bottom: none; }
+I.ml-iArhiv { background-position: 0 0; height: 16px; }
+I.ml-iExel { background-position: 0 -21px; height: 12px; }
+I.ml-iLetter { background-position: 0 -38px; height: 10px; }
+I.ml-iMp3 { background-position: 0 -53px; height: 13px; }
+I.ml-iPicture { background-position: 0 -71px; height: 14px; }
+I.ml-iPowerPoint { background-position: 0 -90px; height: 13px; }
+I.ml-iTxt { background-position: 0 -108px; height: 14px; }
+I.ml-iWord { background-position: 0 -127px; height: 12px; }
+I.ml-iPdf { background-position: 0 -144px; height: 14px; }
+I.ml-iOther { background-position: 0 -162px; height: 13px; }
+.ml-Asr, .ml-Asb { overflow: hidden; opacity: .4; position: absolute; }
+.ml-Asr { border-right: 1px solid #818181; width: 1px; bottom: 1px; right: -1px; top: 1px; }
+.ml-Asb { border-bottom: 1px solid #818181; right: 0; height: 1px; bottom: 1px; left: 1px; }
+</style>
+<!--[if IE]>
+<style>
+.msg-S{display: inline !important}
+.msg-F, .msg-W {display: inline; position: relative; z-index: -1}
+</style>
+<![endif]-->
+<!--[if lt IE 7]>
+<style>
+.fadeMsg {background-image: url(http://img.imgsmail.ru/mail/ru/images/ru/fadeIE.png) !important; right: -1px;}
+.msgSel .fadeMsg { background-image: url(http://img.imgsmail.ru/mail/ru/images/ru/fadeMoveIE.png) !important; right: -1px;}
+
+.msg-F {float: none; display: inline-block;}
+.msg-S {height: 1.2em; float: none; display: inline-block; white-space: normal !important;}
+.msg-W {float: none; height: 1.3em; white-space: normal !important;}
+.m-mode {margin-left: 0 !important;position: static}
+
+.lmBg {width: 40px;}
+.mCCtd {border: 1px solid #FFF;}
+</style>
+<![endif]-->
+
+<script type="text/javascript">
+	$P('msgList2.render');
+</script>
+
+
+<div id="ourletId" class="msgLineTop msgShort" onSelectStart="return false;"><div class="msg-R">
+<span class="msgList msg-Z vmi t12">&nbsp;</span>
+<span class="msgList msg-D t11">
+<a rel="history" href="msglist?folder=&sortby=&2504425177" class="black ml1">Дата</a><b class="sortMsg"></b></span>
+</div>
+<div class="msg-L"><span class="msgList msg-A vmi t12">&nbsp;</span>
+<span class="msgList msg-X" style="padding-top: 1px"><input id="MainCheck" title="Выделить всё" name="mainCheck" type="checkbox" /></span>
+<span class="msgList msg-H"><i class="nm_Icons iOnes"></i></span>
+</div>
+<div class="msg-C">
+<span class="msgList msg-F t11"><a rel="history" href="msglist?folder=&sortby=&1955603636" class="black ml1"><b>Получатель</b><span>Автор</span></a><b class="sortMsg"></b></span>
+<span class="msgList msg-S t11"><a rel="history" href="msglist?folder=&sortby=&494811669" class="black ml1">Тема</a><b class="sortMsg"></b></span>
+</div>
+</div>
+<div id="id-messages-list" class=" msgShort">
+
+</div>
+<script type="text/javascript">
+
+	microformat.rbCounters(true);
+
+</script>
+
+
+
+
+ 
+<div id="sortBottom" class="sortBottom" style="padding: 4px 4px 5px 4px;  background-color: #F2F3F7;">
+
+
+<span onclick="switchMsglistOutlook()" class="vmi tac flr mt2 m-mode m-short-mode" style="margin-left: -120px;"><span style="width: 48px;">кратко</span><span style="width: 58px;">подробно</span></span>
+<span class="vmi nobr">
+		<input type="submit" name="remove" value="Удалить" class="t11" />
+		<input type="submit" name="forward" value="Переслать" class="t11" />
+		<input type="submit" name="nospam" value="Это&nbsp;не&nbsp;спам" class="t11 ajaxIsNotSpam" style="display: none;" />
+		<input type="submit" name="spamabuse" value="Это&nbsp;спам" class="t11 ajaxIsSpam" />
+	</span>
+<span class="sortBig pl15">
+
+	<span class="sortMain"><span class="dB pb1" style="width: 80px"><b class="grey pl1 normal">Переместить</b><b class="sortU sortUgo"></b></span>
+		<span class="sortDiv sortDiv-ie6 folderListSpan" id="folderListSpanBot" style="display: none; #width: 105px">
+			<span class="dB pRel" style="overflow-y: visible;">
+			<a href="#" onclick="return ['folder', 'move', 0]" class="FDD0 sortA">Входящие</a>
+			
+			<a href="#" onclick="return ['folder', 'move', 950]" class="FDD950 sortA">Спам</a>
+			<a href="#" onclick="return ['folder', 'move', 500000]" class="FDD500000 sortA">Отправленные</a>
+			<a href="#" onclick="return ['folder', 'move', 500001]" class="FDD500001 sortA">Черновики</a>
+			<a href="#" onclick="return ['folder', 'move', 500002]" class="FDD500002 sortA">Корзина</a>
+			
+			<a cnt_sb="347447" href="#new" onclick="return ['folder', 'move', 'new'];" class="sortA">- новую -</a>
+			</span>
+		</span>
+		
+	</span>
+
+	<span class="sortMain"><span class="dB pb1" style="width: 65px"><b class="grey pl1 normal">Пометить</b><b class="sortU sortUgo"></b></span>
+		<span class="sortDiv" style="display: none; width: 110px;">
+			<a cnt_sb="347448" href="#" onclick="return ['markmessage', 'mark', 2];" class="sortA">прочтенным</a>
+			<a cnt_sb="347449" href="#" onclick="return ['markmessage', 'mark', 1];" class="sortA">непрочтенным</a>
+			<a href="#" class="sortAno">---------------------</a>
+			<a cnt_sb="347450" href="#" onclick="return ['markmessage', 'mark', 6];" class="sortA">пометить флажком</a>
+			<a cnt_sb="347451" href="#" onclick="return ['markmessage', 'mark', 7];" class="sortA">снять флажок</a>
+		</span>
+		
+	</span>
+	<span class="sortMain mr0 ajax-add-sender" style=""><span class="dB pb1" style="width: 135px;"><b class="grey pl1 normal">Добавить отправителя</b><b class="sortU sortUgo"></b></span>
+		<span class="sortDiv" style="display: none;">
+			<a href="#" onclick="return ['moveto', 'bookfilter', 'abook'];" class="sortA">Адреса</a>
+			<a href="#" onclick="return ['moveto', 'bookfilter', 'blist'];" class="sortA">Черный список</a>
+		</span>
+		
+	</span>
+	</span>
+</div>
+
+<div class="grey2 ohd pt10 tac t11" style="height: 18px;">
+<span class="flr tar nobr t12 arial" id="id-page-navigation-bottom">
+
+</span>
+<span class="fll grey2 tal" id="id-count-navigation-bottom">Показаны письма&nbsp;- из </span>
+<span class="fll loadProgress" id="id-load-navigation-bottom" style="display: none;"></span>
+<span class="fll red tal spI inWarn mr0" id="id-mistake-navigation-bottom" style="display: none;"></span>
+<span class="fll grey2 tal spI inOk mr0" id="id-alert-navigation-bottom" style="display: none;"></span>
+<span class="fll grey2 tal spI inAtten mr0" id="id-attention-navigation-bottom" style="display: none;"></span>
+
+</div>
+
+</form>
+
+<h3 id="id-messages-list-empty" class="tac mt30">В данной папке писем нет</h3>
+
+</div><!-- /#MsgListContent -->
+
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('html'); }catch(e) {}
+//]]></script>
+
+
+	
+	
+	<script language="JavaScript" charset="windows-1251">
+	mailru.folderId	= '0';
+	mailru.message	= { Id: '12980406940000000804', FolderId: '0', PrevId: '12980422680000000242', NextId: '12980145770000000979', Unread: '' };
+	try
+	{
+		var i = 0, t = ["alupichev@yandex.ru", "Re: hotels-sale"];
+		for( ; i < 2; i++ ) t[i] = t[i].replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"');
+		document.title			= "no-thx@mail.ru: "+t[1]+" - "+t[0];
+		mailru.message.From		= t[0];
+		mailru.message.Subject	= t[1];
+	}
+	catch (er){ }
+	</script>
+
+
+<div id="ReadMsg">
+	<div id="ReadMsgTop" >
+		<h1 class="dIB ohd nobr pt1 w75">Письмо
+	<span  class="nav t12 grey normal ml10">[&nbsp;<a cnt_sb="347429" rel="history" href="readmsg?id=12980422680000000242" class="url-prev">&#171;&nbsp;пред</a><b class="bull">&bull;</b><a cnt_sb="347430" rel="history" href="readmsg?id=12980145770000000979" class="url-next">след&nbsp;&#187;</a>&nbsp;]</span>
+</h1>
+
+
+
+
+<div id="action_buttons" class="ohd" style="background-color: #F2F3F7; padding: 7px 0; margin-top: 5px; border-bottom: 5px solid #DADDE5;">
+
+<span class="flr t10 grey2 spI iAntiV nobr mr0 pr5 tac">
+Проверено&nbsp;<a cnt_sb="347428" class="grey2" href="http://www.kaspersky.ru/products#v"  target="_blank">АнтиВирусом</a>&nbsp;и<br /><a class="grey2" href="http://www.kaspersky.ru/products#s"  target="_blank">АнтиСпамом</a>&nbsp;Касперского
+</span>
+<span class="fll mt5 ml5">
+
+<a cnt_sb="347336"  onclick="if(window.confirm_answ) return confirm_answ();" href="sentmsg?reply&id=12980406940000000804&charset=&clear=&adding=&uplnk" class="spL iAnswer mr5 url-reply">Ответить</a>
+<a cnt_sb="347412"  href="sentmsg?reply&id=12980406940000000804&charset=&replyall=1&adding=" class="spL iAnswerAll mr5 url-replyAll" title="Ответить всем" style="display: none">Ответить&nbsp;всем</a>
+<a cnt_sb="347413"  href="sentmsg?forward&id=12980406940000000804&charset=&adding=" class="spL iSend mr5 url-forward">Переслать</a>
+<a cnt_sb="347414" href="composebounce?id=12980406940000000804&adding=" class="spL iRedirect mr5 url-composebounce">Перенаправить</a>
+
+<a cnt_sb="347415" href="movemsg?remove&id=12980406940000000804&next=12980145770000000979&adding=" class="url-remove spL iDelete mr5">Удалить</a>
+
+<a cnt_sb="347416" href="readmsg?id=12980406940000000804&template=printmsg.tmpl&adding=" target="print_window" class="url-print spL iOnes iPrint mr0" title="Печать"></a>
+<a cnt_sb="347417" rel="history" href="readmsg?id=12980406940000000804&adding=&mode=header" class="url-viewType spL iOnes iRFC mr0" title="RFC-Заголовок"></a>
+<a cnt_sb="347418" href="getmsg?id=12980406940000000804" class="url-getmsg spL iOnes iDiscet mr0" title="Скачать письмо"></a>
+
+</span>
+</div>
+
+
+<table class="tableCell">
+	<tr><td class="w100">
+<table class="tableLetter tableCell">
+
+<tr id="msgFieldFrom"><td class="tableLetterTD">От&nbsp;кого:</td><td class="w100">
+	
+		
+		
+		
+	
+	<a class="spr-from url-fromIco" style="background-image: url(); display: none;"></a>
+	<span class="val">Alexey &lt;alupichev@yandex.ru&gt;</span><a  cnt_sb="347420" href="gosearch?q_from=alupichev@yandex.ru" class="url-gosearch spI iOnes iFind2 ml15" title="найти все письма от alupichev@yandex.ru" target="_blank"></a>
+	<span id="msgNoSent" class="nobr ml5"><a cnt_sb="347421" href="new_abcontact?msgid=12980406940000000804" class="url-new_abcontact">в&nbsp;адресную&nbsp;книгу</a><span class="if if-NotIsMe" ><b class="bull">&bull;</b><a cnt_sb="347422" class="url-blacklist" href="movemsg?addfilter&id=12980406940000000804">в&nbsp;чёрный&nbsp;список</a></span><b class="bull">&bull;</b><a cnt_sb="347423" class="url-editfilter" href="editfilter?msgid=12980406940000000804">в&nbsp;фильтры</a><span id="msgIsBulk" style="display: none;"><b class="bull">&bull;</b><a class="url-2whitelist" href="movemsg?whitelist&id=12980406940000000804">это&nbsp;не спам</a></span></span>
+</td>
+</tr>
+
+<tr id="msgFieldTo"><td class="tableLetterTD">Кому:</td><td><span class="val">Gg Kk &lt;no-thx@mail.ru&gt;</span></td></tr>
+<tr id="msgFieldCc" style="display: none;"><td class="tableLetterTD">Копии:</td><td><span class="val"></span></td></tr>
+<tr id="msgFieldDate"><td class="tableLetterTD">Дата:</td><td><span class="val">Пт 18 Фев 2011  17:51:34</span></td></tr>
+<tr id="msgFieldSubject"><td class="tableLetterTD">Тема:</td><td><i id="MsgSubjIco" class=""></i><span class="val">Re: hotels-sale</span></td></tr>
+<tr id="msgFieldReSent-From" style="display: none;"><td class="tableLetterTD">Переадресовано&nbsp;от:</td><td><span class="val"></span></td></tr>
+<tr id="msgFieldReSent-To" style="display: none;"><td class="tableLetterTD">Переадресовано&nbsp;для:</td><td><span class="val"></span></td></tr>
+<tr id="msgFieldReSent-Date" style="display: none;"><td class="tableLetterTD">Дата&nbsp;переадресации:</td><td><span class="val"></span></td></tr>
+<tr id="msgFieldReSent-Comment" style="display: none;"><td class="tableLetterTD">Комментарий:</td><td><span class="val"></span></td></tr>
+</table>
+	</td>
+
+
+	<td class="vti nobr b-ava" style="display: none;">
+		<div style="width: 120px" class="tar">
+		<a id="avaToggle" href="readmsg?avatar=1&id=12980406940000000804&791710154" title="Развернуть" class="spI iAvaShow mr0 vti"></a>
+		<span id="avatar-show"  style="display: none;">
+	<span class="dIB">
+		<span style="border: 3px solid #babdc4; background-color: #F2F3F7;" class="dIB"><a cnt_sb="347460" href="http://my.mail.ru/" target="_blank" class="url-avatar a90" style="border: 1px solid #FFFFFF; background-image: url(http://avt.foto.mail.ru//_avatar);"></a></span><br />
+		<span class="mt3 mb3 dIB">
+		<a id="AvatarNoHint" href="/cgi-bin/whatisavatar" style="color: #FFFFFF; font-size: 11px; display: none;" target="_blank">Что это такое?</a>
+<span id="AvatarHint">
+<a cnt_sb="347461" href="http://my.mail.ru/" target="_blank" class="url-my spI iOnes iMy mr3" title="Мой Мир"></a>
+<a cnt_sb="347462" href="http://blogs.mail.ru/" target="_blank" class="url-blogs spI iOnes iBlogs mr3" title="Блог"></a>
+<a cnt_sb="347463" href="http://foto.mail.ru/" target="_blank" class="url-foto spI iOnes iPhoto mr3" title="Фото"></a>
+<a cnt_sb="347465" href="http://video.mail.ru/" target="_blank" class="url-video spI iOnes iVideo mr0" title="Видео"></a>
+</span>
+		</span>
+	</span></span>
+
+	</div>
+
+	</td>
+
+	</tr>
+</table>
+
+
+<div class="t11 pt3" style="border-top: 1px solid #DADDE5; padding-bottom: 20px;">
+	<form id="TranslateForm" name="Translate" class="vmi">
+		<div class="flr nobr vmi">
+			<span id="span_app_switch" class="pRel mr15"><a cnt_sb="347426" id="app_click" href="#">Приложения</a></span>
+
+			<select onchange="open_tr(this)" class="t11 vmi" name="from_ch">
+				<option value="r">Русский</option>
+				<option value="e" selected="selected">Английский</option>
+				<option value="g">Немецкий</option>
+				<option value="f">Французский</option>
+				<option value="s">Испанский</option>
+			</select>
+
+			<span class="spI iOnes iTransTo mr0 pl10 vmi"></span>
+
+			<select onchange="open_tr(this)" class="t11 vmi" name="to_ch">
+				<option value="r" selected="selected">Русский</option>
+				<option value="e">Английский</option>
+				<option value="g">Немецкий</option>
+				<option value="f">Французский</option>
+				<option value="s">Испанский</option>
+			</select>
+
+			<a cnt_sb="347427" id="TrURL" href="/cgi-bin/readmsg?id=12980406940000000804&charset=&mode=translate&direction=re" target="Translate" onclick="open_tr(this);return false" class="url-translate spI iOnes iTransOk mr0 vmi">Перевести</a>
+		</div>
+	</form>
+
+	<span class="dB mt3 ml5">
+		<a cnt_sb="347425" rel="history" class="url-back2text" href="readmsg?id=12980406940000000804&adding=" style="display: none;">Перейти к тексту письма</a>
+		<span id="Charset" >
+			<a cnt_sb="347425" rel="history" class="url-charset" href="readmsg?id=12980406940000000804&charset=win">win</a>&nbsp;&nbsp;&nbsp;
+			<a cnt_sb="347425" rel="history" class="url-charset" href="readmsg?id=12980406940000000804&charset=koi">koi</a>&nbsp;&nbsp;&nbsp;
+			<a cnt_sb="347425" rel="history" class="url-charset" href="readmsg?id=12980406940000000804&charset=mac">mac</a>&nbsp;&nbsp;&nbsp;
+			<a cnt_sb="347425" rel="history" class="url-charset" href="readmsg?id=12980406940000000804&charset=utf">utf</a>
+		</span>
+	</span>
+</div>
+
+		<div id="ReceiptInfo" class="info if if-Receipt" style="display: none">
+			<form name="ReceiptInfo" action="readmsg_letter?id=12980406940000000804&sendrcpt=1">
+				<input type="hidden" name="id" value="12980406940000000804" />
+				<input type="hidden" name="sendrcpt" value="1" />
+				<b>Отправитель письма запросил подтверждение о прочтении письма.</b> <a href="http://www.mail.ru/pages/help/303.html" class="t11" target="_blank">Что это?</a><br />
+				<input type="submit" class="mt5" value="Отправить подтверждение">
+			</form>
+		</div>
+		<script type="text/javascript">
+			jQ('#ReceiptInfo FORM').submit(function ()
+			{
+				var params = {}, elms = this.elements, i = 0;
+				for( ; elms[i]; i++ ) if( elms[i].name ) params[elms[i].name] = elms[i].value;
+				jQuery.get(this.action, params);
+				jQuery(this).parent().slideUp('fast');
+				return	false;
+			});
+		</script>
+	</div>
+
+	<span id="ReadMsgLoading" class="ReadMsgLoading loadProgress" style="display: none;">Загрузка</span>
+
+	<div id="ReadMsgAppTpl" style="display: none;">
+		<div>
+			<div class="flr p10 mt5 mb5 tac" style="background: '#FFDD28'; font: normal 90% Arial; margin-top: -1px; //margin-top: -4px;"><button>Открыть</button></div>
+			<div style="margin-right: 50px;">Это письмо можно открыть в приложении "<span class="app-name"></span>". Приложение получит доступ к информации из этого письма.</div>
+		</div>
+	</div>
+
+	<div id="ReadMsgBody" >
+		
+		<div id="MSG12980406940000000804">
+			<script type="text/javascript">document.write('<iframe src="javascript:;">')</script>
+				<noscript>
+						<style type="text/css"></style>
+<div id="viewmessagebody" class="ohd">
+	<base href="http://win.mail.ru/cgi-bin/" />
+	
+		Георгий, текст нашел:  Если Вы хотите дать объявление о его продаже  объекта  на нашем сайте, также по вопросам размещения рекламы  пишите на  <a href="sentmsg?compose&To=hotelseurope@gmail.com">hotelseurope@gmail.com</a><br>
+а под текстом вот эту картинку.<br>
+<br>
+18.02.2011, 17:31, &quot;Gg Kk&quot; &lt;<a href="sentmsg?compose&To=no%2dthx@mail.ru">no-thx@mail.ru</a>&gt;:<br>
+&gt; Алексей, добрый день.<br>
+&gt;<br>
+&gt; С Николаем поговорили, я понял, что нужно делать. Другую версию сайта я, к сожалению, не нашел. Если не ошибаюсь, на странице о рекламе было изображение главной и текст &quot;По вопросам размещения рекламы обращайтесь &lt;адрес почты&gt;&quot;.<br>
+
+		
+	
+	<base href="http://win.mail.ru/cgi-bin/" />
+</div>
+
+						<div id="ReadMsgAttachment12980406940000000804"><div class="hr"></div><div class="bold mb10">Прикрепленные файлы: <span id="ReadMsgAttachCount12980406940000000804">1</span>
+</div>
+
+<script id="tpl-Attach" type="text/plain">
+	<div class="{{classes}}"><!-- для конечного класс = filesHide -->
+		<{{tag}} href="{{href}}" class="i-spI i-{{icon}}" target="_blank"></{{tag}}>
+		<div class="ohd"><div class="mb7"><span class="fade" style="left: 100%;">&nbsp;</span><{{tag}} href="{{href}}" class="filesName {{color}}">{{name}}</{{tag}}></div>
+			{{sub}}
+		</div>
+		{{size}}{{links}}
+	</div>
+</script>
+
+
+	<div class="mb10 pt10 filesShow">
+
+
+<a href="http://win.mail.ru/cgi-bin/getattach?file=%d0%a1%d0%bd%d0%b8%d0%bc%d0%be%d0%ba1.JPG&id=12980406940000000804;0;1&mode=attachment&channel=" class="i-spI i-jpg" target="_blank"></a>
+<div class="ohd"><div class="mb5" style="margin-top: -1px;"><span class="fade" style="left: 100%;">&nbsp;</span>
+<a class="bold t12 arial" href="http://win.mail.ru/cgi-bin/getattach?file=%d0%a1%d0%bd%d0%b8%d0%bc%d0%be%d0%ba1.JPG&id=12980406940000000804;0;1&mode=attachment&channel=">Снимок1.JPG</a>
+</div>
+	<div class="aPartId" style="display: none;">12980406940000000804;0;1</div>
+		99&nbsp;Кб &nbsp;
+
+<a target="_blank" href="http://win.mail.ru/cgi-bin/getattach?file=%d0%a1%d0%bd%d0%b8%d0%bc%d0%be%d0%ba1.JPG&id=12980406940000000804;0;1&mode=attachment&channel=">Посмотреть</a> &nbsp; 
+<a href="http://win.mail.ru/cgi-bin/getattach?file=%d0%a1%d0%bd%d0%b8%d0%bc%d0%be%d0%ba1.JPG&id=12980406940000000804;0;1&mode=attachment&channel=&notype">Скачать</a> &nbsp; 
+<a href="http://foto.mail.ru/cgi-bin/photo/addphoto?mode=0&frommail=12980406940000000804;0;1" target="_blank">В&nbsp;фотоальбом</a> &nbsp; 
+
+
+
+	<span class="dB">
+	<span class="addPh1"><span class="addPh2"><a href="http://win.mail.ru/cgi-bin/getattach?file=%d0%a1%d0%bd%d0%b8%d0%bc%d0%be%d0%ba1.JPG&id=12980406940000000804;0;1&mode=attachment&channel=" class="addPh3" target="_blank">
+		
+			<img src="http://apf1.mail.ru/cgi-bin/readmsg/%d0%a1%d0%bd%d0%b8%d0%bc%d0%be%d0%ba1.JPG?preview=1&id=12980406940000000804;0;1&mode=attachment&channel=" />
+		
+	</a></span></span></span>
+	
+
+</div>
+</div>
+</div>
+				</noscript>
+			</iframe>
+		</div>
+		
+	</div>
+
+	
+	
+	<script type="text/javascript">
+		try
+		{
+			var B = document.getElementById('MSG12980406940000000804'), T = B.getElementsByTagName('iframe')[0], h = '', N = T.firstChild;
+
+			if( N ) do { h += N.nodeValue; } while( N = N.nextSibling );
+			if( h == '' ) h = T.innerHTML.replace(/&(mdash)([^;])/gi, '&$1;$2');
+
+			B.innerHTML = h.replace(/<\/?noscript>/ig, '');
+		}
+		catch (er){};
+	</script>
+	<textarea id="ReadMsgBodyPlain" style="display: none">
+
+
+Fri, 18 Feb 2011 17:51:22 +0300 письмо от Alexey <alupichev@yandex.ru>:
+
+> Георгий, текст нашел:  Если Вы хотите дать объявление о его продаже  объекта 
+> на нашем сайте, также по вопросам размещения рекламы  пишите на 
+> hotelseurope@gmail.com
+> а под текстом вот эту картинку.
+> 
+> 18.02.2011, 17:31, &quot;Gg Kk&quot; &lt;no-thx@mail.ru&gt;:
+> &gt; Алексей, добрый день.
+> &gt;
+> &gt; С Николаем поговорили, я понял, что нужно делать. Другую версию сайта я,
+> к сожалению, не нашел. Если не ошибаюсь, на странице о рекламе было
+> изображение главной и текст &quot;По вопросам размещения рекламы обращайтесь
+> &lt;адрес почты&gt;&quot;.
+</textarea>
+	
+
+	<div id="ReadMsgBottom" >
+		
+		<div class="if if-NotHideFastAnswer" >
+	<div class="if if-Warning" style="display: none">
+		<div class="hr"></div>
+		<div style="border: 1px solid red; padding: 15px 10px; font-family: courier new; font-size: 13px;">
+			<b class="red">ВНИМАНИЕ!</b><br />
+			<span class="if if-WithPassKeyMsg" style="display: none">Напоминаем, что администрация Mail.Ru и владельцы других сайтов никогда не просят своих пользователей прислать им пароли от ящиков.<br /></span>
+			<span class="if if-WithFakePresent" style="display: none">Компания Mail.Ru никогда не просит своих пользователей оплатить доставку подарков и призов.<br /></span>
+			<span class="if if-WithSMSRequestPresent" style="display: none">Компания Mail.Ru никогда не просит своих пользователей отправить SMS (в том числе и бесплатные) для возобновления или поддержания работы почтового ящика, а также для получения приза.<br /></span>
+			Будьте внимательны, не попадайтесь на уловки мошенников!
+		</div>
+	</div>
+
+
+	<div class="if if-EvalWarning" style="display: none;">
+		<div class="hr"></div>
+		<div style="border: 1px solid red; padding: 15px 10px; font-family: courier new; font-size: 13px;">
+		<b class="red">ВНИМАНИЕ!</b><br />Данное письмо содержит <b>потенциально опасный HTML-код,</b> заблокированный системой безопасности.<br />Возможно, оно отображается неправильно.</div>
+	</div>
+
+	<div class="hr"></div>
+
+	<form name="FastAnswer" method="post" action="sentmsg" enctype="multipart/form-data">
+		<input type="hidden" name="copy" value="yes"/>
+		<input type="hidden" name="old_charset" value="windows-1251" />
+		<input type="hidden" name="formessage" value="1" />
+		<input type="hidden" name="message" value="vUfRT2LB" />
+		<input type="hidden" name="re_msg" value="12980406940000000804" />
+		<div class="pb10">
+			<span class="flr dB" style="width: 115px; text-align: right; cursor: pointer;"><i id="hide_show_all" class="spI iOnes iShowAns mr0"></i></span>
+			<span id="shlop_com" class="h3">Ответ</span><a id="shlop_link" href="javascript:;" class="h3a" style="display:none">Ответ</a>
+			<span id="show_link" class="t11 pl10" style="display:none">[ <a href="javascript:;">показать все поля</a> ]</span>
+			<span style="display: none;" class="if if-finden_fio spI iFindI bold">Поиск в интернете: <a href="http://go.mail.ru/search?q=&fr=mlbdy" class="if if-finden_fio-url normal" target="_blank"></a></span>
+		</div>
+
+		<table id="all_tab" class="tableAnswer">
+		<tr id="To_tr" style="display:none">
+			<td class="tableAnswerTD">Кому:</td>
+			<td class="tableAnswerInp pr3 pb1">
+				<div class="mlr-snd_input_expand pRel" style="z-index: 100;">
+					<input type="text" class="inp pRel bsbb mlr-snd_itxt mlr-snd_acitxt" name="To" value="Alexey &lt;alupichev@yandex.ru&gt;" />
+					<div class="clear"></div>
+					<div class="ac-layer">
+						<b class="sBrdR"></b><b class="sBrdB"></b><b class="sCrnTR"></b><b class="sCrnBL"></b><b class="sCrnBR"></b>
+					</div>
+				</div>
+			</td>
+			<td class="nobr"><a href="javascript:sw('To', window)" class="t11 ml5">Адресная&nbsp;книга</a></td>
+		</tr>
+		<tr id="CC_tr" style="display:none">
+			<td class="tableAnswerTD">Копия:</td>
+			<td class="tableAnswerInp pr3 pb1">
+				<div class="mlr-snd_input_expand pRel" style="z-index: 99;">
+					<input type="text" class="inp pRel bsbb mlr-snd_itxt mlr-snd_acitxt" name="CC" value="">
+					<div class="clear"></div>
+					<div class="ac-layer">
+						<b class="sBrdR"></b><b class="sBrdB"></b><b class="sCrnTR"></b><b class="sCrnBL"></b><b class="sCrnBR"></b>
+					</div>
+				</div>
+			</td>
+			<td><a href="javascript:sw('CC', window)" class="t11 ml5">Адресная&nbsp;книга</a></td>
+		</tr>
+		<tr id="BBC_tr" style="display:none">
+			<td class="tableAnswerTD">Скрытая:</td>
+			<td class="tableAnswerInp pr3 pb1">
+				<div class="mlr-snd_input_expand pRel" style="z-index: 98;">
+					<input type="text" class="inp pRel bsbb mlr-snd_itxt mlr-snd_acitxt" name="BCC" value="" />
+					<div class="clear"></div>
+					<div class="ac-layer">
+						<b class="sBrdR"></b><b class="sBrdB"></b><b class="sCrnTR"></b><b class="sCrnBL"></b><b class="sCrnBR"></b>
+					</div>
+				</div>
+			</td>
+			<td><a href="javascript:sw('BCC', window)" class="t11 ml5">Адресная&nbsp;книга</a></td>
+		</tr>
+		<tr id="Subject_tr" style="display:none">
+			<td class="tableAnswerTD">Тема:</td>
+			<td class="tableAnswerInp pr3"><input type="text" class="inp pRel bsbb mlr-snd_itxt" name="Subject" value="Re[2]: hotels-sale" /></td>
+			<td></td>
+		</tr>
+		<tr id="security_image_word" style="display:none">
+			<td colspan="3" class="p0">
+				<div class="if if-ShowSecurityImage ReadMsgCaptcha" style="display: none">
+					
+					Перед отправкой письма укажите число, размещенное на картинке:<br />
+					<input type="text" name="security_image_word" value="" />
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" class="pr3 w100"><textarea cnt_d="347432" rows="3" id="Body" name="Body" class="inpArea bsbb"></textarea></td>
+			<td class="nobr vmi"><a id="cit_ar" style="display:none" href="#" class="t11 ml5">Цитировать&nbsp;письмо</a></td>
+		</tr>
+		<tr><td colspan="3" class="p0 pr5 w100"><div><input cnt_sb="347432" type="submit" value="Ответить" name="send" /></div></td></tr>
+		</table>
+	</form>
+
+</div>
+
+<br /><br />
+
+
+
+
+
+
+
+<div class="ohd" style="background-color: #F2F3F7; padding: 7px 0; margin-top: 5px;">
+
+<span class="fll mt5 ml5">
+
+<a cnt_sb="347434"  onclick="if(window.confirm_answ) return confirm_answ();" href="sentmsg?reply&id=12980406940000000804&charset=&clear=&adding=&uplnk" class="spL iAnswer mr5 url-reply">Ответить</a>
+<a cnt_sb="347435"  href="sentmsg?reply&id=12980406940000000804&charset=&replyall=1&adding=" class="spL iAnswerAll mr5 url-replyAll" title="Ответить всем" style="display: none">Ответить&nbsp;всем</a>
+<a cnt_sb="347436"  href="sentmsg?forward&id=12980406940000000804&charset=&adding=" class="spL iSend mr5 url-forward">Переслать</a>
+<a cnt_sb="347437" href="composebounce?id=12980406940000000804&adding=" class="spL iRedirect mr5 url-composebounce">Перенаправить</a>
+
+<a cnt_sb="347438" href="movemsg?remove&id=12980406940000000804&next=12980145770000000979&adding=" class="url-remove spL iDelete mr5">Удалить</a>
+
+<a cnt_sb="347439" href="readmsg?id=12980406940000000804&template=printmsg.tmpl&adding=" target="print_window" class="url-print spL iOnes iPrint mr0" title="Печать"></a>
+<a cnt_sb="347440" rel="history" href="readmsg?id=12980406940000000804&adding=&mode=header" class="url-viewType spL iOnes iRFC mr0" title="RFC-Заголовок"></a>
+<a cnt_sb="347441" href="getmsg?id=12980406940000000804" class="url-getmsg spL iOnes iDiscet mr0" title="Скачать письмо"></a>
+
+</span>
+</div>
+
+
+<div class="pt10 pb20">
+	<table class="w100"><tr>
+		<td class="vmi">
+			<form method="Post" name="SpamBottom" action="spamwarn?id=12980406940000000804&folder=0&next=12980145770000000979" class="p5">
+				<input type="hidden" name="confirm" value="" />
+				<input type="hidden" name="id" value="" />
+				<input type="hidden" name="back" value="" />
+				<input type="submit" class="t11 spam-btn no-del" name="spamabuse" value=" Это&nbsp;спам " />
+			</form>
+		</td>
+		<td class="vmi">
+			<div id="sortBottom" class="sortBottom fll" style="padding: 4px 4px 5px 4px; width: 250px;">
+
+
+
+	
+<span class="sortBig pl15">
+
+	<span class="sortMain"><span class="dB pb1" style="width: 80px"><b class="grey pl1 normal">Переместить</b><b class="sortU sortUgo"></b></span>
+		<span class="sortDiv sortDiv-ie6 folderListSpan" id="folderListSpanBot" style="display: none; #width: 105px">
+			<span class="dB pRel" style="overflow-y: visible;">
+			<a href="#" onclick="return ['folder', 'move', 0]" class="FDD0 sortA">Входящие</a>
+			
+			<a href="#" onclick="return ['folder', 'move', 950]" class="FDD950 sortA">Спам</a>
+			<a href="#" onclick="return ['folder', 'move', 500000]" class="FDD500000 sortA">Отправленные</a>
+			<a href="#" onclick="return ['folder', 'move', 500001]" class="FDD500001 sortA">Черновики</a>
+			<a href="#" onclick="return ['folder', 'move', 500002]" class="FDD500002 sortA">Корзина</a>
+			
+			<a cnt_sb="347447" href="#new" onclick="return ['folder', 'move', 'new'];" class="sortA">- новую -</a>
+			</span>
+		</span>
+		
+	</span>
+
+	<span class="sortMain"><span class="dB pb1" style="width: 65px"><b class="grey pl1 normal">Пометить</b><b class="sortU sortUgo"></b></span>
+		<span class="sortDiv" style="display: none; width: 110px;">
+			<a cnt_sb="347448" href="#" onclick="return ['markmessage', 'mark', 2];" class="sortA">прочтенным</a>
+			<a cnt_sb="347449" href="#" onclick="return ['markmessage', 'mark', 1];" class="sortA">непрочтенным</a>
+			<a href="#" class="sortAno">---------------------</a>
+			<a cnt_sb="347450" href="#" onclick="return ['markmessage', 'mark', 6];" class="sortA">пометить флажком</a>
+			<a cnt_sb="347451" href="#" onclick="return ['markmessage', 'mark', 7];" class="sortA">снять флажок</a>
+		</span>
+		
+	</span>
+	</span>
+</div>
+
+		</td>
+		<td class="vmi w100">
+			<div  class="grey2 nobr flr nav">&nbsp;<a cnt_sb="347442" rel="history" href="readmsg?id=12980422680000000242&folder=0" class="url-prev">&#171;&nbsp;Предыдущее&nbsp;<span class="if if-MRIM" style="display: none">сообщение</span><span class="if if-NotMRIM" >письмо</span></a><b class="bull">&bull;</b><a cnt_sb="347443" rel="history" href="readmsg?id=12980145770000000979&folder=0" class="url-next">Следующее&nbsp;<span class="if if-MRIM" style="display: none">сообщение</span><span class="if if-NotMRIM" >письмо</span>&nbsp;&#187;</a>&nbsp;</div>
+		</td>
+	</tr></table>
+			<div style="clear: both"></div>
+</div>
+
+
+<div class="if if-finden_fio-bottom spI iFindI bold" style="display: none">
+	Поиск в интернете:
+	<a href="http://go.mail.ru/search?q=&fr=mlbdy" class="if if-finden_fio-url normal" target="_blank"></a>
+</div>
+
+		
+	</div>
+
+</div>
+
+<div id="MailRuLoader" class="loadProgress"  style="display: none;">Загрузка</div>
+
+<div id="TNSCounters"></div>
+
+<script type="text/javascript">
+try{ timeInterval_sum('html'); }catch(e) {}
+</script>
+	</div></div>
+<!--[if lt IE 7]><div class="IEfixCC"></div></td><td class="IEfix-padRightTD"><div class="IEfix-padRight"></div></td><td class="mCRtd"><![endif]-->
+	<div class="mCR">
+
+	</div>
+<!--[if lt IE 7]><div class="IEfixCR"></div></td></tr></table><![endif]-->
+</div>
+
+<div class="shMain minWidth cLeft w" style="height: 28px; overflow: hidden; //overflow: visible; //display: inline-block;">
+<!--[if lt IE 7]><table class="w100 tableCell"><tr><td> <![endif]-->
+<div class="shTT"></div>
+<div class="shTT" style="top: 26px;"></div>
+<div class="pt4 t11">
+<div class="flr pr25"><a href="http://www.kaspersky.ru/products#v" class="w" target="_blank">АнтиВирус</a>&nbsp;и&nbsp;<a href="http://www.kaspersky.ru/products#s" class="w" target="_blank">АнтиСпам</a>&nbsp;Касперского</div>
+	<div class="fll pl25">&#169; 1999-2011, <a href="http://corp.mail.ru/" class="mf_w">Mail.Ru</a></div>
+	<div class="tac"><a href="http://win.mail.ru/cgi-bin/signup" class="w">Регистрация</a>&nbsp;<b>&middot;</b>&nbsp;<a href="http://my.mail.ru/community/mailru/" target="_blank" class="w">Cообщество пользователей</a>&nbsp;<b>&middot;</b>&nbsp;<a href="http://win.mail.ru/cgi-bin/support"  target="_blank" class="w">Служба поддержки</a>&nbsp;&nbsp;</div>
+</div>
+<!--[if lt IE 7]></td></tr><tr><td><div class="fixIE"></div></td></tr></table> <![endif]-->
+</div>
+
+<div id="MailRuConfirm" class="alertDiv" style="display:none;">
+	<div class="alertDivSpan">
+		<a class="confirm-cancel pAbs top0 right0 spI iDelBig iOnes mr0 mt10 cp" href="javascript:void(0);"></a>
+		<form class="dN is-spam_in">
+			<b class="h1 black dB m15">Пожаловаться на спам</b>
+			<div class="grey mb15 ml15 mr15">Спасибо за помощь. Перечисленные письма будут переданы для анализа разработчикам антиспам системы:</div>
+			<div id="is-spam-txt" class="bGbottom ml15 mr15"></div>
+			<label class="dB mb5 ml15 mr15"><input value="on" name="delorig" type="checkbox" checked="checked"/> Переместить выбранные письма со спамом в Корзину</label>
+			<label class="dB mb10 ml15 mr15"><input value="on" name="toblacklist" type="checkbox"/> Занести адреса в черный список</label>
+			<div class="p15" style="background-color: #e6e8ed;">
+				<input type="submit" class="bold confirm-ok" value="Пожаловаться"/>
+				<input type="button" class="ml10 confirm-cancel" value="Отмена"/>
+			</div>
+		</form>
+		<form class="dN is-secure_in">
+			<b class="h1 black dB m15">Введите пароль</b>
+			<div class="ml15 mr15 pb20">
+				Доступ к папке "<span id="is-secure-txt">Название папки</span>" защищен паролем, введите его для продолжения работы
+				<div class="ohd mt5"><input value="" name="pass" type="password" class="fll w50 inp" />&nbsp;<a href="#">забыли пароль</a></div>
+			</div>
+			<div class="p15" style="background-color: #e6e8ed;">
+				<input type="submit" class="bold confirm-ok" value="Готово"/>
+				<input type="button" class="ml10 confirm-cancel" value="Отмена"/>
+			</div>
+		</form>
+		<form class="dN is-moveto_in">
+			<b class="h1 black dB m15">Переместить</b>
+			<div class="ml15 mr15 pb20">Вы действительно хотите переместить <span id="is-moveto-txt">N писем</span> в папку "<span id="moveto-folder-name">Название папки</span>"?</div>
+			<div class="p15" style="background-color: #e6e8ed;">
+				<input type="submit" class="bold confirm-ok" value="Да"/>
+				<input type="button" class="ml10 confirm-cancel" value="Отмена"/>
+			</div>
+		</form>
+		<form class="dN is-redirect_in">
+			<input value="" name="id" type="hidden" />
+			<input value="1" name="ab" type="hidden" />
+			<b class="h1 black dB m15">Перенаправить письмо</b>
+			<table class="m15" cellpadding="0" cellspacing="0">
+			<tr>
+				<td><a href="javascript:sw('RedirectTo');">Кому</a>:&nbsp;</td>
+				<td width="310">
+					<div class="mlr-snd_input_expand pRel" style="zoom: 1">
+						<input type="text" class="inp pRel bsbb mlr-snd_itxt mlr-snd_acitxt" name="RedirectTo" value="" />
+						<div class="clear"></div>
+						<div class="ac-layer"><b class="sBrdR"></b><b class="sBrdB"></b><b class="sCrnTR"></b><b class="sCrnBL"></b><b class="sCrnBR"></b></div>
+					</div>
+				</td>
+			</tr>
+			</table>
+			<div class="ml15 mr15 pb20" style="color: #505359; font-family: tahoma; font-size: 90%; line-height: 140%;">
+				Перенаправление письма позволит отправить это письмо другому получателю &#0171;как есть&#0187;.<br /><br />
+				Чтобы отправить исходное письмо, добавив свои комментарии и сохранив вложения,  воспользуйтесь функцией <a rel="history">пересылки</a>.
+				Можно указывать несколько адресов, разделяя их запятыми.
+			</div>
+			<div class="p15" style="background-color: #e6e8ed;">
+				<input type="submit" class="bold confirm-ok" value="Перенаправить"/>
+				<input type="button" class="ml10 confirm-cancel" value="Отмена"/>
+			</div>
+		</form>
+		<form class="dN is-redirect-done_in">
+			<div class="h1 black m15">
+				<b class="status ok">Письмо перенаправлено</b>
+				<b class="status error">Ошибка сервера, попробуйте еще раз</b>
+			</div>
+			<div class="p15" style="background-color: #e6e8ed;"><input type="submit" class="bold confirm-ok" value="  Закрыть окно  "/></div>
+		</form>
+		<div class="dN is-signupsms_in">
+			<form action="">
+				<b class="h1 black dB m15">Введите код из&nbsp;SMS-сообщения</b>
+				<div class="grey mb15 ml15 mr15 lh16 mainText"></div>
+				<div class="grey mb15 ml15 mr15 lh16 info"></div>
+				<div class="ml15 mr15 mb30 ohd">
+					<table cellspacing="0" cellpadding="0" class="w75">
+						<tr>
+							<td class="nobr pr5"><label for="code">Код активации</label></td>
+							<td class="w100"><input type="text" name="code" value="" class="dIB inp w75 pl2 pr2" autocomplete="off" id="code"/></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><div class="red t11 mt5"></div></td>
+						</tr>
+					</table>
+				</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<a href="javascript:void(0);" class="mt3 flr t11 arial grey nosmslink">Не пришло SMS-сообщение?</a>
+					<input type="submit" value="Готово" class="confirm-ok bold"/>
+					<input type="Button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-genDelPhone_in">
+			<form action="">
+				<b class="h1 black dB m15">Удаление телефонного номера <span class="phone nobr"></span></b>
+				<div class="grey mb15 ml15 mr15 lh16 info" style="display: none;"></div>
+				<div class="ml15 mr15 mb15 ohd">
+					<table cellspacing="0" cellpadding="0" class="w75">
+						<tr>
+							<td class="nobr pr5"><label for="code">Код для удаления</label></td>
+							<td class="w100"><input type="text" name="code" value="" class="dIB inp w75 pl2 pr2" autocomplete="off" id="code"/></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><div class="red t11 mt5"></div></td>
+						</tr>
+					</table>
+				</div>
+				<div class="grey mb20 ml15 mr15 lh16"><a href="javascript:void(0);" class="t11 arial grey resendsms">Отправить код еще раз</a></div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<a href="javascript:void(0);" class="mt3 flr t11 arial grey nosmslink">Не пришло SMS-сообщение?</a>
+					<input type="submit" value="Удалить" class="confirm-ok bold"/>
+					<input type="Button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-genDelPhoneConfirm_in">
+			<form action="">
+				<b class="h1 black dB m15">Удаление телефонного номера <span class="phone nobr"></span></b>
+				<div class="grey mb15 ml15 mr15 lh16">Чтобы удалить номер прямо сейчас, введите специальный код из бесплатного сообщения SMS. Без кода номер будет удален автоматически <b><span class="date"></span> года</b>.</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<a href="javascript:void(0);" class="mt3 flr t11 arial grey codeisset">У меня уже есть код</a>
+					<input type="submit" value="Получить код по SMS" class="confirm-ok bold"/>
+					<input type="Button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-verifyPhoneConfirm_in">
+			<form action="">
+				<b class="h1 black dB m15">Активация телефонного номера <span class="phone nobr"></span></b>
+				<div class="grey mb15 ml15 mr15 lh16">Для того, чтобы активировать телефонный номер, необходимо ввести специальный код, получив его в сообщении SMS.</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<a href="javascript:void(0);" class="mt3 flr t11 arial grey codeisset">У меня уже есть код</a>
+					<input type="submit" value="Получить код по SMS" class="confirm-ok bold"/>
+					<input type="Button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-genDelPhoneSuccess_in">
+			<form action="">
+				<b class="h1 black dB m15">Удаление телефонного номера <span class="phone nobr"></span></b>
+				<div class="grey mb15 ml15 mr15 lh16">Номер телефона успешно удален.</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="Button" value="Закрыть" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-signupphone_in">
+			<form action="">
+				<input name="back" type="hidden" value="signup"/>
+				<b class="h1 black dB m15">Введите код на&nbsp;картинке <span class="normal t11">(<a href="javascript:void(0);">не&nbsp;видно?</a>)</span></b>
+				<div class="ml15 mr15 mb20 ohd">
+					<div class="fll w35 pt11">
+						<input type="text" name="code" value="" class="dIB inp mb2 pl2 pr2" autocomplete="off"/>
+						<div class="red t11"></div>
+					</div>
+					<div class="flr w55">
+						<table cellpadding="0" cellspacing="0">
+							<tr>
+								<td><img src="http://img.imgsmail.ru/0.gif" alt="" width="65" height="51" style="display: block;"/></td>
+								<td><img src="http://img.imgsmail.ru/0.gif" alt="" width="65" height="51" style="display: block;"/></td>
+								<td><img src="http://img.imgsmail.ru/0.gif" alt="" width="65" height="51" style="display: block;"/></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="submit" value="Готово" class="confirm-ok bold"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-verification1_in">
+			<form action="">
+				<b class="h3 black dB p15 mb0 pb0"><a href="javascript:void(0);">Подтвердите свою учетную запись</a></b>
+				<div class="grey mb10 ml15 mr15">и мы больше не будем просить вас ввести код с картинки</div>
+				<div class="bGbottom pb0 m15 mb0 mt0"><span class="lbl grey">или</span></div>
+				<b class="h3 black dB m15 mb5">Введите код на&nbsp;картинке <span class="normal t11">(<a href="javascript:void(0);">не&nbsp;видно?</a>)</span></b>
+				<div class="ml15 mr15 mb10 ohd">
+					<div class="fll w35 pt11">
+						<input type="text" name="code" value="" class="dIB inp mb2 pl2 pr2" autocomplete="off"/>
+						<div class="red t11"></div>
+					</div>
+					<div class="flr w55">
+						<img src="http://img.imgsmail.ru/0.gif" width="151" height="51" alt="" style="display: block;"/>
+					</div>
+				</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="submit" value="Готово" class="confirm-ok bold"/>
+					<input type="Button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-newphone1_in">
+			<form action="">
+				<div class="notify_height">
+					<b class="h1 black dB p15 mb0">Добавить номер телефона</b>
+					<div class="grey mb10 ml15 mr15 lh16">Мобильный телефон можно использовать для восстановления пароля и&nbsp;для получений <span class="nobr">SMS-уведомлений</span>.</div>
+					<div class="p15 pt5 pb5">
+						<table class="tableCell">
+							<colgroup>
+								<col width="80"/>
+								<col width="160"/>
+								<col width="*"/>
+							</colgroup>
+							<tr>
+								<td class="pr10 pb10 vmi"><b><label for="country_newphone">Страна</label></b></td>
+								<td class="pb10" width="160">
+									<select name="phonecode" id="country_newphone" class="w100">
+										<option value="7">Россия</option>
+									</select>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="pr10 vmi nobr"><b><label for="phone_newphone">Ваш телефон</label></b></td>
+								<td>
+									<div class="pRel">
+										<input name="phone" autocomplete="off" value="" type="text" class="inp inPut" id="phone_newphone"/>
+										<div class="phonePrefix">+7</div>
+									</div>
+								</td>
+								<td class="pl10 vmi"><input name="ismobile" value="1" type="checkbox" id="mobile" checked="checked"/><label for="mobile" class="vmi"> мобильный</label></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<div class="red t11 pt5 pb5"></div>
+								</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="submit" value="Готово" class="confirm-ok bold"/>
+					<input type="Button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-signupphone1_in">
+			<form action="">
+				<input type="hidden" name="ismobile" value="1"/>
+				<div class="notify_height">
+					<b class="h1 black dB p15 mb0">Подтверждение учётной записи</b>
+					<div class="grey mb10 ml15 mr15 lh16">Пожалуйста, укажите номер своего мобильного телефона. На этот номер придет SMS-сообщение с кодом активации.</div>
+					<div class="p15 pt5 pb5">
+						<table class="tableCell">
+							<colgroup>
+								<col width="80"/>
+								<col width="160"/>
+								<col width="*"/>
+							</colgroup>
+							<tr>
+								<td class="pr10 pb10 vmi"><b><label for="country_newphone1">Страна</label></b></td>
+								<td class="pb10" width="160">
+									<select name="phonecode" id="country_newphone1" class="w100">
+										<option value="7">Россия</option>
+									</select>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="pr10 vmi nobr"><b><label for="phone_newphone1">Ваш телефон</label></b></td>
+								<td>
+									<div class="pRel">
+										<input name="phone" autocomplete="off" value="" type="text" class="inp inPut" id="phone_newphone1"/>
+										<div class="phonePrefix">+7</div>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<div class="red t11 pt5 pb5"></div>
+								</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="submit" value="Готово" class="confirm-ok bold"/>
+					<input type="Button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-sugnupSuccess_in">
+			<form action="">
+				<b class="h1 black dB m15" style="color:#009843 !important;">Учетная запись успешно подтверждена</b>
+				<div class="grey mb15 ml15 mr15 lh16">Номер <span class="phone nobr bold"></span> можно использовать для восстановления пароля или для SMS-уведомлений.</div>
+				<div class="grey mb15 ml15 mr15 lh16">
+					<div><a href="/cgi-bin/security" target="_blank">Перейти к настройкам безопасности</a></div>
+					<div><a href="/cgi-bin/editnotify?mode=2" target="_blank">Перейти к настройкам SMS-уведомлений</a></div>
+				</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="submit" value="Продолжить" class="confirm-ok bold"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-delete_attach_in">
+			<form action="">
+				<b class="h1 black dB m15">Вы уверены?</b>
+				<div class="mb15 ml15 mr15">Вы уверены, что хотите удалить файл?</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="button" value="Продолжить" class="confirm-ok bold"/>
+					<input type="button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-enable_text_mode_in">
+			<form action="">
+				<b class="h1 black dB m15">Вы уверены?</b>
+				<div class="mb15 ml15 mr15">
+					<div class="enableTextConfirmContainer">Все оформление текста, включая изображения,<br/>будет утеряно.</div>
+				</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="button" value="Продолжить" class="confirm-ok bold"/>
+					<input type="button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-submit_empty_message_in">
+			<form action="">
+				<b class="h1 black dB m15">Вы уверены?</b>
+				<div class="mb15 ml15 mr15">Вы уверены, что хотите отправить пустое письмо?</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="button" value="Продолжить" class="confirm-ok bold"/>
+					<input type="button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-phone_verify_check_in">
+			<form action="">
+				<b class="h1 black dB m15">Проверка номера</b>
+				<div class="mb15 ml15 mr15">
+					<div class="loadProgress">Загрузка</div>
+					<div class="error red"></div>
+				</div>
+				
+			</form>
+		</div>
+		<div class="dN is-nosms1_in">
+			<form action="">
+				<b class="h1 black dB m15">Не пришло SMS-сообщение?</b>
+				<div class="grey mb15 ml15 mr15 lh16">С момента отправки прошло <span class="time bold black"></span>. Скорее всего SMS-сообщение придет в ближайшие несколько минут.</div>
+				<div class="grey mb15 ml15 mr15 lh16">Сообщение было отправлено на номер <span class="phone bold"></span></div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					
+					<input type="button" value="Вернуться" class="confirm-return"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-nosms2_in">
+			<form action="">
+				<b class="h1 black dB m15">Не пришло SMS-сообщение?</b>
+				<div class="grey mb15 ml15 mr15 lh16">Сообщение было отправлено на номер <span class="phone bold"></span></div>
+				<div class="grey mb15 ml15 mr15 lh16">Если сообщение до сих пор не пришло, Вы можете запросить повторную отправку или зарегистрироваться без телефона.</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					
+					<input type="button" value="Отправить SMS" class="confirm-ok bold"/>
+					<input type="button" value="Вернуться" class="confirm-return ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-outer_site_in">
+			<form action="">
+				<b class="h1 black dB m15 ohd">Вы&nbsp;собираетесь покинуть Mail.Ru и&nbsp;перейти на&nbsp;сторонний сайт по&nbsp;присланной в&nbsp;письме ссылке <a id="is-outer_site-txt" cnt_sb="351249" href="#" target="_blank" class="dB mt10 t12 normal"></a></b>
+				<div class="mb15 ml15 mr15 lh-18">Рекомендуем переходить по&nbsp;ссылкам только от&nbsp;известных отправителей и&nbsp;никогда не&nbsp;вводить пароль от&nbsp;своего почтового ящика на&nbsp;сторонних сайтах!</div>
+				<div class="mb15 ml15 mr15">
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="vti pt3"><input value="1" id="NoForeignConfirm" name="NoForeignConfirm" type="checkbox" /></td>
+							<td class="pl2 pt2 arial t11 vt1"><label for="NoForeignConfirm">Не предупреждать меня при переходе на сторонние сайты</label></td>
+						</tr>
+					</table>
+				</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="button" value="Перейти на сайт" class="confirm-ok bold"/>
+					<input type="button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-fishing_site_in">
+			<form action="">
+				<b class="h1 black dB m15"><span class="stop">Вы&nbsp;пытаетесь перейти на&nbsp;вредоносный сайт</span></b>
+				<div class="mb15 ml15 mr15 ohd lh-18">
+					Ссылка <span id="is-fishing_site-txt"></span>, по&nbsp;которой Вы&nbsp;собираетесь перейти, может нанести вред Вашему компьютеру и&nbsp;привести к&nbsp;взлому почтового ящика.
+				</div>
+				<div class="grey t11 m15 mt0">Я&nbsp;понимаю опасность и&nbsp;беру на&nbsp;себя всю ответственность, но&nbsp;все равно хочу перейти на&nbsp;<a href="#" class="grey fishing-link" cnt_sb="351250" target="_blank">вредоносный сайт</a>.</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<a href="http://www.mail.ru/pages/help/183.html" target="_blank" class="flr grey pt3">Защита почтового ящика</a>
+					<input type="button" value="Закрыть окно" class="confirm-cancel"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-outer_form_in">
+			<form action="">
+				<b class="h1 black dB m15 ohd">Вы собираетесь отправить данные из формы на сторонний сайт. <a id="is-outer_form-txt" href="#" target="_blank" class="dB mt10 t12 normal"></a></b>
+				<div class="mb15 ml15 mr15 lh-18">Рекомендуем вам отправлять формы только на известные вам сайты. Никогда не указывайте в них пароли и персональные данные.</div>
+				<div class="mb15 ml15 mr15">
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="vti pt3"><input value="1" id="iufi-NFC" name="NoForeignConfirm" type="checkbox" /></td>
+							<td class="pl2 pt2 arial t11 vt1"><label for="iufi-NFC">Не предупреждать меня при переходе на сторонние сайты</label></td>
+						</tr>
+					</table>
+				</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="button" value="Отправить" class="confirm-ok bold"/>
+					<input type="button" value="Отмена" class="confirm-cancel ml10"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-fishing_form_in">
+			<form action="">
+				<b class="h1 black dB m15"><span class="stop">Вы пытаетесь отправить данные на вредоносный сайт </span></b>
+				<div class="mb15 ml15 mr15 ohd lh-18">
+					Форма, которую вы заполнили, передает данные на сайт <span id="is-fishing_form-txt"></span>, который может нанести вред вашему компьютеру, привести к взлому почтового ящика и краже ваших персональных данных.
+				</div>
+				<div class="grey t11 m15 mt0">Я понимаю опасность и беру на себя всю ответственность, но все равно хочу отправить данные на вредоносный сайт.</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<input type="button" value="Все равно отправить" class="confirm-ok bold"/>
+					<input type="button" value="Отменить" class="confirm-cancel"/>
+				</div>
+			</form>
+		</div>
+		<div class="dN is-to_black_list_in">
+			<form action="">
+				<b class="h1 black dB m15">Добавить в &laquo;черный список&raquo;</b>
+				<div class="mb15 ml15 mr15">Вы уверены, что хотите добавить адрес <span class="email bold"></span> в &laquo;черный список&raquo; и больше не получать от него письма?</div>
+				<div class="mb15 ml15 mr15">
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="vti pr5 pt2"><input id="to_black_list_mode1" name="to_black_list_mode" type="radio" value="1" class="ml0" checked=""/></td>
+							<td class="pb5"><label for="to_black_list_mode1">добавить, но не удалять письма от адресата</label></td>
+						</tr>
+						<tr>
+							<td class="vti pr5 pt2"><input id="to_black_list_mode2" name="to_black_list_mode" type="radio" value="2" class="ml0"/></td>
+							<td class="pb5"><label for="to_black_list_mode2">добавить и удалить текущее письмо</label></td>
+						</tr>
+						<tr>
+							<td class="vti pr5 pt2"><input id="to_black_list_mode3" name="to_black_list_mode" type="radio" value="3" class="ml0"/></td>
+							<td class="pb5"><label for="to_black_list_mode3">добавить и удалить все письма от адресата<br/>(может занять несколько минут)</label></td>
+						</tr>
+					</table>
+				</div>
+				<div class="p15" style="background-color: #e6e8ed;">
+					<div class="controls">
+						<input type="button" value="Добавить в черный список" class="confirm-ok bold"/>
+						<input type="button" value="Отмена" class="confirm-cancel ml10"/>
+					</div>
+					<div class="progress" style="display: none;">
+						<table cellpadding="0" cellspacing="0" class="w100">
+							<tr>
+								<td width="50%">
+									<div class="pBarC">
+										<div class="pBarL" style="width: 0;"></div>
+									</div>
+								</td>
+								<td class="pl10">
+									<div class="grey bold inLoading_E6E8ED pl20" style="line-height: normal;">идет поиск писем&hellip;</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+	<div id="alertFade" class="alertFade" style="display:none;"></div>
+	<div class="alertLoad" style="display:none;"></div>
+
+	<div id="MailRuConfirmOld" class="alertDiv" style="display:none;">
+		<span class="alertDivSpan"><a class="pAbs top0 right0 spI iDelBig iOnes mr0 mt10 cp" href="javascript:void(0);"></a>
+			<b class="h1 black dB m15">Пожаловаться на спам</b>
+			<span class="grey dB mb15 ml15 mr15">Спасибо за помощь. Перечисленные письма будут переданы для анализа разработчикам антиспам системы:</span>
+			<span id="alertDivText" class="dB bGbottom ml15 mr15">111</span>
+			<label class="dB mb5 ml15 mr15"><input value="on" name="delorig" type="checkbox" checked="checked" /> Переместить выбранные письма со спамом в Корзину</label>
+			<label class="dB mb10 ml15 mr15"><input value="on" name="toblacklist" type="checkbox" /> Занести адреса в черный список</label>
+			<span class="p15 dB" style="background-color: #e6e8ed;"><input type="Button" value="Пожаловаться" id="confirm-ok" class="bold" /><input type="Button" value="Отмена" id="confirm-cancel" class="ml10" /></span>
+		</span>
+	</div>
+
+
+
+<span id="imgLoadForCursor" class="imgLoad" style="display:none;"></span>
+<span id="historyAncors" style="display:none; position: absolute; top:0; left:0;"></span>
+
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('html'); }catch(e) {}
+try{ timeInterval_sum('js'); }catch(e) {}
+
+var iOS		= !!navigator.userAgent.match(/iPhone|iPod|iPad|iOS/i);
+var ready	= function ($)
+{
+
+	// < Require
+	if( !iOS )
+		$R('{mailru}mailru.msglist', function ()
+		{
+			window.msglist = new $.msglist({
+								  dragged:			true
+								, infoDiv:			'#msgDragId'
+								, table:			'#id-messages-list'
+								, tableRow:			'div.msgLine'
+								, tableBox:			'input[name="id"]'
+								, classBox:			'msgSel'
+								, mainBox:			'input[name="mainCheck"]'
+								, folders:			'#foldersStartId div.ohd'
+								, folderRegExpId:	/folder(\d+)/
+								, folderSubmit:		function(id)
+													{
+														$F('#InpToFolderId').value = id;
+														$F('#MainMoveBtn').click();
+													}
+								, classHoverFolder:	'lmTRMove'
+								, sortSelectors:	['sort-move-to', 'sort-mark-as', 'sort-add-to']
+							});
+		});
+	$R('{mailru}mailru.gosearch', function ()
+	{
+		$('#input_gs_q_query').bind('focus blur', function (e)
+		{
+			$('#'+this.id+'_label').css('display', ((e.type == 'focus') || ($.trim(e.currentTarget.value).length > 0)) ? 'none' : '');
+		});
+
+		window.msglist_gosearch = new $.msglist_gosearch({
+									  idInput:		'#input_gs_q_query'
+									, idSuggest:	'#gosearch_suggest'
+									, hoverClass:	'suggHOVER'
+								});
+	});
+	$R([
+		  '{mailru}mailru.core'
+		, '{mailru}mailru.checknew'
+	], function ()
+	{
+		window.checknew = new $.checknew({
+			username: 'no-thx',
+			domain: 'mail.ru',
+			
+			
+			tableFoldersList: '#foldersStartId',
+			folder: 0,
+			tableMsgList: '#ourletId',
+			msgListLock: !$.ajaxSupported() || $.lowSupported(),
+			msgListOrder: ['', '', '', '', '', '', ''],
+			msgAction: 'readmsg?',
+			returnPath: '',
+			MsglistAfterDelete: 0
+		});
+		setInterval(function(){ checknew.reload(); }, 30000);
+
+		$.quickReady();
+		window.msgListReady	= true;
+		$(window).trigger('mailru.MsgList.ready');
+
+		
+		checknew.wrapStatic();
+		
+
+		
+		$.toggleMsgFolders({
+			main: '#page-main',
+			left: '#mail-folders,#mail-leftSlots',
+			link: '#show-hide-folders',
+			css: { main: ['pageMain1', 'pageMain2'], link: ['iShowF', 'iHideF'] }
+		});
+		
+	});
+
+
+	domReady(); // execute
+};
+
+jQuery(function (){ ready(jQuery); });
+
+try{ timeInterval_sum('js'); }catch(e) {}
+//]]></script>
+
+
+
+
+
+<script type="text/javascript">//<![CDATA[
+var yandex_begun_id = 'slotShow_direct';
+try{ timeInterval_sum('reklama_test'); document.getElementById(yandex_begun_id).style.display = ''; }catch(e) {}
+//]]></script>
+<div id="mail-leftSlots" style="overflow: hidden; height: 0;">
+<div id="slotCode_direct" class="mb20" style="display: none;">
+<img src="http://rs.mail.ru/d337946.gif?rnd=743701714&ts=1298217181" width="1" height="1" border="0" alt="" style="position:absolute;"/>
+<script type="text/javascript">
+(function(w, d, n, s, t) {
+w[n] = w[n] || [];
+w[n].push(function() {
+Ya.Direct.insertInto(21753, yandex_begun_id, {
+site_charset: window.IS_UTF ? 'utf-8' : 'windows-1251',
+ad_format: "direct",
+font_size: 1,
+type: "vertical",
+border_type: "block",
+limit: 3,
+site_bg_color: "FFFFFF",
+title_color: "0857A6",
+url_color: "9296A5",
+all_color: "0857A6",
+text_color: "000000",
+hover_color: "0066FF"
+});
+});
+t = d.documentElement.firstChild;
+s = d.createElement("script");
+s.type = "text/javascript";
+s.src = "http://an.yandex.ru/system/context.js";
+s.setAttribute("async", "true");
+t.insertBefore(s, t.firstChild);
+})(window, document, "yandex_context_callbacks");
+</script>
+
+</div>
+</div>
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('reklama_test'); }catch(e) {}
+//]]></script>
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('webagent_test'); }catch(e) {}
+//]]></script>
+
+
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('webagent_test'); }catch(e) {}
+try{ timeInterval_sum('reklama_rb'); }catch(e) {}
+//]]></script>
+<div style="position: absolute; top: -100px; left: -100px">
+	<img src="http://rs.mail.ru/d227223.gif?rnd=545250669&ts=1298217181" width="1" height="1" border="0" alt="" style="position:absolute;"/>
+<script type="text/javascript"><!--
+document.write("<img src='http://counter.yadro.ru/hit?r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' width=1 height=1 alt=''>")//--></script>
+
+<!--Rating@Mail.ru counter-->
+<script language="javascript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer);js=10;//--></script>
+<script language="javascript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled();js=11;//--></script>
+<script language="javascript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height;
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth);js=12;//--></script>
+<script language="javascript1.3" type="text/javascript"><!--
+js=13;//--></script><script language="javascript" type="text/javascript"><!--
+d.write('<img src="http://top5.mail.ru/counter'+'?id=110605;js='+js+
+a+';rand='+Math.random()+'" height="1" width="1" alt="top.mail.ru" border="0">');
+if(11<js)d.write('<'+'!-- ')//--></script>
+<noscript><img src="http://top5.mail.ru/counter?js=na;id=110605" 
+height="1" width="1" alt="top.mail.ru" border="0"></noscript>
+<script language="javascript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>');//--></script>
+<!--// Rating@Mail.ru counter-->
+	
+</div>
+
+<script type="text/javascript">//<![CDATA[
+try{ timeInterval_sum('reklama_rb'); }catch(e) {}
+try{ timeInterval('load'); }catch(e) {}
+//]]></script>
+
+<!-- sln:3 --><img src="http://rs.mail.ru/d292152.gif?rnd=117939823&ts=1298217181" width="1" height="1" border="0" alt="" style="position:absolute;"/>
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+	var addHandler = function(o, e, fn) {
+		if (o.addEventListener) o.addEventListener(e, fn, false);
+		else if (o.attachEvent) o.attachEvent('on' + e, fn);
+		else o['on' + e] = fn;
+	}
+	addHandler(document, 'mousedown', function(e) {
+		e = e || window.event;
+		e = e.target || e.srcElement;
+		var name;
+		while (e.parentNode) {
+			if ((name = e.getAttribute('name')) && (name = name.toString())) {
+				if ( name.match(new RegExp("^cl([bn]\\d+)")) )
+					document.createElement("IMG").src = "http://rs.mail.ru/s"+RegExp.$1+".gif?rnd=" + Math.random()*1E9;
+				if ( name.match(new RegExp("^(g\\d+)")) )
+					document.createElement("IMG").src = "http://rs.mail.ru/"+RegExp.$1+".gif?rnd=" + Math.random()*1E9;
+				if ( name.match(new RegExp("^(i\\d+)")) )
+					document.createElement("IMG").src = "http://rs.mail.ru/"+RegExp.$1+".gif";
+			}
+			e = e.parentNode;
+		}
+		return true;
+	});
+})();
+//]]>
+</script><!-- /sln:3 -->
+
+<script type="text/javascript">//<![CDATA[
+try {
+
+timeInterval('renderbrowser');
+rT.iGet = '';
+for (var i = 0; i < rT.i.length; i++) {
+        rT.comma = rT.iGet != '' ? ',' : '';
+        var bP = rT.i[i].split('=');
+        if (bP[0] != 'renderbrowser') {
+                rT.iGet += (rT.comma + bP[0] + ':' + bP[1]);
+        } else rT.renderbrowser = parseInt(bP[1]);
+}
+rT.comma = '';
+
+rT.img = new Image(); rT.img.src='http://mail.radar.imgsmail.ru/update?p=mail&t=msglist&v=' + rT.renderbrowser + '&i=' + rT.iGet + '&rnd=761057615' + (document.referrer ? '&r=' + escape(document.referrer) : '') + '';
+
+} catch(e) {}
+//]]></script>
+
+        
+
+<!-- promo dmr -->
+<!-- end promo dmr -->
+
+	<div id="_counters_"></div>
+
+</body>
+</html>
+
+

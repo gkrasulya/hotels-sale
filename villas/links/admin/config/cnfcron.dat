@@ -1,0 +1,13 @@
+<?php
+$adm_cron_path="domains/mysite.ru/public_html/linkexchanger/admin/";
+$imp_myhome = "http://www.mysite.ru";
+$adm_e_mail = "mymail@mail.ru";
+$adm_in_mail = "win-1251";
+$adm_count_links = "Нет";
+$adm_out_links = "100";
+$adm_cy = "10";
+$adm_pr = "0";
+$letter_noanswer = "off";
+$letter_badly = "off";
+$letter_well = "off";
+?>

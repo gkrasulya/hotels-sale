@@ -1,0 +1,8 @@
+<Files *.dat>
+order allow,deny 
+deny from all 
+</Files>
+<Files *.txt>
+order allow,deny 
+deny from all 
+</Files>
