@@ -274,9 +274,9 @@ if (! isset($n)) {
 
 		<label for='tosend'>Убрать из рассылки</label>
 		<input id='tosend' type='checkbox' name='tosend' <?= $tosend_selected ?> /><br/>
-
+<!-- 
 		<label for="open_stats" for="open_stats">Открыть статистику</label>
-		<input type="checkbox" name="open_stats" id="open_stats" <?= $open_stats_selected ?>>
+		<input type="checkbox" name="open_stats" id="open_stats" <?= $open_stats_selected ?>> -->
 
 		<label>Email клиента (можно ввести несколько через запятую)</label>
 		<input type='text' name='client_email' value='<?= $forward_email ?>'><br/>

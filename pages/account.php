@@ -37,7 +37,10 @@ require_once '_flash.php';
 						<?= $o == 'expiration' ? '&darr;' : '' ?>
 				</th>
 			<? endif ?>
-			<th>Действия</th>
+			<? if ($user->open_stats): ?>
+				<th>Просмотры</th>
+			<? endif ?>
+			<th></th>
 		</tr>
 		<? foreach ($acc_hotels as $i => $hotel): ?>
 			<tr class="<?= $hotel->active ? 'active' : 'deactive' ?> <?= $i % 2 == 0 ? 'even' : '' ?>">
@@ -56,6 +59,9 @@ require_once '_flash.php';
 						<td><?= $hotel->expiration ? str_replace('-', '.', $hotel->expiration) : '' ?></td>
 					<? endif ?>
 				<? endif ?>
+				<? if ($user->open_stats): ?>
+					<td><strong><?= $hotel->views ?></strong></td>
+				<? endif ?>
 				<td class="actions">
 					<? if (! is_agency() && $hotel->infinite != 1): ?>
 						<a href="<?= SITE_ADDR ?>activate_offer/?id=<?= $hotel->id ?>" title="продлить" class="activate">
@@ -65,9 +71,6 @@ require_once '_flash.php';
 					<a href="<?= SITE_ADDR ?>edit_offer_photos/?id=<?= $hotel->id ?>" title="фотографии">фотографии</a><br/>
 					<a href="<?= SITE_ADDR ?>delete_offer/?id=<?= $hotel->id ?>" title="удалить" class="delete">удалить [x]</a>
 				</td>
-				<? if ($hotel->open_stats): ?>
-					<td>Просмотров: <strong><?= $hotel->views ?></strong></td>
-				<? endif ?>
 			</tr>	
 		<? endforeach ?>
 	</table>
