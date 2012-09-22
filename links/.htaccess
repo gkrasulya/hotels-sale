@@ -1,4 +1,0 @@
-RewriteEngine on
-RewriteBase /links/
-RewriteRule ^(.*)(links_)([0-9]{10})_([0-9]{1,})\.html$ index.php?category=$3&page=$4
-RewriteRule ^(.*)(links_)([0-9]{1,})_([0-1]{1})\.html$ index.php?category=&page=$3&search=$4
