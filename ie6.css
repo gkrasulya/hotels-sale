@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* CSS Document */
+
+#countries ul {margin: 5px 0 15px 10px;}
+#countries a {margin-left: 5px;}
+#subscribe form, #search form {margin-left: 5px;}
+#subscribe form input {margin-left: 0; width: 95%;}
+#fSSubmit {margin-left: 15px;}
+#offers .all {width: 200px; margin-left: 15px;}

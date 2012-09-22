@@ -1,0 +1,19 @@
+GET:
+
+action: interkassa_status
+
+
+POST:
+
+ik_shop_id: 142460FB-9D70-C3A0-BE51-031AE764EA36
+ik_payment_amount: 820
+ik_payment_id: 134745355096
+ik_payment_desc: Пополнение счета на http://hotels-sale.ru/ на 820 рублей (€20.24)
+ik_paysystem_alias: yandexdengir
+ik_baggage_fields: 
+ik_payment_timestamp: 1347453565
+ik_payment_state: success
+ik_trans_id: IK_8210042
+ik_currency_exch: 0.032
+ik_fees_payer: 1
+ik_sign_hash: 633F4CFF6AEB1460B11DB1A02B113AC6

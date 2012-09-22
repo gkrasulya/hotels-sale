@@ -1,0 +1,7 @@
+#header, #navigation, #sideBar, #footer {
+	display: none;
+}
+
+#contentTD {
+	width: 100%;
+}

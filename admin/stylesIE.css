@@ -1,0 +1,352 @@
+
+/* BASIC
+-----------------------------------------------------------------------------*/
+
+* {
+margin:0px; /* no any margin or padding */
+padding:0px;
+}
+
+body {	/* main text-bg-paadding info */
+font-family:Arial, Helvetica, sans-serif;
+font-size:12px;
+padding-top:20px;
+background:#eaeaff;
+}
+
+#wrapper { /* main container */
+width:780px;
+position:relative;
+left:50%;
+margin-left: -390px;
+}
+
+/* HEADER
+-----------------------------------------------------------------------------*/
+
+#header { /* header block */
+position:relative;
+width: 780px;
+height: 144px;
+background:url('../img/header_bg.jpg') top left no-repeat #f47703;
+}
+
+.basic_links { /* navigation links, like "Main page" or "About" */
+color:#391a00;
+font-size:16px;
+font-weight:bold;
+float:right;
+margin:110px 20px 0 0;
+background:white;
+line-height:30px;
+padding:0 10px;
+text-align:center;
+}
+
+.basic_links:hover {
+text-decoration:none;
+color:#f47703;
+}
+
+
+/* CONTENT
+-----------------------------------------------------------------------------*/
+
+#content { /* content block */
+float: right;
+width: 570px;
+background:url('../img/bg.gif') #f08c2f;
+margin-top:40px;
+}
+
+#contentMain { /* content box with information */
+float:left;
+width:510px;
+margin:30px 30px;
+background:white;
+}
+
+h2 { /* page's title style */
+margin:20px 0 40px 20px;
+color:#391a00;
+}
+
+h3 { /* hotel's title style*/
+margin:10px 0 10px 20px;
+}
+
+p { /* text style */
+margin: 20px;
+font-family:Arial, Helvetica, sans-serif;
+color:#391a00;
+}
+
+img { /* preview of hotel */
+width:200px;
+margin:0 20px 0 0;
+border:1px solid #f47805;
+}
+
+#img { /* hotel photo */
+width:465px;
+}
+
+.hotelBox { /* box on the 2nd page with hotel's info*/
+width:470px;
+margin:30px 0 30px 20px;
+}
+
+.hotelBox h3 {
+margin:10px 0;
+color:#391a00;
+}
+
+.hotelBox p {
+margin:0 10px 10px 10px;
+}
+
+.hotelBox .info {
+color:#6c4d33;
+}
+
+.hotelBox .more {
+color:#391a00;
+margin-left:10px;
+}
+
+.hotelBox a:hover {
+text-decoration:none;
+color:#f47805;
+}
+
+.hotelBox strong {
+color:#391a00;
+font-size:13px;
+}
+
+.hotelBox span {
+color:#999999;
+font-size:14px;
+font-weight:bold;
+margin:0 0 0 0;
+}
+
+#sort_by { /* sort link style */
+font-size:12px;
+position:absolute;
+right:10px;
+top:25px;
+color:#391a00;
+}
+
+#sort_by a{
+color:#391a00;
+padding:0 3px;
+}
+
+#sort_by a:hover{ 
+text-decoration:none;
+background:url('../img/bg.gif');
+color:white;
+}
+
+#sort_by_this{ /* sorting in action */
+color:white !important;
+text-decoration:none;
+background:url('../img/bg.gif');
+}
+
+
+/* NAVIGATION
+-----------------------------------------------------------------------------*/
+#navigation, #nav_tr, #nav_br, #nav_bl {
+padding:0px;
+margin:0px;
+}
+
+#navigation { /* navigation block */
+float:left;
+width: 180px;
+background:url('../img/bg.gif');
+margin-top:40px;
+padding:20px 0;
+}
+
+#nav_tr {
+float:left;
+background:url('../img/nav_tr.gif') top right no-repeat;
+border:0px solid red;
+}
+
+#nav_br {
+float:right;
+background:url('../img/nav_br.gif') bottom right no-repeat;
+border:0px solid blue;
+}
+
+#nav_bl {
+float:left;
+background:url('../img/nav_bl.gif') bottom left no-repeat;
+}
+
+#nav_content {
+background:url('../img/bg.gif');
+}
+
+#navigation li { /* style of countries display */
+list-style:none;
+margin:0 20px;
+margin-top:15px;
+padding-left:10px;
+font-size:14px;
+color:#391a00;
+background:url('../img/nav_link_bg4.jpg') top left no-repeat;
+line-height:22px;
+font-weight:bold;
+width:130px;
+cursor: pointer;
+}
+
+#navigation li:hover {
+color:#f47703;
+}
+
+#navigation li:hover .subNav {
+display:inline-block;
+}
+
+.subNav { /* style of regions display */
+position:absolute;
+background:white;
+margin-left:40px;
+margin-top:-15px;
+display:none;
+border: 1px solid white;
+}
+
+.subNav div {
+border:1px solid #f47703;
+}
+
+.subNav a{
+font-style:normal;
+font-size:11px;
+margin:0px;
+padding:0 10px;
+display:block;
+color: #391a00;
+text-decoration:none;
+font-family:Arial, Helvetica, sans-serif;
+background:white;
+}
+
+.subNav a:hover{
+background:url('../img/bg.gif');
+color:white;
+}
+
+#contacts { /* email at the bottom of navigation */
+margin:70px 0 50px 35px;
+font-weight:bold;
+}
+
+#contacts a{
+color:white;
+}
+
+#contacts a:hover{
+text-decoration:none;
+color:#391a00;
+}
+
+
+#gallery {
+	display:block;
+}
+#gallery li {
+	float:left;
+	list-style:none;
+	padding:5px;
+	margin:5px;
+	border:1px solid #aaa;
+}
+#gallery li img {
+	width: 100px;
+	border:none;
+}
+
+#overlay {
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	background:#6699ff;
+	z-index:100;
+	display:none;
+}
+
+#img_div {
+	position:absolute;
+	display:none;
+	padding: 10px;
+	z-index:101;
+	background:url('bg.gif') white;
+	width:43px;
+	height:12px;
+}
+
+#img {
+	z-index:102;
+	background: #fff;
+	display:none;
+	border:1px solid #6699ff;
+}
+
+#loading {
+	display:block;
+}
+
+#foto_title {
+	color:white;
+	font-weight:bold;
+	position:relative;
+	top:3px;
+}
+
+#prev, #next {
+	cursor: pointer;
+	color: white;
+	position: absolute;
+	top: 5px;
+	font-size:11px;
+}
+
+#prev:hover, #next:hover {
+	color:#ddd;
+}
+
+#prev {
+	left: 15px;
+}
+
+#next {
+	right: 15px;
+}
+
+#close {
+	color: white; 
+	font-weight: bold; 
+	position: absolute; 
+	top: -1px; 
+	right: 1px;
+	padding:none;
+	margin:none;
+	cursor: pointer;
+	display: none;
+	font-size:11px;
+}
+
+#close:hover {
+	color:#ddd;
+}
