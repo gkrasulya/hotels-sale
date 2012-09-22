@@ -74,7 +74,7 @@ $image			= preg_replace('/^(s?f|ht)tps?:\/\/[^\/]+/i', '', (string) $_GET['image
 
 // For security, directories cannot contain ':', images cannot contain '..' or '<', and
 // images must start with '/'
-if ($image{0} != '/' || strpos(dirname($image), ':') || preg_match('/(\.\.|<|>)/', $image))
+if ($image{0} != '/' || strpos(dirname($image), ':'))
 {
 	header('HTTP/1.1 400 Bad Request');
 	echo 'Error: malformed image path. Image paths must begin with \'/\'';
@@ -108,6 +108,9 @@ $mime	= $size['mime'];
 if (substr($mime, 0, 6) != 'image/')
 {
 	header('HTTP/1.1 400 Bad Request');
+	print_r($size);
+	echo $docRoot . $image . '<br/>';
+	echo 'Mime is "' . $mime . '"<br/>';
 	echo 'Error: requested file is not an accepted type: ' . $docRoot . $image;
 	exit();
 }

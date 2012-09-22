@@ -1,5 +1,4 @@
 <?
-
 require_once 'blocks/db.php';
 
 $res_h = mysql_query("SELECT id, country FROM hotels ORDER BY country");
@@ -15,5 +14,4 @@ $sql_c .= implode($sql_c_array, ', ');
 
 mysql_query($sql_c);
 echo mysql_error();
-
 echo "<pre>$sql_c</pre>";
