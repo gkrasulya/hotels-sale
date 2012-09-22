@@ -3,7 +3,7 @@ $x = 7; // Number of hotels on page
 $title = ""; // ???
 $new_link = '';
 $s = '';
-$test = isset($_GET['test']) ? $_GET['test'] : 0;
+$test = isset($_GET['test']) ? $_GET['test'] : null;
 if (isset($_GET['search'])) {
 	$search = $_GET['search'];
 	$title = 'Ïîèñê ïî ñëîâó "'.$search.'" ';

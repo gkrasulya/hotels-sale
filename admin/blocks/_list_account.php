@@ -10,6 +10,7 @@ if (isset($a)) {
 		$data = array(
 			'type' => $_POST['type'],
 			'info' => $_POST['info'],
+			'open_stats' => isset($_POST['open_stats']) ? 1 : 0,
 			'change_token' => $_POST['change_token']
 		);
 
@@ -159,7 +160,7 @@ $agency_periods = array(
 		<th width="20%">Действия</th>
 	</tr>
 	<? $i = 0; while ($user = mysql_fetch_array($result)): $i++; ?>
-		<tr <?= $i % 2 == 1 ? 'class="odd"' : '' ?>>
+		<tr <?= $i % 2 == 1 ? 'style="background: #efe"' : '' ?>>
 			<td>
 				<strong><?= $user['email'] ?></strong>
 			</td>
@@ -203,8 +204,13 @@ $agency_periods = array(
 					</p>
 
 					<p>
-						<label for="Доп. информация"></label>
-						<textarea name="info" class="info"><?= $user['info'] ?></textarea>
+						<label for="info">Доп. информация</label>
+						<textarea name="info" id="info" class="info"><?= $user['info'] ?></textarea>
+					</p>
+
+					<p>
+						<input type="checkbox" name="open_stats" id="open_stats" style="width: auto" <?= $user['open_stats'] ? 'checked' : '' ?>>&nbsp;
+						<label style="display: inline" for="open_stats">Показывать статистику</label>
 					</p>
 
 					<p>

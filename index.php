@@ -116,6 +116,7 @@ $main_row = mysql_fetch_array($main_res);
             	<? if (isset($action) && $action != 'foragencies' && logged_in()) require_once 'blocks/account_menu.php' ?>
             		
 				<?php
+				
                 if (!isset($h)
                 	&& ! isset($r)
                 	&& ! isset($c)
