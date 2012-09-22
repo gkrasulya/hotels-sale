@@ -262,11 +262,11 @@ $main_row = mysql_fetch_array($main_res);
   
     </div>
 
-    <?php/* include('ireklama.php'); */?>
+    <?/* include('ireklama.php'); */?>
 
     <?php
-    error_reporting(E_ALL);
-		require_once($_SERVER['DOCUMENT_ROOT'].'/putslinkshere/ML.php');
+	    error_reporting(E_ALL);
+		require_once('/putslinkshere/ML.php');
 		$ml->Set_Config(array('charset'=>'win'));
 		echo $ml->Get_Links();
 	?>
