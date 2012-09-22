@@ -1,5 +1,4 @@
 <?php 
-error_reporting(E_ALL);
 session_start();
 require_once("blocks/db.php"); 
 require_once("blocks/variables.php");
@@ -272,8 +271,6 @@ $main_row = mysql_fetch_array($main_res);
 	?>
      
     <div id="footer">
-
-
     	<div id='counters' style='float: right; position: relative; margin-right: 20px; margin-top: 10px;'>
         	<p>
 				<? require_once "blocks/counters.php" ?>
@@ -286,9 +283,7 @@ $main_row = mysql_fetch_array($main_res);
     </div>
     
     <div style="clear: both;"></div>
-
     <div style="font-size: 8px; color: 777;">alexeyprr-mainlink</div>
-
 </div>
 
 </body>
