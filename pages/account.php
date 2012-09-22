@@ -65,6 +65,9 @@ require_once '_flash.php';
 					<a href="<?= SITE_ADDR ?>edit_offer_photos/?id=<?= $hotel->id ?>" title="фотографии">фотографии</a><br/>
 					<a href="<?= SITE_ADDR ?>delete_offer/?id=<?= $hotel->id ?>" title="удалить" class="delete">удалить [x]</a>
 				</td>
+				<? if ($hotel->open_stats): ?>
+					<td>Просмотров: <strong><?= $hotel->views ?></strong></td>
+				<? endif ?>
 			</tr>	
 		<? endforeach ?>
 	</table>

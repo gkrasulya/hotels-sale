@@ -1,7 +1,7 @@
 <?php
 header("Content-type: text/html; charset: utf-8");
 
-$production = false;
+$production = $_SERVER['HTTP_HOST'] != 'localhost';
 
 if (! $production) {
 	$login = "root"; // Логин для доступа к базе данных

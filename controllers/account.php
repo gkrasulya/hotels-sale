@@ -28,6 +28,6 @@ if (isset($_GET['order'])) {
 
 $acc_hotels = get_records("SELECT * FROM hotels WHERE user_id=$user->id $order");
 
-if (is_agency) {
+if (is_agency()) {
 	$payments = get_records("SELECT * FROM payments WHERE user_id=$user->id AND done=1 ORDER BY `date` DESC");
 }

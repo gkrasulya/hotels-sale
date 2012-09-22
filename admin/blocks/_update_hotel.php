@@ -2,20 +2,87 @@
 global $hotel_cols;
 
 if (! isset($n)) {
-	$result = mysql_query("SELECT * FROM hotels ORDER BY id DESC",$db);
+	$sort = null;
+	$query = null;
+	$desc = '';
+	if (isset($_GET['sort'])) {
+		$sort = addslashes($_GET['sort']);
+	}
+	if (isset($_POST['query'])) {
+		$query = addslashes($_POST['query']);
+	}
+
+	if ($sort) {
+		if ($sort == 'views') {
+			$desc = 'DESC';
+		}
+		$sql = "SELECT id, `number`, title, views FROM hotels ORDER BY $sort $desc";
+	} else if ($query) {
+		$sql = "SELECT id, `number`, title, views FROM hotels WHERE id = $query";
+	} else {
+		$sql = "SELECT id, `number`, title, views FROM hotels ORDER BY id DESC";
+	}
+	// die($sql);
+	$result = mysql_query($sql, $db);
 	$myrow = mysql_fetch_array($result);
 ?>
-	<h2>Редактирование гостиницы</h2>
-	<form method='post' id='form'>
-	<label>Выберите гостиницу</label><br>
 
+<style type="text/css">
+	th {
+		white-space: nowrap;
+	}
+</style>
+
+<h2>Редактирование гостиницы</h2>
+<p>
+	<a href="?t=hotel&amp;a=update">показать все</a>
+</p>
+
+<form action="?t=hotel&amp;a=update" method="POST" style="margin-top: 15px;">
+	ID объекта: <input type="text" name="query">
+</form>
+
+<form method='post' id='form'>
+
+<table style="width: 670px" width="100%">
+	<thead>
+		<tr>
+			<th>
+				<a href="?t=hotel&amp;a=update&amp;sort=id">#</a>
+				<? if ($sort == 'id') echo '&darr;' ?>
+			</th>
+			<th>
+				<a href="?t=hotel&amp;a=update&amp;sort=number">номер</a>
+				<? if ($sort == 'number') echo '&darr;' ?>
+			</th>
+			<th>
+				<a href="?t=hotel&amp;a=update&amp;sort=title">название</a>
+				<? if ($sort == 'title') echo '&darr;' ?>
+			</th>
+			<th>
+				<a href="?t=hotel&amp;a=update&amp;sort=views">посмотры</a>
+				<? if ($sort == 'views') echo '&darr;' ?>
+			</th>
+		</tr>
+	</thead>
 <? 
-	do {
-		echo "<a href='?t=hotel&amp;a=update&n={$myrow[id]}' class='del'>
-			{$myrow[number]} - {$myrow[title]}</a><br>";
-	} while ($myrow = mysql_fetch_array($result));
-	echo "<br><input type='submit' value='ok'>";
+	do { ?>
+		<tr>
+			<td><?= $myrow['id'] ?></td>
+			<td><?= $myrow['number'] ? "<strong>{$myrow['number']}</strong>" : '' ?></td>
+			<td>
+				<a href='?t=hotel&amp;a=update&amp;n=<?= $myrow["id"] ?>' class='del'>
+					<?= $myrow["title"] ?></a>
+			</td>
+			<td><strong><?= $myrow['views'] ?></strong></td>
+		</tr>
+	<? } while ($myrow = mysql_fetch_array($result)); ?>
 
+</table>
+
+<!-- <p><input type='submit' value='ok'></p> -->
+
+<?
 } else {
 
 	echo "<h2>Редактирование гостиницы</h2>";
@@ -34,6 +101,7 @@ if (! isset($n)) {
 		$forward = isset($_POST['forward']) ? 1 : 0;
 		$active = isset($_POST['active']) ? 1 : 0;
 		$tosend = isset($_POST['tosend']) ? 0 : 1;
+		$open_stats = isset($_POST['open_stats']) ? 1 : 0;
 
 		$slug = create_slug($title) . '-' . mktime();
 
@@ -49,6 +117,7 @@ if (! isset($n)) {
 		$hotel_data['foto'] = $foto_id;
 		$hotel_data['slug'] = $slug;
 		$hotel_data['tosend'] = $tosend;
+		$hotel_data['open_stats'] = $open_stats;
 		$hotel_data['title'] = $hotel_title;
 
 		$hotel_data['expiration'] = $_POST['expiration'];
@@ -113,6 +182,7 @@ if (! isset($n)) {
 	
 	$forward_selected = $myrow['forward'] == 1 ? "checked" : "";
 	$tosend_selected = $myrow['tosend'] != 1 ? "checked" : "";
+	$open_stats_selected = $myrow['open_stats'] == 1 ? "checked" : "";
 	$active_selected = $myrow['active'] == 1 ? "checked" : "";
 	$forward_email = $myrow['client_email'];
 		
@@ -156,11 +226,11 @@ if (! isset($n)) {
 			do {
 				$result_abc = mysql_query("SELECT country FROM hotels WHERE id='$n'");
 				$myrow_abc = mysql_fetch_array($result_abc);
-				echo "<option value='{$myrow[id]}'";
+				echo "<option value='{$myrow['id']}'";
 
 				if (in_array($myrow['id'], $countries)) echo "selected";
 
-				echo ">{$myrow[title]}</option>\n";
+				echo ">{$myrow['title']}</option>\n";
 			} while ($myrow = mysql_fetch_array($result));
 		?>
 		
@@ -200,10 +270,13 @@ if (! isset($n)) {
 		<input type='checkbox' name='active' <?= $active_selected ?>/><br/>
 
 		<label for="expiration">Активно до (например, 2012-06-15)</label>
-		<input type="text" name="expiration" value="<?= $hotel_row['expiration'] ?>" />
+		<input type="text" name="expiration" value="<?= $hotel_row['expiration'] ?>" /><br>
 
 		<label for='tosend'>Убрать из рассылки</label>
 		<input id='tosend' type='checkbox' name='tosend' <?= $tosend_selected ?> /><br/>
+
+		<label for="open_stats" for="open_stats">Открыть статистику</label>
+		<input type="checkbox" name="open_stats" id="open_stats" <?= $open_stats_selected ?>>
 
 		<label>Email клиента (можно ввести несколько через запятую)</label>
 		<input type='text' name='client_email' value='<?= $forward_email ?>'><br/>

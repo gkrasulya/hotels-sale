@@ -8,20 +8,22 @@ $result = mysql_query($sql);
 $myrow = mysql_fetch_array($result);
 $text = str_replace("\n","</p><p>",$myrow['text']);
 
-$result_img = mysql_query("SELECT img_big FROM fotos WHERE id='$myrow[foto]'",$db);
+$result_img = mysql_query("SELECT img_big FROM fotos WHERE id='$myrow[foto]'", $db);
 $myrow_img = mysql_fetch_array($result_img);
 
-$result_mail = mysql_query("SELECT email FROM admin",$db);
+$result_mail = mysql_query("SELECT email FROM admin");
 $myrow_mail = mysql_fetch_array($result_mail);
 
-$hotel_user = get_record("SELECT * FROM users WHERE id = {$myrow[user_id]}");
+$hotel_user = get_record("SELECT * FROM users WHERE id = {$myrow['user_id']}");
+
+
 ?>
 
 <h1>
 	<?=$myrow['title']?>
 </h1>
 <p style="color: #666; font-size: 11px;">
-	короткий адрес страницы: <a href="/?h=<?=$myrow['id']?>"><?= SITE_ADDR ?>?h=<?=$myrow['id']?></a>
+	короткий адрес страницы: <a href="<?= SITE_ADDR ?>/?h=<?=$myrow['id']?>"><?= SITE_ADDR ?>?h=<?=$myrow['id']?></a>
 </p>
 <span id='sorting' style='width: 50px; float: right; position: relative; text-align: right;'>
 	<a href='#' id="printLink">
