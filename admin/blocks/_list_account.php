@@ -5,13 +5,13 @@ if (isset($a)) {
 	if ($a == 'delete') {
 		$deleted = mysql_query("DELETE FROM users where id=$id");
 	} elseif ($a == 'update') {
-		$months = $_POST['months'];
+		$months = isset($_POST['months']) ? $_POST['moths'] : 0;
 
 		$data = array(
-			'type' => $_POST['type'],
-			'info' => $_POST['info'],
+			'type' => isset($_POST['type']) ? $_POST['type'] : '',
+			'info' => isset($_POST['info']) ? $_POST['info'] : '',
 			'open_stats' => isset($_POST['open_stats']) ? 1 : 0,
-			'change_token' => $_POST['change_token']
+			'change_token' => isset($_POST['change_token']) ? $_POST['change_token'] : ''
 		);
 
 		if (isset($_POST['month_cost'])) {
@@ -40,7 +40,7 @@ if (isset($a)) {
 				$data_values
 			WHERE
 				id = $id
-				AND change_token != '{$data[change_token]}'";
+				AND change_token != \"{$data['change_token']}\"";
 
 		// echo $sql;
 
@@ -71,11 +71,11 @@ $agency_periods = array(
 
 <h2>Аккаунты</h2>
 
-<?php if ($deleted): ?>
+<?php if (isset($deleted) && $deleted): ?>
 	<h4 class="flash">Аккаунт удален</h4>
 <?php endif ?>
 
-<?php if ($info_edited): ?>
+<?php if (isset($info_edited) && $info_edited): ?>
 	<h4 class="flash">Дополнительная информация обновлена</h4>
 <?php endif ?>
 

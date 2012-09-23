@@ -749,43 +749,7 @@ if ($t == 'accounts') {
 								{
 									if ($a == 'add')
 										{
-											if (!isset($do))
-												{
-													$result = mysql_query("SELECT id,title,number FROM hotels ORDER BY country",$db);
-													$hotels = mysql_fetch_array($result);
-													echo "
-														<form action='?t=photos&a=add&do' method='post' enctype='multipart/form-data'>
-															<p>
-																<label>Фотография:</label><br/>
-																<input type='file' name='foto' />
-															</p>
-															<p>
-																<label>Гостиница</label><br/>
-																<select name='hotel_id' style='width:200px;'>
-													";
-													do 
-														{
-															echo "<option value='".$hotels['id']."'>".$hotels['number']." - ".$hotels['title']."</option>";
-														}
-													while ($hotels = mysql_fetch_array($result));
-													echo "
-																</select>
-															</p>
-															<p>
-																<input type='submit' value='ok'/>
-															</p>
-														</form>
-													";
-												}
-											else
-												{
-													if (isset($_POST['foto'])) { $foto = $_POST['foto']; }
-													if (isset($_POST['hotel_id'])) { $hotel_id = $_POST['hotel_id']; }
-													require_once('blocks/add_foto.php');
-													echo "Все ок!";
-												
-												}
-										
+											require_once '_photos_add.php';
 										}
 										
 									if ($a == 'delete')
