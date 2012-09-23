@@ -266,7 +266,7 @@ $main_row = mysql_fetch_array($main_res);
 
     <?php
 	    error_reporting(E_ALL);
-		require_once('/putslinkshere/ML.php');
+		require_once('putslinkshere/ML.php');
 		$ml->Set_Config(array('charset'=>'win'));
 		echo $ml->Get_Links();
 	?>
