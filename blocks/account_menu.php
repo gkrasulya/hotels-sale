@@ -23,7 +23,7 @@ if ($user->type == 'agency') {
 	$days_to_expiration = floor(($expires_time - $today_time) / $day_in_seconds);
 }
 
-if ($days_to_expiration < 6 && $days_to_expiration > -1) {
+if (isset($days_to_expiration) && $days_to_expiration < 6 && $days_to_expiration > -1) {
 	$message = $days_to_expiration == 0 ? 'Сегодня истекает ваш аккаунт. Обратитесь к администратору сайта для продления' :
 		'Ваш аккаунт истекает. Осталось дней: ' . $days_to_expiration;
 	echo '<div class="flash errors">' . $message . '</div>';

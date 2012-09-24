@@ -58,6 +58,7 @@ $(document).ready(function() {
 		'fileDesc'    : 'Файлы изображений',
 		'width': 159,
 		'height': 29,
+		'sizeLimit': 1024 * 1024 * 5,
 		'rollover': true,
 		'wmode': 'opaque',
 		'multi': true,
@@ -107,7 +108,7 @@ $(document).ready(function() {
 				if (res == 'ok') {
 					$self.parent().remove();
 
-					alert($photos.find('div.add-image').length);
+					// alert($photos.find('div.add-image').length);
 					if ($photos.find('div.add-image').length == 0) {
 						if (! $('#photoInfo').length) {
 							$photoInfo = $('<p class="info" id="photoInfo">Сейчас фотографий нет</p>').appendTo($photos);

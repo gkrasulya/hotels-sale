@@ -24,6 +24,8 @@
 </object>
 <script type="text/javascript">
 <!--
-swfobject.registerObject("FlashID");
+if (typeof swfobject !== 'undefined') {
+  swfobject.registerObject("FlashID");
+}
 //-->
 </script>

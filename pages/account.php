@@ -94,7 +94,7 @@ require_once '_flash.php';
 		<a href="<?= SITE_ADDR ?>update_amount/" title="Пополнить">Пополнить</a>
 	</p>
 
-	<? if ($payments): ?>
+	<? if (isset($payments) && $payments): ?>
 		<h3>Операции со счетом</h3>
 
 		<table class="list" cellpadding="0" cellspacing="0" id="list" style="display: block; float: none;">
