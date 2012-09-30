@@ -1,4 +1,5 @@
 <?
+
 if ($demand != 'send') { ?>
 
 	<h1>Заявка на поиск гостиницы, отеля, бизнеса, недвижимости за рубежом</h1>
@@ -44,7 +45,7 @@ if ($demand != 'send') { ?>
 		
 		$ra = mysql_query("SELECT email FROM admin WHERE id='1'",$db);
 		$rama = mysql_fetch_array($ra);
-		$to = "{$rama[email]}alupichev@yandex.ru"; //$myrow['email'];
+		$to = "{$rama[email]}, alupichev@yandex.ru"; //$myrow['email'];
 		$subject = "Новая заявка";
 		$body = "Новая заявка от <a href=\"http://hotels-sale.ru\">hotels-sale.ru</a> <br/><br/>
 		От: ".$name." <br/>
@@ -56,6 +57,8 @@ if ($demand != 'send') { ?>
 		".$date."";
 
 		$to_arr = explode(',', $to);
+
+
 
 		foreach ($to_arr as $to) {
 			$mail = mail($to,$subject,$body,"Content-type:text/html; Charset=windows-1251 \r\n"."From: ".$email." \r\n");
