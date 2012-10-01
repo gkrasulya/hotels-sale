@@ -88,6 +88,11 @@ a:hover {color: #F7BF1E;}
 	position: relative;
 }
 
+#sideBar a {
+	display: block !important;
+	float: none !important;
+}
+
 #mediumBanner {
 	margin-bottom: 15px;
 }
@@ -110,6 +115,10 @@ a:hover {color: #F7BF1E;}
 	position: relative;
 }
 
+#countries img {
+	margin-right: 5px;
+}
+
 #countries h4 {
 	color: white;
 	line-height: 20px;
@@ -121,8 +130,8 @@ a:hover {color: #F7BF1E;}
 }
 
 #countries ul {
-	margin: 5px 0 15px 20px;
-	width: 180px;
+	margin: 5px 0 15px 10px;
+	width: 200px;
 }
 
 #countries li {

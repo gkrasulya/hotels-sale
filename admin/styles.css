@@ -53,6 +53,7 @@ width: 180px;
 background:url('../img/bg.gif') #f08c2f;
 margin-top:40px;
 padding:20px 0;
+position: relative;
 }
 
 #navigation li {
@@ -60,6 +61,7 @@ list-style:none;
 margin:0 20px;
 margin-top:15px;
 padding-left:10px;
+position: relative;
 font-size:14px;
 color:#391a00;
 background:url('../img/nav_link_bg2.jpg') top left no-repeat;
@@ -81,7 +83,7 @@ display:inline-block;
 .subNav {
 position:absolute;
 background:white;
-margin-left:100px;
+left: 100px;
 margin-top:-30px;
 display:none;
 border: 1px solid white;
