@@ -11,6 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($name == '') $errors []= 'Введите ваше имя';
 	if ($to == '') $errors []= 'Введите email';
 	elseif (! preg_match($email_rex, $to)) $errors []= 'Неверный формат email\'a';
+	if (mysql_num_rows($result_email)) {
+		$errors []= 'Этот email уже зарегистрирован';
+	}
 
 	$result = false;
 	if (empty($errors)) {

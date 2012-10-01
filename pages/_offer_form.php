@@ -16,7 +16,7 @@
 
 	<div class="form-row">
 		<label for="descr">Краткое описание (максимум 650 символов без пробелов)</label><br/>
-		<textarea name="descr" id="descr"><?= $data['descr'] ?></textarea>
+		<textarea name="descr" id="descr"><?= isset($data) ? $data['descr'] : '' ?></textarea>
 
 		<div class="help">
 			Для описания и текста вы можете исользовать форматирование<br/><br/>
@@ -35,7 +35,7 @@
 
 	<div class="form-row">
 		<label for="text">Текст</label><br/>
-		<textarea name="text" id="text"><?= $data['text'] ?></textarea>
+		<textarea name="text" id="text"><?= isset($data) ? $data['text'] : '' ?></textarea>
 	</div>
 
 	<div class="form-row">

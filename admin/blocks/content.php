@@ -1,10 +1,10 @@
 <?php
-if (isset($_GET['t'])) {$t = $_GET['t'];}
-if (isset($_GET['a'])) {$a = $_GET['a'];}
-if (isset($_GET['do'])) {$do = $_GET['do'];}
-if (isset($_GET['n'])) {$n = $_GET['n'];}
-if (isset($_GET['b'])) {$b = $_GET['b'];}
-if (isset($_GET['banner_stats'])) {$banner_stats = $_GET['banner_stats'];}
+$t = isset($_GET['t']) ? $_GET['t'] : null;
+$a = isset($_GET['a']) ? $_GET['a'] : null;
+$do = isset($_GET['do']) ? $_GET['do'] : null;
+$n = isset($_GET['n']) ? $_GET['n'] : null;
+$b = isset($_GET['b']) ? $_GET['b'] : null;
+$banner_stats = isset($_GET['banner_stats']) ? $_GET['banner_stats'] : null;
 
 ?>
 <div id="wrapper">

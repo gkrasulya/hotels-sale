@@ -169,6 +169,13 @@ if (! isset($n)) {
 			WHERE c.id = r.country_id AND r.hotel_id = $n
 		";
 		$c_res = mysql_query($c_sql);
+		
+		$c_sql = "
+			SELECT DISTINCT(c.id)
+			FROM countries c, hotels h, hotels_countries r
+			WHERE c.id = r.country_id AND r.hotel_id = $n
+		";
+		$c_res = mysql_query($c_sql);
 
 		$countries = array();
 
@@ -233,10 +240,9 @@ if (! isset($n)) {
 				echo ">{$myrow['title']}</option>\n";
 			} while ($myrow = mysql_fetch_array($result));
 		?>
-		
 		</select>
 		<label>Местонахождение</label>
-		<select name='region'>
+		<select name='region' multiple style="height: 150px; width: 220px;">
 		
 		<?
 		$result = mysql_query("SELECT * FROM countries",$db);
@@ -245,9 +251,9 @@ if (! isset($n)) {
 		$result_abc = mysql_query("SELECT region FROM hotels WHERE id='$n'",$db);
 		$myrow_abc = mysql_fetch_array($result_abc);
 		do {
-			echo "<option disabled> --- ".$myrow['title']." --- </option>\n";
 			$result2 = mysql_query("SELECT * FROM regions WHERE country='$myrow[id]'",$db);
 			if (mysql_num_rows($result2) > 0) {
+				echo "<optgroup label=" . $myrow['title'] . "\n";
 				$myrow2 = mysql_fetch_array($result2);
 				do {
 					echo "<option value=".$myrow2['id']."";
@@ -256,6 +262,7 @@ if (! isset($n)) {
 					}
 					echo ">".$myrow2['title']."</option>\n";
 				} while ($myrow2 = mysql_fetch_array($result2));
+				echo "</optgroup>";
 			}
 		} while ($myrow = mysql_fetch_array($result));
 		
