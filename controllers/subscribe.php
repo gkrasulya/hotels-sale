@@ -11,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($name == '') $errors []= 'Введите ваше имя';
 	if ($to == '') $errors []= 'Введите email';
 	elseif (! preg_match($email_rex, $to)) $errors []= 'Неверный формат email\'a';
+	
+	$result_email = mysql_query("SELECT id FROM {$hotels_table}.emailers WHERE `email` = '$to'");
 	if (mysql_num_rows($result_email)) {
 		$errors []= 'Этот email уже зарегистрирован';
 	}
