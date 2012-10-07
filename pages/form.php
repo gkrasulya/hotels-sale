@@ -10,6 +10,7 @@ if ($form == 'send') {
 	$title = $_POST['title'];
 	$name = $_POST['name'];
 	$email = $_POST['email'];
+	$phone = $_POST['phone'];
 	$info = $_POST['info'];
 	$date = date("Y-m-d H:i");
 	$number = $_POST['number'];
@@ -33,26 +34,21 @@ if ($form == 'send') {
 	if (trim(strtoupper($sum)) != $arr[$capa]) $errors []= 'Неправильный код с картинки';
 	if (trim($title) == "" || trim($name) == "" || trim($email) == "") $errors []= 'Не все поля заполнены';
 	if (! preg_match($email_rex, $email)) $errors []= 'Неверный формат email\'a';
-	if (trim($name) == '') $errors []= 'Введите имя';
+	if (trim($phone) == '') $errors []= 'Введите телефон';
 	
 	if (empty($errors)) {
 	
 		$to = "{$myrow[email]},{$villa[client_email]},no-thx@mail.ru,alupichev@yandex.ru";
 		$subject = "Новая заявка (".$number.")";
-		$body = "Новая заявка от <a href=\"http://hotels-sale.ru\">hotels-sale.ru</a> <br/><br/>
-			От: ".$name." <br/>
-			Email: ".$email." <br/>
-			Название: ".$title." <br/>
-			Номер: ".$number." <br/>
-			".$info." <br/><br/>
+		$body = "Новая заявка \n\n
+			От: ".$name." \n
+			Email: ".$email." \n
+			Название: ".$title." \n
+			Номер: ".$number." \n
+			".$info." \n\n
 			".$date."";
-
-		$to_arr = explode(',', $to);
-
-		foreach ($to_arr as $to) {
-			$mail = mail($to,$subject,$body,"Content-type:text/html; Charset=windows-1251 \r\n"."From: ".$email." \r\n");
-		}
-		$mail = true;
+		
+		$mail = mail($to,$subject,$body,"Content-type:text/plain; Charset=windows-1251 \r\n"."From: ".$email." \r\n");
 		
 		if ($mail) { ?>
 			<h2>Письмо отправлено!</h2>

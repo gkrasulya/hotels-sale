@@ -24,8 +24,12 @@ $arr = array('Пять плюс два','Три плюс семь','Девять плюс шесть','Один плюс восе
 <input type="text" name="title" id="title" value="<?php echo $myrow['title']; ?>" />
 </p>
 <p>
-<label title="name" for="name">Ф.И.О.*:</label><br />
-<input type="text" name="name" id="name" />
+	<label title="name" for="name">Ф.И.О.*:</label><br />
+	<input type="text" name="name" id="name" />
+</p>
+<p>
+	<label title="phone" for="phone">Телефон*:</label><br />
+	<input type="text" name="phone" id="phone" />
 </p>
 <p>
 <label title="email" for="email">E-mail*:</label><br />

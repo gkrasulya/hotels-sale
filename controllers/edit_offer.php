@@ -1,7 +1,7 @@
 <?
 login_required();
 
-$id = $_GET['id'];
+$id = $offer_id = $_GET['id'];
 
 if (preg_match('/[^\d]+/', $id)) redirect(SITE_ADDR . 'account/');
 
@@ -16,11 +16,23 @@ $hotel_countries_sql = "
 	WHERE hc.country_id = c.id AND hc.hotel_id = $id
 ";
 
-#echo "<pre>$hotel_countries_sql</pre>";
 $hotel_countries = get_records($hotel_countries_sql);
 $countries_ = array();
 foreach ($hotel_countries as $hc) {
 	$countries_ []= $hc->id;
+}
+
+
+$hotel_regions_sql = "
+	SELECT c.*
+	FROM regions c, hotels_regions hc
+	WHERE hc.region_id = c.id AND hc.hotel_id = $id
+";
+
+$hotel_regions = get_records($hotel_regions_sql);
+$regions_ = array();
+foreach ($hotel_regions as $hc) {
+	$regions_ []= $hc->id;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -38,12 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (trim($data['price']) == '') $errors []= '¬ведите цену';
 	if (trim($data['descr']) == '') $errors []= '¬ведите описание';
 	if (trim($data['text']) == '') $errors []= '¬ведите текст';
-	// if (trim($data['town']) == '') $errors []= '¬ведите город';
+	if (trim($data['town']) == '') $errors []= '¬ведите город';
 	if (! empty($_FILES['photo']['name']) &&
 		! in_array(get_ext($_FILES['photo']['name']), $allowed_exts)) $errors []= 'Ќеверный формат изображени€';
-
-	if (strlen(preg_replace('/\s+/', '', $data['title'])) > 160) $errors []= 'Ќазвание слишком длинное (максимум 160 символов)';
-	if (strlen(preg_replace('/\s+/', '', $data['descr'])) > 650) $errors []= 'ќписание слишком длинное (максимум 650 символов)';
 
 	if (isset($_POST['countries']) && is_array($_POST['countries'])) {
 		$countries = $_POST['countries'];
@@ -65,23 +74,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		$chars = range('a', 'z');
 
-		$data['price'] = str_replace('И', '&euro;', $data['price']);
-		$data['text'] = str_replace('И', '&euro;', $data['text']);
-		$data['descr'] = str_replace('И', '&euro;', $data['descr']);
-
 		$data['user_id'] = $user->id;
-		// $data['expiration'] = date('Y-m-d H:i:s');
+		$data['expiration'] = date('Y-m-d H:i:s');
 		$data['price_s'] = preg_replace("/[^\d]+/", '', $data['price']);
-		// $data['slug'] = create_slug($data['title']);
+		$data['slug'] = create_slug($data['title']);
 		$data['tosend'] = 1;
+		$data['forward'] = 1; // i think paid offers should go forward
 		$data['text_html'] = text2html($data['text']);
 		$data['descr_html'] = text2html($data['descr']);
-		$data['client_email'] = $user->email;
-
-		$data['price'] = str_replace('И', '&euro;', $data['price']);
 
 		$count_record = get_record("SELECT count(id) as count FROM hotels WHERE user_id='$user->id'");
-		// $data['number'] = '10' . rand(10, 99) . '-' . $chars[5];
+		$data['number'] = '10' . rand(10, 99) . '-' . $chars[5];
 
 		$data_sql = array();
 		foreach ($data as $kw => $val) {
@@ -91,9 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$sql = "UPDATE hotels SET \n";
 		$sql .= implode($data_sql, ",\n");
 		$sql .= " WHERE user_id=$user->id AND id=$id";
-
-		// print_r($sql);
-		// die();
 
 		if (mysql_query($sql)) {
 			# deleting all offer-country relations 
@@ -111,14 +111,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			# creating offer-country relations
 			mysql_query($sql_c);
 
+			# deleting all offer-country relations 
+			mysql_query("DELETE * FROM hotels_regions WHERE hotel_id=$id");
+
+			# sql array for offer-country relations
+			$sql_r_array = array();
+			foreach ($_POST['regions'] as $r_id) {
+				$sql_r_array []= "($offer_id, $r_id)";
+			}
+
+			$sql_r = "INSERT INTO hotels_regions (hotel_id, region_id)\n";
+			$sql_r .= " VALUES " . implode($sql_r_array, ",\n");
+
+			# creating offer-country relations
+			mysql_query($sql_r);
+
 			if (! isset($_POST['_continue'])) {
-				flash("»зменени€ \"${data[title]}\" сохранены");
+				flash("»зменени€ \"${data['title']}\" сохранены");
 				redirect(SITE_ADDR . 'account/');
 			}
 
 			$flash = array('»зменени€ сохранены');
-		} else {
-			$errors []= mysql_error();
 		}
 	}
 
