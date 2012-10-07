@@ -7,11 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	foreach ($_POST as $kw => $val) $$kw = $val;
 
-	$title = $hotel_title = str_replace('И', '&euro;', $title);
+	$title = str_replace('И', '&euro;', $title);
 	$descr = str_replace('И', '&euro;', $descr);
-	$descr_html = text2html($descr);
 	$text = str_replace('И', '&euro;', $text);
-	$text_html = text2html($text);
 	$price = str_replace('И', '&euro;', $price);
 	
 	$forward = isset($_POST['forward']) ? 1 : 0;
@@ -29,8 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$hotel_data['foto'] = $foto_id;
 	$hotel_data['slug'] = $slug;
 	$hotel_data['tosend'] = $tosend;
-	$hotel_data['title'] = $hotel_title;
-	$hotel_data['type'] = 'admin';
 
 	$sql = "INSERT INTO hotels\n";
 	$sql .= " (\n\t" . implode(array_keys($hotel_data), ",\n\t") . "\n)\n";
@@ -50,7 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$sql_c = "INSERT INTO hotels_countries (hotel_id, country_id)\n";
 			$sql_c .= " VALUES " . implode($sql_c_array, ",\n");
 
+			$sql_r_array = array();
+			foreach ($regions as $r_id) {
+				$sql_r_array []= "($hotel_id, $r_id)";
+			}
+
+			$sql_r = "INSERT INTO hotels_regions (hotel_id, region_id)\n";
+			$sql_r .= " VALUES " . implode($sql_r_array, ",\n");
+
 			mysql_query($sql_c);
+			mysql_query($sql_r);
 		}
 
 		echo "<h4>¬се сделано!</h4>";
@@ -99,28 +104,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?
 	$result = mysql_query("SELECT * FROM countries",$db);
 	$myrow = mysql_fetch_array($result);
-	do echo "<option value='{$myrow[id]}'>{$myrow[title]}</option>\n";
+	do echo "<option value=\'{$myrow['id']}\'>{$myrow['title']}</option>\n";
 	while ($myrow = mysql_fetch_array($result));
 ?>
 
 	</select>
 	<label>–егион</label>
-	<select name='region'>
+	<select name='regions[]' multiple style="width: 220px; height: 150px;">
 	
 <?
 	$result = mysql_query("SELECT * FROM countries");
 	$myrow = mysql_fetch_array($result);
 	echo "<option value='0'> Ѕез региона </option>";
 	do {
-		echo "<option disabled> --- ".$myrow['title']." --- </option>\n";
-		$result2 = mysql_query("SELECT * FROM regions WHERE country='{$myrow[id]}'");
+		$result2 = mysql_query("SELECT * FROM regions WHERE country={$myrow['id']}");
+		if (mysql_num_rows($result2) > 0): ?>
+			<optgroup label="<?= $myrow['title'] ?>">
+				<?
+				$myrow2 = mysql_fetch_array($result2);
+				do echo "<option value='$myrow2[id]'>$myrow2[title]</option>\n";
+				while ($myrow2 = mysql_fetch_array($result2));	
+				?>
+			</optgroup>
+		<? endif;
+	} while ($myrow = mysql_fetch_array($result));
 
-		if (mysql_num_rows($result2) > 0) {
+?>
+
+	
+<?
+	$result = mysql_query("SELECT * FROM countries");
+	$myrow = mysql_fetch_array($result);
+
+	$result2 = mysql_query("SELECT * FROM regions WHERE country={$myrow['id']}");
+	if (mysql_num_rows($result2) > 0): ?>
+		<optgroup label="<?= $myrow['title'] ?>">
+			<?
 			$myrow2 = mysql_fetch_array($result2);
 			do echo "<option value='$myrow2[id]'>$myrow2[title]</option>\n";
-			while ($myrow2 = mysql_fetch_array($result2));
-		}
-	} while ($myrow = mysql_fetch_array($result));
+			while ($myrow2 = mysql_fetch_array($result2));	
+			?>
+		</optgroup>
+	<? endif ?>
 
 ?>
 

@@ -1,6 +1,8 @@
 <?
 global $hotel_cols;
 
+error_reporting(E_ALL);
+
 if (! isset($n)) {
 	$sort = null;
 	$query = null;
@@ -112,9 +114,11 @@ if (! isset($n)) {
 		$hotel_data = array();
 
 		foreach ($hotel_cols as $col) {
-			$hotel_data[$col] = $$col;
+			if (isset($$col)) {
+				$hotel_data[$col] = $$col;
+			}
 		}
-		$hotel_data['foto'] = $foto_id;
+		$hotel_data['foto'] = isset($foto_id) ? $foto_id : null;
 		$hotel_data['slug'] = $slug;
 		$hotel_data['tosend'] = $tosend;
 		$hotel_data['open_stats'] = $open_stats;
@@ -127,7 +131,7 @@ if (! isset($n)) {
 		// print_r($hotel_data);
 		// echo "</pre>";
 		
-		if (! $foto_id) unset($hotel_data['foto']);
+		if (! isset($foto_id)) unset($hotel_data['foto']);
 
 		unset($hotel_data['slug']);
 		foreach ($hotel_data as $kw => $val) {
@@ -139,6 +143,8 @@ if (! isset($n)) {
 		$sql .= " WHERE id = {$n}";
 
 		$result = mysql_query($sql);
+
+		//echo mysql_error();die;
 
 		#echo "<pre>$sql</pre>";
 	
@@ -157,31 +163,53 @@ if (! isset($n)) {
 
 				mysql_query($sql_c);
 			}
+			if (! empty($regions)) {
+				$hotel_id = $n;
+				mysql_query("DELETE FROM hotels_regions WHERE hotel_id = '$hotel_id'");
+
+				$sql_r_array = array();
+				foreach ($regions as $r_id) {
+					$sql_r_array []= "($hotel_id, $r_id)";
+				}
+
+				$sql_r = "INSERT INTO hotels_regions (hotel_id, region_id)\n";
+				$sql_r .= " VALUES " . implode($sql_r_array, ",\n");
+
+				mysql_query($sql_r);
+
+			}
 
 			echo "<h4>Все сделано!</h4>";
 		} else  {
+			die(mysql_error());
 			echo "<h4>Не получилось!</h4>";
 		}
-	} else {
-		$c_sql = "
-			SELECT DISTINCT(c.id)
-			FROM countries c, hotels h, hotels_countries r
-			WHERE c.id = r.country_id AND r.hotel_id = $n
-		";
-		$c_res = mysql_query($c_sql);
-		
-		$c_sql = "
-			SELECT DISTINCT(c.id)
-			FROM countries c, hotels h, hotels_countries r
-			WHERE c.id = r.country_id AND r.hotel_id = $n
-		";
-		$c_res = mysql_query($c_sql);
+	}
 
-		$countries = array();
+	$c_sql = "
+		SELECT DISTINCT(c.id)
+		FROM countries c, hotels h, hotels_countries r
+		WHERE c.id = r.country_id AND r.hotel_id = $n
+	";
+	$c_res = mysql_query($c_sql);
 
-		while ($c_row = mysql_fetch_array($c_res)) {
-			$countries []= $c_row['id'];
-		}
+	$countries = array();
+
+	while ($c_row = mysql_fetch_array($c_res)) {
+		$countries []= $c_row['id'];
+	}
+
+	$r_sql = "
+		SELECT DISTINCT(r.id)
+		FROM regions r, hotels h, hotels_regions hr
+		WHERE r.id = hr.region_id AND hr.hotel_id = $n
+	";
+	$r_res = mysql_query($r_sql);
+
+	$regions = array();
+
+	while ($r_row = mysql_fetch_array($r_res)) {
+		$regions []= $r_row['id'];
 	}
 		
 	$result = mysql_query("SELECT * FROM hotels WHERE id='$n'",$db);
@@ -189,7 +217,7 @@ if (! isset($n)) {
 	
 	$forward_selected = $myrow['forward'] == 1 ? "checked" : "";
 	$tosend_selected = $myrow['tosend'] != 1 ? "checked" : "";
-	$open_stats_selected = $myrow['open_stats'] == 1 ? "checked" : "";
+	$open_stats_selected = isset($myrow['open_stats']) && $myrow['open_stats'] == 1 ? "checked" : "";
 	$active_selected = $myrow['active'] == 1 ? "checked" : "";
 	$forward_email = $myrow['client_email'];
 		
@@ -240,33 +268,32 @@ if (! isset($n)) {
 				echo ">{$myrow['title']}</option>\n";
 			} while ($myrow = mysql_fetch_array($result));
 		?>
+		
 		</select>
 		<label>Местонахождение</label>
-		<select name='region' multiple style="height: 150px; width: 220px;">
-		
-		<?
-		$result = mysql_query("SELECT * FROM countries",$db);
-		$myrow = mysql_fetch_array($result);
-		echo "<option value='0'> Без региона </option>";
-		$result_abc = mysql_query("SELECT region FROM hotels WHERE id='$n'",$db);
-		$myrow_abc = mysql_fetch_array($result_abc);
-		do {
-			$result2 = mysql_query("SELECT * FROM regions WHERE country='$myrow[id]'",$db);
-			if (mysql_num_rows($result2) > 0) {
-				echo "<optgroup label=" . $myrow['title'] . "\n";
+		<select name='regions[]' multiple style="width: 220px; height: 150px;">
+
+	
+<?
+	$result = mysql_query("SELECT * FROM countries");
+	$myrow = mysql_fetch_array($result);
+	echo "<option value='0'> Без региона </option>";
+	do {
+		$result2 = mysql_query("SELECT * FROM regions WHERE country={$myrow['id']}");
+		if (mysql_num_rows($result2) > 0): ?>
+			<optgroup label="<?= $myrow['title'] ?>">
+				<?
 				$myrow2 = mysql_fetch_array($result2);
 				do {
-					echo "<option value=".$myrow2['id']."";
-					if ($myrow2['id'] == $myrow_abc['region']) {
-						echo " selected";
-					}
-					echo ">".$myrow2['title']."</option>\n";
-				} while ($myrow2 = mysql_fetch_array($result2));
-				echo "</optgroup>";
-			}
-		} while ($myrow = mysql_fetch_array($result));
-		
-	?>
+					$selected = (in_array($myrow2['id'], $regions)) ? 'selected' : '';
+					echo "<option  $selected value='$myrow2[id]'>$myrow2[title]</option>\n";
+				} while ($myrow2 = mysql_fetch_array($result2));	
+				?>
+			</optgroup>
+		<? endif;
+	} while ($myrow = mysql_fetch_array($result));
+
+?>
 
 		</select><br>
 
