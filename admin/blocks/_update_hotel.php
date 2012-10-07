@@ -70,13 +70,13 @@ if (! isset($n)) {
 <? 
 	do { ?>
 		<tr>
-			<td><?= $myrow['id'] ?></td>
+			<td><?= isset($myrow['id']) ?  $myrow['id'] : '' ?></td>
 			<td><?= $myrow['number'] ? "<strong>{$myrow['number']}</strong>" : '' ?></td>
 			<td>
 				<a href='?t=hotel&amp;a=update&amp;n=<?= $myrow["id"] ?>' class='del'>
 					<?= $myrow["title"] ?></a>
 			</td>
-			<td><strong><?= $myrow['views'] ?></strong></td>
+			<td><strong><?= isset($myrow['views']) ?  $myrow['views'] : '' ?></strong></td>
 		</tr>
 	<? } while ($myrow = mysql_fetch_array($result)); ?>
 
@@ -181,9 +181,11 @@ if (! isset($n)) {
 
 			echo "<h4>Все сделано!</h4>";
 		} else  {
-			die(mysql_error());
 			echo "<h4>Не получилось!</h4>";
+			die(mysql_error());
 		}
+	} else {
+		$data = array();
 	}
 
 	$c_sql = "
@@ -224,30 +226,30 @@ if (! isset($n)) {
 	?>
 
 	<br>
-	<form method='post' id='form' enctype='multipart/form-data' action='?t=hotel&amp;a=update&amp;n=<?= $myrow['id'] ?>'>
+	<form method='post' id='form' enctype='multipart/form-data' action='?t=hotel&amp;a=update&amp;n=<?= isset($myrow['id']) ?  $myrow['id'] : '' ?>'>
 		<label>Название гостиницы</label>
-		<input type='text' name='title' value='<?= $myrow['title'] ?>'>
+		<input type='text' name='title' value='<?= isset($myrow['title']) ?  $myrow['title'] : '' ?>'>
 
 		<label>Номер</label>
-		<input type='text' name='number' value='<?= $myrow['number'] ?>'>
+		<input type='text' name='number' value='<?= isset($myrow['number']) ?  $myrow['number'] : '' ?>'>
 
 		<label>Город</label>
-		<input type='text' name='town' value='<?= $myrow['town'] ?>'>
+		<input type='text' name='town' value='<?= isset($myrow['town']) ?  $myrow['town'] : '' ?>'>
 
 		<label>Цена</label>
-		<input type='text' name='price' value='<?= $myrow['price'] ?>'>
+		<input type='text' name='price' value='<?= isset($myrow['price']) ?  $myrow['price'] : '' ?>'>
 
 		<label>Цена (без пробелов)</label>
-		<input type='text' name='price_s' value='<?= $myrow['price_s'] ?>'>
+		<input type='text' name='price_s' value='<?= isset($myrow['price_s']) ?  $myrow['price_s'] : '' ?>'>
 
 		<label>Количество номеров</label>
-		<input type='text' name='rooms' value='<?= $myrow['rooms'] ?>'>
+		<input type='text' name='rooms' value='<?= isset($myrow['rooms']) ?  $myrow['rooms'] : '' ?>'>
 
 		<label>Краткое описание</label>
-		<textarea name='descr'><?= $myrow['descr'] ?></textarea>
+		<textarea name='descr'><?= isset($myrow['descr']) ?  $myrow['descr'] : '' ?></textarea>
 
 		<label>Подробное описание</label>
-		<textarea name='text'><?= $myrow['text'] ?></textarea>
+		<textarea name='text'><?= isset($myrow['text']) ?  $myrow['text'] : '' ?></textarea>
 
 		<label>Фотография</label>
 		<input type='file' name='foto'>
@@ -281,7 +283,7 @@ if (! isset($n)) {
 	do {
 		$result2 = mysql_query("SELECT * FROM regions WHERE country={$myrow['id']}");
 		if (mysql_num_rows($result2) > 0): ?>
-			<optgroup label="<?= $myrow['title'] ?>">
+			<optgroup label="<?= isset($myrow['title']) ?  $myrow['title'] : '' ?>">
 				<?
 				$myrow2 = mysql_fetch_array($result2);
 				do {
