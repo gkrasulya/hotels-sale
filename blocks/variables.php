@@ -57,24 +57,22 @@ if (!isset($h) && !isset($r) && !isset($qwe) && !isset($about) && !isset($new) &
 		$main = true;
 		$main_link = " style='text-decoration:none;background-color:#dadaee;color:#6ec6cd;border-right:5px solid #cbcbff; cursor:default;'";
 	}
-if (isset($_GET['page'])) // If there is $page
-	{
-		$page = $_GET['page']; // number of page
-		$start = $x * $page - $x; // from this hotel we start
-		$next_page = $page + 1; // number of next page
-		$next_2page = $page + 2; // number of next 2nd page
-		$prev_page = $page - 1; // number of previous page
-		$prev_2page = $page - 2; // number of previous 2nd page
-	}
-else // If there is no $page
-	{
-		$page = 1; // number of page
-		$start = 0; // from this hotel we start
-		$next_page = 2; // number of next page
-		$next_2page = 3; // number of next 2nd page
-		$prev_page = 0; // number of previous page
-		$prev_2page = -1; // number of previous 2nd page
-	}
+if (isset($_GET['page'])) {
+	$page = $_GET['page']; // number of page
+	$start = $x * $page - $x; // from this hotel we start
+	$next_page = $page + 1; // number of next page
+	$next_2page = $page + 2; // number of next 2nd page
+	$prev_page = $page - 1; // number of previous page
+	$prev_2page = $page - 2; // number of previous 2nd page
+} else {
+	$page = 1; // number of page
+	$start = 0; // from this hotel we start
+	$next_page = 2; // number of next page
+	$next_2page = 3; // number of next 2nd page
+	$prev_page = 0; // number of previous page
+	$prev_2page = -1; // number of previous 2nd page
+}
+
 $s = "ORDER BY h.forward DESC, h.id DESC"; // Default sorting
 $sort_by_town = ""; // Style
 $sort_by_price = ""; // Style

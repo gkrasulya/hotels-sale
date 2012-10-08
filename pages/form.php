@@ -43,6 +43,7 @@ if ($form == 'send') {
 		$body = "Новая заявка \n\n
 			От: ".$name." \n
 			Email: ".$email." \n
+			Телефон: ".$phone." \n
 			Название: ".$title." \n
 			Номер: ".$number." \n
 			".$info." \n\n

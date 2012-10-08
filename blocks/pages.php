@@ -40,7 +40,12 @@ if (isset($new))
 
 if (isset($r))
 	{
-		$result = mysql_query("SELECT id FROM hotels WHERE region='$r'",$db);
+		$sql = "
+			SELECT DISTINCT(h.id), h.*
+			FROM hotels h, hotels_regions as hr
+			WHERE h.id = hr.hotel_id AND hr.region_id = {$r}
+		";
+		$result = mysql_query($sql);
 		if (mysql_num_rows($result) > $x)
 			{
 				$max_page = ceil(mysql_num_rows($result)/$x);

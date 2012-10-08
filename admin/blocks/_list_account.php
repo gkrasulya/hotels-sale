@@ -51,7 +51,7 @@ if (isset($a)) {
 			die(mysql_error());
 		}
 
-		mysql_query("UPDATE hotels SET active = 1 WHERE user_id = $id");
+		//mysql_query("UPDATE hotels SET active = 1 WHERE user_id = $id");
 	}
 }
 
@@ -79,7 +79,7 @@ $agency_periods = array(
 	<h4 class="flash">Дополнительная информация обновлена</h4>
 <?php endif ?>
 
-<?php if ($updated): ?>
+<?php if (isset($updated) && $updated): ?>
 	<h4 class="flash">Аккаунт обновлен</h4>
 <?php endif ?>
 
