@@ -38,7 +38,7 @@ if ($form == 'send') {
 	
 	if (empty($errors)) {
 	
-		$to = "{$myrow[email]},{$villa[client_email]},no-thx@mail.ru,alupichev@yandex.ru";
+		$to = "{$myrow[email]},no-thx@mail.ru,alupichev@yandex.ru";
 		$subject = "Новая заявка (".$number.")";
 		$body = "Новая заявка \n\n
 			От: ".$name." \n
@@ -50,6 +50,7 @@ if ($form == 'send') {
 			".$date."";
 		
 		$mail = mail($to,$subject,$body,"Content-type:text/plain; Charset=windows-1251 \r\n"."From: ".$email." \r\n");
+		mail($villa['client_email'], $subject, $body, "Content-type:text/plain; Charset=windows-1251 \r\n"."From: ".$email." \r\n");
 		
 		if ($mail) { ?>
 			<h2>Письмо отправлено!</h2>
