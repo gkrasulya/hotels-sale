@@ -21,8 +21,8 @@ if ($min_price) $where_arr []= "h.price_s >= $min_price";
 if ($max_price) $where_arr []= "h.price_s <= $max_price";
 
 $where = $where_arr ?
-	"WHERE (active=1 OR type='admin' OR type='') AND \n" . implode($where_arr, " AND \n") :
-	'WHERE (active=1 OR type=\'admin\' OR type=\'\')';
+	"WHERE (active=1 OR type='admin') AND \n" . implode($where_arr, " AND \n") :
+	'WHERE (active=1 OR type=\'admin\')';
 
 if (! $countries) {
 	$count_sql = "

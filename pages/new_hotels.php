@@ -4,7 +4,7 @@
 $result = mysql_query("
 	SELECT * 
 	FROM hotels 
-	WHERE active=1 OR type='admin' OR type=''
+	WHERE active=1 OR type='admin'
 	ORDER BY forward DESC, id DESC 
 	LIMIT $start, $x");
 	
