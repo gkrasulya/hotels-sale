@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	foreach ($_POST as $kw => $val) $$kw = $val;
 
-	$title = str_replace('ˆ', '&euro;', $title);
+	$title = $hotel_title = str_replace('ˆ', '&euro;', $title);
 	$descr = str_replace('ˆ', '&euro;', $descr);
 	$text = str_replace('ˆ', '&euro;', $text);
 	$price = str_replace('ˆ', '&euro;', $price);
@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	foreach ($hotel_cols as $col) {
 		$hotel_data[$col] = $$col;
+		$hotel_data['title'] = $hotel_title;
 	}
 	$hotel_data['foto'] = $foto_id;
 	$hotel_data['slug'] = $slug;

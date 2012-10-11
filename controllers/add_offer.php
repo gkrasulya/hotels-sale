@@ -83,5 +83,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 }
 
-$all_countries = get_records("SELECT id, title FROM countries");
+$all_countries = get_records("SELECT id, title FROM countries WHERE id NOT IN (50, 48, 59)");
 ?>

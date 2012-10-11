@@ -5,11 +5,11 @@
 <form action="." method="POST" class="login-form">
 	<div class="form-row">
 		<label>Email</label><br />
-		<input type="text" name="email" id="email" value="<?= $_POST['email'] ?>" />
+		<input type="text" name="email" id="email" value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>" />
 	</div>
 	<div class="form-row">
 		<label>Пароль:</label><br />
-		<input type="password" name="password" id="password" value="<?= $_POST['password'] ?>" />
+		<input type="password" name="password" id="password" value="<?= isset($_POST['password']) ? $_POST['password'] : '' ?>" />
 	</div>
 	<div class="form-row">
 		<input type="checkbox" checked name="remember_me" id="remember_me" style="width: auto" />
