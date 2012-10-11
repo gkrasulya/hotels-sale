@@ -11,9 +11,4 @@ $sql = "
 	$s LIMIT $start, $x";
 // $s - ordering
 
-$result = mysql_query($sql);
-	
-if (mysql_num_rows($result) > 0) {
-	
-	$result_c = mysql_query("SELECT title FROM countries WHERE id='$qwe'",$db);
-	$myrow_c = mysql_fetch_array($result_c); ?>
+$result = mysql_query($sql); ?>

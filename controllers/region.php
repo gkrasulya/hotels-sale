@@ -10,11 +10,4 @@ $sql = "
 	LIMIT $start, $x
 ";
 
-$result = mysql_query($sql);
-
-if (mysql_num_rows($result) > 0) {
-	$result_r = mysql_query("SELECT title,country FROM regions WHERE id='$r'",$db);
-	$myrow_r = mysql_fetch_array($result_r);
-	
-	$result_c = mysql_query("SELECT title FROM countries WHERE id='$myrow_r[country]'",$db);
-	$myrow_c = mysql_fetch_array($result_c); ?>
+$result = mysql_query($sql); ?>
