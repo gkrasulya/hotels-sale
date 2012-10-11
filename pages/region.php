@@ -1,4 +1,17 @@
 <?
+
+$sql = "
+	SELECT DISTINCT(h.id), h.*
+	FROM hotels h, hotels_regions as hr
+	WHERE
+		h.id = hr.hotel_id AND hr.region_id = {$r}
+		AND (active=1 OR type='admin')
+		$s
+	LIMIT $start, $x
+";
+
+$result = mysql_query($sql);
+
 if (mysql_num_rows($result) > 0) {
 	$result_r = mysql_query("SELECT title,country FROM regions WHERE id='$r'",$db);
 	$myrow_r = mysql_fetch_array($result_r);
