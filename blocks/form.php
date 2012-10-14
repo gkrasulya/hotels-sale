@@ -41,7 +41,7 @@ $arr = array('Пять плюс два','Три плюс семь','Девять плюс шесть','Один плюс восе
 </p>
 <p>
 <label title="info" for="info">
-	<img src="/captcha<?=$random?>.png" alt="" /><br/>
+	<img src="<?= SITE_ADDR ?>/captcha<?=$random?>.png" alt="" /><br/>
 	Введите код с картинки:
 </label><br />
 <input type='text' name="sum" id="sum" />

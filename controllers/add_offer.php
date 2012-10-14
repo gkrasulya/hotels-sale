@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$data['forward'] = 1; // i think paid offers should go forward
 		$data['text_html'] = text2html($data['text']);
 		$data['descr_html'] = text2html($data['descr']);
+		$data['client_email'] = $user->email;
 
 		# generating number for offer
 		$chars = range('a', 'z'); # range of latin letter for number
@@ -71,11 +72,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			mysql_query($sql_c);
 
 			if (! isset($_POST['_more'])) {
-				flash("Предложение \"${data[title]}\" создано");
+				flash("Предложение \"{$data['title']}\" создано");
 				redirect(SITE_ADDR . 'account/');
 			}
 
 			$flash = array('Предложение создано');
+
+			$email_body = "Пользователь: {$user->email} добавил новое продложение (ID: {$offer_id})";
+			mail('alupichev@yandex.ru', 'Новое предложение пользователя', $email_body,
+				"Content-type:text/plain; Charset=windows-1251 \r\nFrom: {$email}\r\n");
 		}
 	}
 

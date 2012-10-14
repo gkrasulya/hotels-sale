@@ -59,7 +59,7 @@
 
 	<div class="form-row">
 		<label for="region">Регион (необязательно)</label><br />
-		<select name="regions[]" id="region" multiple style="height: 120px">
+		<select name="regions[]" id="regions" multiple style="height: 120px">
 			<? foreach ($all_countries as $c):
 				$regions = get_records("SELECT * FROM regions WHERE country=$c->id");
 				if ($regions): ?>
