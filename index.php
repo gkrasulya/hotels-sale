@@ -184,7 +184,7 @@ $main_row = mysql_fetch_array($main_res);
 				
 				##############################################
 				
-				if (isset($r)) {
+				if (isset($r) && is_string($r)) {
 					require_once "pages/region.php"; // HOTELS OF REGION
 				}
 				

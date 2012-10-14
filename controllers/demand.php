@@ -39,7 +39,7 @@ if ($demand == 'send') {
 		$ra = mysql_query("SELECT email FROM admin WHERE id='1'",$db);
 		$rama = mysql_fetch_array($ra);
 		$to = "{$rama[email]}, alupichev@yandex.ru"; //$myrow['email'];
-		$subject = "Новая заявка";
+		$subject = "Новая заявка от hotels-sale.ru";
 		$body = "Новая заявка \n\n
 		От: ".$name." \n
 		Email: ".$email." \n

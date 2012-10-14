@@ -115,16 +115,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			mysql_query("DELETE * FROM hotels_regions WHERE hotel_id=$id");
 
 			# sql array for offer-country relations
-			$sql_r_array = array();
-			foreach ($_POST['regions'] as $r_id) {
-				$sql_r_array []= "($offer_id, $r_id)";
+			if (isset($_POST['regions'])) {
+				$sql_r_array = array();
+				foreach ($_POST['regions'] as $r_id) {
+					$sql_r_array []= "($offer_id, $r_id)";
+				}
+
+				$sql_r = "INSERT INTO hotels_regions (hotel_id, region_id)\n";
+				$sql_r .= " VALUES " . implode($sql_r_array, ",\n");
+
+				# creating offer-country relations
+				mysql_query($sql_r);
 			}
-
-			$sql_r = "INSERT INTO hotels_regions (hotel_id, region_id)\n";
-			$sql_r .= " VALUES " . implode($sql_r_array, ",\n");
-
-			# creating offer-country relations
-			mysql_query($sql_r);
 
 			if (! isset($_POST['_continue'])) {
 				flash("Изменения \"${data['title']}\" сохранены");
@@ -132,6 +134,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			}
 
 			$flash = array('Изменения сохранены');
+			
+			$email_body = "Пользователь: {$user->email} отредактировал продложение (ID: {$offer_id})";
+			mail('alupichev@yandex.ru', 'Изменение предложения пользователя', $email_body,
+				"Content-type:text/plain; Charset=windows-1251 \r\nFrom: {$email}\r\n");
 		}
 	}
 
