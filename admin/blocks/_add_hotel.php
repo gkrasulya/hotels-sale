@@ -14,6 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	$forward = isset($_POST['forward']) ? 1 : 0;
 	$tosend = isset($_POST['tosend']) ? 0 : 1;
+	$active = isset($_POST['active']) ? 1 : 0;
+	$open_stats = isset($_POST['open_stats']) ? 1 : 0;
+
+	$countries = $_POST['countries'];
 
 	$slug = create_slug($title) . '-' . mktime();
 
@@ -22,12 +26,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$hotel_data = array();
 
 	foreach ($hotel_cols as $col) {
-		$hotel_data[$col] = $$col;
-		$hotel_data['title'] = $hotel_title;
+		if (isset($$col)) {
+			$hotel_data[$col] = $$col;
+		}
 	}
+	$hotel_data['title'] = $hotel_title;
 	$hotel_data['foto'] = $foto_id;
 	$hotel_data['slug'] = $slug;
 	$hotel_data['tosend'] = $tosend;
+
+	$hotel_data['expiration'] = $_POST['expiration'];
+	$hotel_data['active'] = $active;
 
 	$sql = "INSERT INTO hotels\n";
 	$sql .= " (\n\t" . implode(array_keys($hotel_data), ",\n\t") . "\n)\n";
@@ -36,9 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$result = mysql_query($sql);
 
 	if ($result) {
+		$hotel_id = mysql_insert_id();
 		if (! empty($countries)) {
-			$hotel_id = mysql_insert_id();
 
+		if (isset($countries)) {
 			$sql_c_array = array();
 			foreach ($countries as $c_id) {
 				$sql_c_array []= "($hotel_id, $c_id)";
@@ -46,6 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			$sql_c = "INSERT INTO hotels_countries (hotel_id, country_id)\n";
 			$sql_c .= " VALUES " . implode($sql_c_array, ",\n");
+
+			mysql_query($sql_c);
+			// die(mysql_error());
+		}
+		if (isset($regions)) {
 
 			$sql_r_array = array();
 			foreach ($regions as $r_id) {
@@ -55,9 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$sql_r = "INSERT INTO hotels_regions (hotel_id, region_id)\n";
 			$sql_r .= " VALUES " . implode($sql_r_array, ",\n");
 
-			mysql_query($sql_c);
 			mysql_query($sql_r);
 		}
+	}
 
 		echo "<h4>Все сделано!</h4>";
 	} else  {
@@ -105,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?
 	$result = mysql_query("SELECT * FROM countries",$db);
 	$myrow = mysql_fetch_array($result);
-	do echo "<option value=\'{$myrow['id']}\'>{$myrow['title']}</option>\n";
+	do echo "<option value='{$myrow['id']}'>{$myrow['title']}</option>\n";
 	while ($myrow = mysql_fetch_array($result));
 ?>
 
@@ -154,6 +169,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<label for='forward'>Поместить впереди</label>
 	<input id='forward' type='checkbox' name='forward' /><br/>
+
+	<label>Активно</label>
+	<input checked type='checkbox' name='active' /><br/>
+
+	<label for="expiration">Активно до (например, 2012-06-15)</label>
+	<input type="text" name="expiration" value="" /><br>
 
 	<label for='tosend'>Убрать из рассылки</label>
 	<input id='tosend' type='checkbox' name='tosend' /><br/>
