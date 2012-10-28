@@ -16,7 +16,7 @@
                     	<a href="?t=country&amp;a=add">добавить</a>
                     	<a href="?t=country&amp;a=update">редактировать</a>
                     	<a href="?t=country&amp;a=delete">удалить</a>
-                    	<a href="?t=country&amp;a=order">order</a>
+                    	<a href="?t=country&amp;a=order">порядок</a>
                     </div></div>
                 </li>
                 

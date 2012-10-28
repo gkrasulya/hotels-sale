@@ -57,22 +57,18 @@ if (!isset($n)) {
 			<label>Название страны</label>
 			<input type='text' name='title' value='<?= $myrow['title'] ?>'>
 		</p>
-		
 		<p>
 			<label for="">Заголовок для поисковиков</label>
-			<input type="text" name="head_title" value="<?= $myrow['head_title'] ?>">
+			<textarea class="small" name="head_title"><?= $myrow['head_title'] ?></textarea>
 		</p>
-		
 		<p>
 			<label for="">Ключевые слова для поисковиков (meta keywords)</label>
-			<input type="text" name="meta_keywords" value="<?= $myrow['meta_keywords'] ?>">
+			<textarea class="small" name="meta_keywords"><?= $myrow['meta_keywords'] ?></textarea>
 		</p>
-		
 		<p>
 			<label for="">Описание для поисковиков (meta description)</label>
-			<input type="text" name="meta_description" value="<?= $myrow['meta_description'] ?>">
+			<textarea class="small" name="meta_description"><?= $myrow['meta_description'] ?></textarea>
 		</p>
-		
 		<p>
 			<label><img src="<?= SITE_ADDR ?>new_images/flags/<?=$myrow['flag']?>" alt="<?=$myrow['title']?>" />&nbsp; Flag</label>
 			<input type='file' name='flag'>
