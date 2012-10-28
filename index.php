@@ -5,8 +5,10 @@ require_once("blocks/variables.php");
 require_once("blocks/functions.php");
 require_once("blocks/session.php");
 require_once("blocks/controllers.php");
+
 $result_meta = mysql_query("SELECT meta_k,meta_d FROM main",$db);
 $myrow_meta = mysql_fetch_array($result_meta);
+
  if (!isset($h) && !isset($r) && !isset($c) && !isset($about) && !isset($qwe) && !isset($form) && !isset($new) && !isset($getmail) && !isset($search) && !isset($test) && !isset($demand)) { 
  $bg = "style='background: white url(<?= SITE_ADDR ?>/img/map6.gif) top left'";
 } elseif (isset($about) || isset($demand)) {
@@ -14,7 +16,6 @@ $myrow_meta = mysql_fetch_array($result_meta);
 } else {
  $bg = "style='background: white url(<?= SITE_ADDR ?>/img/map6.gif) top left'";
 }
-
 
 $main_res = mysql_query("SELECT * FROM main",$db);
 $main_row = mysql_fetch_array($main_res);
@@ -24,11 +25,16 @@ $main_row = mysql_fetch_array($main_res);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-
-<meta name="keywords" content="Hotels-sale.ru - <?= $main_row['meta_k'] ?>"> 
-<meta name="description" content="Hotels-sale.ru - <?= $main_row['meta_d'] ?>">
+<meta name="keywords" content="Hotels-sale.ru - <?= isset($meta_keywords) ? $meta_keywords : $main_row['meta_k'] ?>"> 
+<meta name="description" content="Hotels-sale.ru - <?= isset($meta_description) ? $meta_description : $main_row['meta_d'] ?>">
 <title>
-	<? if (isset($page_title)) echo $page_title ?>
+	<?
+	if (isset($head_title)) {
+		echo $head_title . ' - ';
+	} elseif (isset($page_title)) {
+		echo $page_title;
+	}
+	?>
 	Hotels-sale.ru: -  Продажа Отелей и Гостиниц в Европе, Покупка Гостиниц в Европе, зарубежная недвижимость.</title>
         
 <link href='<?= SITE_ADDR ?>/styles.css' type='text/css' rel='stylesheet' />

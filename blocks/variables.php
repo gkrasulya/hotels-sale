@@ -1,5 +1,5 @@
 <?php
-$x = 7; // Number of hotels on page
+$x = 14; // Number of hotels on page
 $title = ""; // ???
 $new_link = '';
 $s = '';
@@ -73,7 +73,7 @@ if (isset($_GET['page'])) {
 	$prev_2page = -1; // number of previous 2nd page
 }
 
-$s = "ORDER BY h.forward DESC, h.id DESC"; // Default sorting
+$s = "ORDER BY h.priority DESC, h.forward DESC, h.id DESC"; // Default sorting
 $sort_by_town = ""; // Style
 $sort_by_price = ""; // Style
 if (isset($_GET['s']))  // Sorting

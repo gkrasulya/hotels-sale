@@ -4,35 +4,35 @@
                 <li>Тексты
                     <div id="subNav1" class="subNav">
                         <div>
-                            <pre><a href="?t=text&amp;slug=main&amp;">главная</a></pre>
-                            <pre><a href="?t=text&amp;slug=partners&amp;">размещение предложений</a></pre>
-                            <pre><a href="?t=text&amp;slug=foragencies&amp;">предложение для агенств</a></pre>
+                            <a href="?t=text&amp;slug=main&amp;">главная</a>
+                            <a href="?t=text&amp;slug=partners&amp;">размещение предложений</a>
+                            <a href="?t=text&amp;slug=foragencies&amp;">предложение для агенств</a>
                         </div>
                     </div>
                 </li>
                 
                 <li>Страны
                 	<div id="subNav1" class="subNav"><div>
-                    	<pre><a href="?t=country&amp;a=add">добавить</a></pre>
-                    	<pre><a href="?t=country&amp;a=update">редактировать</a></pre>
-                    	<pre><a href="?t=country&amp;a=delete">удалить</a></pre>
-                    	<pre><a href="?t=country&amp;a=order">order</a></pre>
+                    	<a href="?t=country&amp;a=add">добавить</a>
+                    	<a href="?t=country&amp;a=update">редактировать</a>
+                    	<a href="?t=country&amp;a=delete">удалить</a>
+                    	<a href="?t=country&amp;a=order">order</a>
                     </div></div>
                 </li>
                 
                 <li>Регионы
                 	<div id="subNav1" class="subNav"><div>
-                    	<pre><a href="?t=region&amp;a=add">добавить</a></pre>
-                    	<pre><a href="?t=region&amp;a=update">редактировать</a></pre>
-                    	<pre><a href="?t=region&amp;a=delete">удалить</a></pre>
+                    	<a href="?t=region&amp;a=add">добавить</a>
+                    	<a href="?t=region&amp;a=update">редактировать</a>
+                    	<a href="?t=region&amp;a=delete">удалить</a>
                     </div></div>
                 </li>
                 
                 <li>Гостиницы
                 	<div id="subNav1" class="subNav"><div>
-                    	<pre><a href="?t=hotel&amp;a=add">добавить</a></pre>
-                    	<pre><a href="?t=hotel&amp;a=update">редактировать</a></pre>
-                    	<pre><a href="?t=hotel&amp;a=delete">удалить</a></pre>
+                    	<a href="?t=hotel&amp;a=add">добавить</a>
+                    	<a href="?t=hotel&amp;a=update">редактировать</a>
+                    	<a href="?t=hotel&amp;a=delete">удалить</a>
                     </div></div>
                 </li>
                 
@@ -44,16 +44,16 @@
                 
                 <li class="link">Рассылка
                 	<div id="subNav1" class="subNav"><div>
-                        <pre><a href="?t=mail">Управление</a></pre>
-                    	<pre><a href="?t=mail&amp;list">Список подписчиков</a></pre>
-                    	<pre><a href="?t=mail&amp;delete">Удалить подписчиков</a></pre>
+                        <a href="?t=mail">Управление</a>
+                    	<a href="?t=mail&amp;list">Список подписчиков</a>
+                    	<a href="?t=mail&amp;delete">Удалить подписчиков</a>
                     </div></div>
                 </li>  
                 
                 <li class="link">Фото гостиниц
                 	<div id="subNav1" class="subNav"><div>
-                    	<pre><a href="?t=photos&amp;a=add">добавить</a></pre>
-                    	<pre><a href="?t=photos&amp;a=delete">удалить</a></pre>
+                    	<a href="?t=photos&amp;a=add">добавить</a>
+                    	<a href="?t=photos&amp;a=delete">удалить</a>
                     </div></div>
                 </li>                     
                 

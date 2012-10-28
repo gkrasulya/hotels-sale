@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 	}
 	$hotel_data['title'] = $hotel_title;
+	$hotel_data['priority'] = $priority;
 	$hotel_data['foto'] = $foto_id;
 	$hotel_data['slug'] = $slug;
 	$hotel_data['tosend'] = $tosend;
@@ -169,6 +170,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<label for='forward'>Поместить впереди</label>
 	<input id='forward' type='checkbox' name='forward' /><br/>
+	
+	<label for="priority">Приоритет (чем выше, тем выше предложение)</label>
+	<input type="text" name="priority"><br>
 
 	<label>Активно</label>
 	<input checked type='checkbox' name='active' /><br/>
@@ -181,6 +185,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<label>Email клиента (можно ввести несколько через запятую)</label>
 	<input type='text' name='client_email'><br/>
-
-	<input type='submit' value='ok'>
+		
+	<p>
+		<button type="submit">Сохранить</button>
+	</p>
 </form>

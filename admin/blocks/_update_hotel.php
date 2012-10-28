@@ -120,6 +120,7 @@ if (! isset($n)) {
 		}
 		$hotel_data['foto'] = isset($foto_id) ? $foto_id : null;
 		$hotel_data['slug'] = $slug;
+		$hotel_data['priority'] = $priority;
 		$hotel_data['tosend'] = $tosend;
 		$hotel_data['open_stats'] = $open_stats;
 		$hotel_data['title'] = $hotel_title;
@@ -301,6 +302,10 @@ if (! isset($n)) {
 
 		<label>Поместить впереди</label>
 		<input type='checkbox' name='forward' <?= $forward_selected ?>/><br/>
+	
+		<label for="priority">Приоритет (чем выше, тем выше предложение)</label>
+		<input type="text" name="priority" value="<?= $hotel_row['priority'] ?>"><br>	
+		
 
 		<label>Активно</label>
 		<input type='checkbox' name='active' <?= $active_selected ?>/><br/>
@@ -316,6 +321,9 @@ if (! isset($n)) {
 
 		<label>Email клиента (можно ввести несколько через запятую)</label>
 		<input type='text' name='client_email' value='<?= $forward_email ?>'><br/>
-		<input type='submit' value='ok'>
+		
+		<p>
+			<button type="submit">Сохранить</button>
+		</p>
 	</form>
 <? } ?>

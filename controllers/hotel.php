@@ -13,3 +13,4 @@ $user = get_record("SELECT * FROM users WHERE id = {$myrow['user_id']}");
 
 $views = $myrow['views'] + 1;
 mysql_query("UPDATE hotels SET views=$views WHERE id={$myrow['id']}");
+?>

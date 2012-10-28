@@ -5,7 +5,7 @@ $result = mysql_query("
 	SELECT * 
 	FROM hotels 
 	WHERE active=1 OR type='admin'
-	ORDER BY forward DESC, id DESC 
+	ORDER BY priority DESC, forward DESC, id DESC 
 	LIMIT $start, $x");
 	
 if (mysql_num_rows($result) > 0) {

@@ -49,13 +49,12 @@ a:hover {color: #F7BF1E;}
 }
 
 #navigation li a {
-	font-weight: bold;
 	display: block;
 	float: left;
 	position: relative;
 	text-decoration: none;
 	color: #333;
-	font-size: 13px;
+	font: bold 14px Helvetica, Arial, sans-serif;
 	line-height: 30px;
 	padding: 0 10px;
 	background: url(new_images/nav_a_bg2.gif) top left repeat-x;
