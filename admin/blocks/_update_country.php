@@ -48,6 +48,10 @@ if (!isset($n)) {
 	
 	<h2>Редактирование страны</h2>
 	
+	<p>
+		<a href="?t=country&amp;a=update">&larr; к списку</a>
+	</p>
+	
 	<form enctype='multipart/form-data' method='post' id='form' action='?t=country&amp;a=update&amp;n=<?= $myrow['id'] ?>&amp;do'>
 		<p>
 			<label>Название страны</label>

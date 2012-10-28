@@ -53,6 +53,10 @@ if (! isset($n)) {
 
 	?>
 	
+	<p>
+		<a href="?t=region&amp;a=update">&larr; к списку</a>
+	</p>
+	
 	<form method='post' id='form' action='?t=region&amp;a=update&amp;n=<?= $n ?>&do'>
 		<p>
 			<label>Название региона</label>
