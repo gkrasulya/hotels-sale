@@ -45,7 +45,7 @@ $hotel_user = get_record("SELECT * FROM users WHERE id = {$myrow['user_id']}");
 <img src='<?= SITE_ADDR ?>img.php?src=fotos/<?=$myrow_img['img_big']?>' style="width: 50%" alt='<?=$myrow['title']?>' id='hotelImage' />
 
 <div style='width: 100%;'>
-	<p><?=$myrow['text_html'] ? $myrow['text_html'] : nl2br($myrow['text']); ?></p>
+	<p><?=$myrow['text_html'] ? str_replace("\n", "</p><p>", $myrow['text_html']) : nl2br($myrow['text']); ?></p>
 
 	<? if ($myrow['type'] == 'user' || $myrow['type'] == 'agency'): ?>
 		<p>Стоимость: <strong><?= $myrow['price'] ?></strong></p>

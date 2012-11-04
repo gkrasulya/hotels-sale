@@ -1,6 +1,6 @@
 <?
 if (!isset($n)) {
-	$result = mysql_query("SELECT * FROM countries",$db);
+	$result = mysql_query("SELECT * FROM countries ORDER BY title");
 	$myrow = mysql_fetch_array($result);
 
 	?>

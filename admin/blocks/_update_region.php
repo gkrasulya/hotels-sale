@@ -1,6 +1,6 @@
 <?
 if (! isset($n)) {
-	$result = mysql_query("SELECT * FROM regions");
+	$result = mysql_query("SELECT * FROM regions ORDER BY title");
 	$myrow = mysql_fetch_array($result);
 	?>
 	
