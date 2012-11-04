@@ -8,7 +8,8 @@ $sql = "
 		h.id = r.hotel_id
 		AND r.country_id = {$qwe}
 		AND (active=1 OR type='admin')
-	$s LIMIT $start, $x";
+		$s
+		LIMIT $start, $x";
 // $s - ordering
 
 $result = mysql_query($sql);
