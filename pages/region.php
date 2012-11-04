@@ -1,26 +1,24 @@
 <?
 
+
 $sql = "
 	SELECT DISTINCT(h.id), h.*
 	FROM hotels h, hotels_regions as hr
 	WHERE
-		h.id = hr.hotel_id AND hr.region_id = {$r}
+		h.id = hr.hotel_id
+		AND hr.region_id = {$r}
 		AND (active=1 OR type='admin')
 		$s
-	LIMIT $start, $x
-";
+		LIMIT $start, $x";
 
 $result = mysql_query($sql);
 
-if (mysql_num_rows($result) > 0) {
-	$result_r = mysql_query("SELECT title,country FROM regions WHERE id='$r'",$db);
-	$myrow_r = mysql_fetch_array($result_r);
-	
-	$result_c = mysql_query("SELECT title FROM countries WHERE id='$myrow_r[country]'",$db);
+if (mysql_num_rows($result) > 0) {	
+	$result_c = mysql_query("SELECT title FROM countries WHERE id='$region[country]'",$db);
 	$myrow_c = mysql_fetch_array($result_c); ?>
 	
 	<h1>
-		<?=$myrow_c['title']?>, <?=$myrow_r['title']?>
+		<?=$myrow_c['title']?>, <?=$region['title']?>
 	</h1>
 	
 	<span id='sorting'>
@@ -41,7 +39,7 @@ if (mysql_num_rows($result) > 0) {
 		<table class='offer'>
 			<tr>
 				<td valign='top' width='200'>
-					<a href='/show/<?=$myrow['slug']?>.html' class='img'>
+					<a href='<?= SITE_ADDR ?>/show/<?=$myrow['slug']?>.html?from_region=<?= $region['id'] ?>' class='img'>
 						<img src='/fotos/<?=$myrow_img['img_pre']?>' alt='<?=$myrow['title']?>' />
 					</a>
 				</td>
@@ -55,7 +53,7 @@ if (mysql_num_rows($result) > 0) {
 					</p>
 					<p class='text'><?=$myrow['descr']?></p>
 					<span class='links'>
-						<a href='/show/<?=$myrow['slug']?>.html'>подробнее</a> <span>/</span>
+						<a href='<?= SITE_ADDR ?>/show/<?=$myrow['slug']?>.html?from_region=<?= $region['id'] ?>'>подробнее</a> <span>/</span>
 						<a href='/?form=new&amp;number=<?=$myrow['number']?>'>сделать заявку</a>
 					</span>
 				</td>

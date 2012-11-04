@@ -1,10 +1,10 @@
 <?
 
-$countries = $_GET['countries'];
+$countries = isset($_GET['countries']) ? $_GET['countries'] : null;
 $min_price = $_GET['min_price'];
 $max_price = $_GET['max_price'];
-$min_rooms = $_GET['min_rooms'];
-$max_rooms = $_GET['max_rooms'];
+// $min_rooms = $_GET['min_rooms'];
+// $max_rooms = $_GET['max_rooms'];
 
 error_reporting(E_ALL);
 
@@ -34,6 +34,7 @@ if (! $countries) {
 		SELECT h.*
 		FROM hotels h
 		$where
+		$s
 		LIMIT $start, $x
 	";
 } else {
@@ -46,6 +47,7 @@ if (! $countries) {
 		SELECT h.*
 		FROM hotels h, hotels_countries r
 		$where
+		$s
 		LIMIT $start, $x
 	";
 }

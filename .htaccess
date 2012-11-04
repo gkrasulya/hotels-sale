@@ -1,7 +1,7 @@
 RewriteEngine On
 
 RewriteRule wow test.php
-RewriteRule show/([-_a-zA-Z0-9]+).html ?slug=$1
+RewriteRule show/([-_a-zA-Z0-9]+).html ?slug=$1 [QSA]
 
 RewriteRule (pokupka-biznesa-v-evrope|pokupka-biznesa-za-granicey|pokupka-biznesa-za-rubezhom|prodazha-biznesa-v-evrope|prodazha-biznesa-za-granicey|prodazha-biznesa-za-rubezhom|kupit-gotoviy-biznes-v-evrope|kupit-gotoviy-biznes-za-granicey|kupit-gotoviy-biznes-za-rubezhom|kupit-biznes-v-evrope|kupit-biznes-za-granicey|kupit-biznes-za-rubezhom|kupit-otel-v-evrope|kupit-otel-za-granicey|kupit-otel-za-rubezhom|prodazha-oteley-v-evrope|prodazha-oteley-za-granicey|prodazha-gostinic-v-evrope|komercheskaya-nedvizhimost-v-evrope|komercheskaya-nedvizhimost-za-rubezhom|investicii-v-gostinichniy-biznes) ?text_name=$1
 

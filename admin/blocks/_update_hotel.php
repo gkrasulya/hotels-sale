@@ -125,6 +125,10 @@ if (! isset($n)) {
 		$hotel_data['open_stats'] = $open_stats;
 		$hotel_data['title'] = $hotel_title;
 
+		$hotel_data['head_title'] = $_POST['head_title'];
+		$hotel_data['meta_keywords'] = $_POST['meta_keywords'];
+		$hotel_data['meta_description'] = $_POST['meta_description'];
+
 		$hotel_data['expiration'] = $_POST['expiration'];
 		$hotel_data['active'] = $active;
 
@@ -251,6 +255,19 @@ if (! isset($n)) {
 
 		<label>Подробное описание</label>
 		<textarea name='text'><?= isset($myrow['text']) ?  $myrow['text'] : '' ?></textarea>
+	
+		<p>
+			<label for="">Заголовок для поисковиков</label>
+			<textarea class="small" name="head_title"><?= isset($myrow['head_title']) ? $myrow['head_title'] : '' ?></textarea>
+		</p>
+		<p>
+			<label for="">Ключевые слова для поисковиков (meta keywords)</label>
+			<textarea class="small" name="meta_keywords"><?= isset($myrow['meta_keywords']) ? $myrow['meta_keywords'] : '' ?></textarea>
+		</p>
+		<p>
+			<label for="">Описание для поисковиков (meta description)</label>
+			<textarea class="small" name="meta_description"><?= isset($myrow['meta_description']) ? $myrow['meta_description'] : '' ?></textarea>
+		</p>
 
 		<label>Фотография</label>
 		<input type='file' name='foto'>

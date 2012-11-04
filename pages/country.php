@@ -8,20 +8,15 @@ $sql = "
 		h.id = r.hotel_id
 		AND r.country_id = {$qwe}
 		AND (active=1 OR type='admin')
-	$s LIMIT $start, $x";
+		$s
+		LIMIT $start, $x";
 // $s - ordering
 
 $result = mysql_query($sql);
 	
-if (mysql_num_rows($result) > 0) {
-	
-	$result_c = mysql_query("SELECT title FROM countries WHERE id='$qwe'",$db);
-	$myrow_c = mysql_fetch_array($result_c); ?>
-	
-	
-	
+if (mysql_num_rows($result) > 0) { ?>	
 	<h1>
-		<?=$myrow_c['title']?>
+		<?=$country['title']?>
 	</h1>
 	
 	<span id='sorting'>
@@ -42,7 +37,7 @@ if (mysql_num_rows($result) > 0) {
 		<table class='offer'>
 			<tr>
 				<td valign='top' width='200'>
-					<a href='<?= SITE_ADDR ?>show/<?=$myrow['slug']?>.html' class='img'>
+					<a href='<?= SITE_ADDR ?>show/<?=$myrow['slug']?>.html?from_country=<?= $country['id'] ?>' class='img'>
 						<img src='<?= SITE_ADDR ?>image.php?image=<?= SITE_ADDR ?>fotos/<?=$photo->img_big?>&amp;width=<?= PRE_IMG_WIDTH ?>' alt='<?=$myrow['title']?>' /></a>
 				</td>
 				<td>
@@ -55,7 +50,7 @@ if (mysql_num_rows($result) > 0) {
 					</p>
 					<div class='text'><?=$myrow['descr_html'] ? $myrow['descr_html'] : $myrow['descr']?></div>
 					<span class='links'>
-						<a href='/show/<?=$myrow['slug']?>.html'>подробнее</a> <span>/</span>
+						<a href='/show/<?=$myrow['slug']?>.html?from_country=<?= $country['id'] ?>'>подробнее</a> <span>/</span>
 						<a href='/?form=new&amp;number=<?=$myrow['number']?>'>сделать заявку</a>
 					</span>
 				</td>
