@@ -36,6 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$hotel_data['slug'] = $slug;
 	$hotel_data['tosend'] = $tosend;
 
+	$hotel_data['head_title'] = $_POST['head_title'];
+	$hotel_data['meta_keywords'] = $_POST['meta_keywords'];
+	$hotel_data['meta_description'] = $_POST['meta_description'];
+
 	$hotel_data['expiration'] = $_POST['expiration'];
 	$hotel_data['active'] = $active;
 
@@ -111,6 +115,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<label>Подробное описание</label>
 	<textarea name='text'></textarea>
+	
+	<p>
+		<label for="">Заголовок для поисковиков</label>
+		<textarea class="small" name="head_title"></textarea>
+	</p>
+	<p>
+		<label for="">Ключевые слова для поисковиков (meta keywords)</label>
+		<textarea class="small" name="meta_keywords"></textarea>
+	</p>
+	<p>
+		<label for="">Описание для поисковиков (meta description)</label>
+		<textarea class="small" name="meta_description"></textarea>
+	</p>
 
 	<label>Фотография</label>
 	<input type='file' name='foto'>
@@ -171,8 +188,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<label for='forward'>Поместить впереди</label>
 	<input id='forward' type='checkbox' name='forward' /><br/>
 	
-	<label for="priority">Приоритет (чем выше, тем выше предложение)</label>
-	<input type="text" name="priority"><br>
+	<label for="priority">Приоритет (чем ниже, тем выше предложение)</label>
+	<input type="text" value="1000" name="priority"><br>
 
 	<label>Активно</label>
 	<input checked type='checkbox' name='active' /><br/>
