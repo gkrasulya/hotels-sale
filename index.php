@@ -25,8 +25,8 @@ $main_row = mysql_fetch_array($main_res);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-<meta name="keywords" content="Business-gold.ru - <?= isset($meta_keywords) ? $meta_keywords : $main_row['meta_k'] ?>"> 
-<meta name="description" content="Business-gold.ru - <?= isset($meta_description) ? $meta_description : $main_row['meta_d'] ?>">
+<meta name="keywords" content="Hotels-sale.ru - <?= isset($meta_keywords) ? $meta_keywords : $main_row['meta_k'] ?>"> 
+<meta name="description" content="Hotels-sale.ru - <?= isset($meta_description) ? $meta_description : $main_row['meta_d'] ?>">
 <title>
 	<?
 	if (isset($head_title)) {
