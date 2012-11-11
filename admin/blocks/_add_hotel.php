@@ -1,6 +1,5 @@
 <?
 global $hotel_cols;
-
 echo "<h2>Добавление гостиницы</h2>";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -40,6 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$hotel_data['meta_keywords'] = $_POST['meta_keywords'];
 	$hotel_data['meta_description'] = $_POST['meta_description'];
 
+	$country = get_record('SELECT * FROM countries WHERE id IN (' . implode($countries, ', ') . ') LIMIT 1');
+
+	if (! $hotel_data['meta_description']) {
+		$hotel_data['meta_description'] = $country->meta_description;
+	}
+	if (! $hotel_data['meta_keywords']) {
+		$hotel_data['meta_keywords'] = $country->meta_keywords;
+	}
+
 	$hotel_data['expiration'] = $_POST['expiration'];
 	$hotel_data['active'] = $active;
 
@@ -65,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			mysql_query($sql_c);
 			// die(mysql_error());
 		}
+
 		if (isset($regions)) {
 
 			$sql_r_array = array();

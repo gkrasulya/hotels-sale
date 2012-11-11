@@ -2,7 +2,7 @@
 
 if (isset($new))
 	{
-		$result = mysql_query("SELECT id FROM hotels",$db);
+		$result = mysql_query("SELECT id FROM hotels WHERE active = 1 OR type = 'admin'",$db);
 		if (mysql_num_rows($result) > $x)
 			{
 				$max_page = ceil(mysql_num_rows($result)/$x);
@@ -43,8 +43,10 @@ if (isset($r))
 		$sql = "
 			SELECT DISTINCT(h.id), h.*
 			FROM hotels h, hotels_regions as hr
-			WHERE h.id = hr.hotel_id AND hr.region_id = {$r}
-		";
+			WHERE
+				h.id = hr.hotel_id
+				AND hr.region_id = {$r}
+				AND (h.active = 1 OR h.type = 'admin')";
 		$result = mysql_query($sql);
 		if (mysql_num_rows($result) > $x)
 			{
@@ -87,7 +89,8 @@ if (isset($qwe))
 			"SELECT DISTINCT(h.id)
 			 FROM hotels h, hotels_countries as r
 			 WHERE
-				 h.id = r.hotel_id AND r.country_id = {$qwe} $s");
+				h.id = r.hotel_id AND r.country_id = {$qwe}
+				AND (h.active = 1 OR h.type = 'admin')");
 
 		if (mysql_num_rows($result) > $x)
 			{
