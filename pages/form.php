@@ -38,8 +38,8 @@ if ($form == 'send') {
 	
 	if (empty($errors)) {
 	
-		$to = "{$myrow[email]},no-thx@mail.ru,alupichev@yandex.ru";
-		$subject = "Новая заявка от hotels-sale.ru";
+		$to = "{$myrow['email']},no-thx@mail.ru,alupichev@yandex.ru";
+		$subject = "Новая заявка от hotels-sale.ru, {$number}";
 		$body = "Новая заявка \n\n
 			От: ".$name." \n
 			Email: ".$email." \n
