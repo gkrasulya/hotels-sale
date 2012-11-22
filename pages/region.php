@@ -51,7 +51,7 @@ if (mysql_num_rows($result) > 0) {
 						
 						<span class='add'>цена: <strong><?=$myrow['price']?></strong></span>
 					</p>
-					<p class='text'><?=$myrow['descr']?></p>
+					<div class='text'><?=nl2br($myrow['descr'])?></div>
 					<span class='links'>
 						<a href='<?= SITE_ADDR ?>/show/<?=$myrow['slug']?>.html?from_region=<?= $region['id'] ?>'>подробнее</a> <span>/</span>
 						<a href='/?form=new&amp;number=<?=$myrow['number']?>'>сделать заявку</a>
