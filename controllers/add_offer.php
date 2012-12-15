@@ -44,6 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$data['descr_html'] = text2html($data['descr']);
 		$data['client_email'] = $user->email;
 
+		if ($user->type == 'agency') {
+			$data['active'] = 1;
+		}
+
 		# generating number for offer
 		$chars = range('a', 'z'); # range of latin letter for number
 		$data['number'] = '10' . rand(10, 99) . '-' . $chars[rand(0, count($chars)-1)];
