@@ -68,11 +68,11 @@ if ($photos) { ?>
 				<? if ($myrow['user_id']): ?>
 					<a href="<?= SITE_ADDR ?>image.php?image=<?= SITE_ADDR ?>add_fotos/<?= $photo->big ?>&amp;width=800&amp;height=800&amp;cropration=1:1" onclick="showImg(this); return false;">
 						<img src="<?= SITE_ADDR ?>image.php?image=<?= SITE_ADDR ?>add_fotos/<?= $photo->big ?>&amp;width=150&amp;height=150&amp;cropration=1:1" alt="" />
-					</a>
 				<? else: ?>
 					<a href='<?= SITE_ADDR ?>image.php?image=<?= $image ?>&amp;width=800&amp;height=800&amp;cropration=1:1' onclick='showImg(this); return false;'>
 						<img src='<?= SITE_ADDR ?>image.php?image=<?= $image ?>&amp;width=100&amp;height=100&amp;cropration=1:1'/>
 				<? endif ?>
+				</a>
 				<div style='width:110px;height:5px;position:absolute;bottom:0px;left:0px;background:white;'>&nbsp;</div>
 			</li>
 		<?php endforeach ?>
